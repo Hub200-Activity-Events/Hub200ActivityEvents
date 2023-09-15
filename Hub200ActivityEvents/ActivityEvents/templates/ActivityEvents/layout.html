@@ -1,0 +1,56 @@
+{% load static tailwind_tags %}
+{% tailwind_css %}
+{% load static %}
+{% load bootstrap_icons %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}ActivityEvents{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'ActivityEvents/styless.css' %}">
+        <script src="{% static 'ActivityEvents/index.js' %}"></script>
+
+        {% block script %}
+        {% endblock %}
+    </head>
+    <body>
+        <header class=" fixed top-0 left-0 right-0 mx-auto p-2 px-5 w-full h-[5rem] bg-[#E8F5FF] flex justify-between items-center">
+            <img class="w-[8rem] h-[2rem]" src="{% static 'ActivityEvents/hub200logo.png' %}" />
+            <nav class="flex flex-row justify-center items-center mt-[1rem] ml-[3.5rem] ">
+                <ul class="flex flex-row justify-center items-center">
+                    {% for link in navigationlinks %}
+                    <li><a class='text-[0.9rem] text-black mr-[1.5rem] font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
+                    {% endfor %}
+                <ul>
+            </nav>
+
+            <div>
+                <button class="w-[6rem] h-[2.2rem] rounded-[4rem] bg-[#E3F3FF] border-[0.09rem] border-[#379EFF] font-semibold hover:text-white hover:bg-[#71B3F1]"><a href="{% url 'signin' %}">Sign In</a></button>
+                <button class="w-[6rem] h-[2.2rem] rounded-[4rem]  bg-[#fefefe] border-[0.09rem] border-[#379EFF] font-semibold ml-[0.5rem] hover:bg-[#71B3F1] hover:text-white"><a href="{% url 'signup' %}">Sign Up</a></button>
+            </div>
+
+        </header>
+        <main id="content" class="min-h-screen pt-[5rem] box-border scroll-smooth overflow-x-hidden flex flex-col items-center">
+            {% block body %}
+            {% endblock %}
+        </main>
+        <footer class="bg-[#E8F5FF] h-[13rem] flex flex-col  items-center ">
+            <img class="w-[8rem] h-[2rem] mt-[1rem]" src="{% static 'ActivityEvents/hub200logo.png' %}" />
+            <div class="flex flex-row justify-center items-center mt-[1rem] ml-[3rem]">
+                <ul class="flex flex-row justify-center items-center ">
+                    {% for link in navigationlinks %}
+                    <li><a class='text-[1rem] text-black mr-[1.5rem] font-semibold no-underline 'href="{% url link.href %}">{{link.text}}</a></li>
+                    {% endfor %}
+                <ul>
+            </div>
+            <div class='w-[6rem] flex flex-row h-[4rem]'>
+                <div class="bg-white w-[2.5rem] h-[2.5rem] rounded-full flex justify-center items-center"><a href="https://m.facebook.com/hub200.tiq/">{% bs_icon 'facebook' size='1.5rem' color="black" %}</a></div>
+                <div class="bg-white w-[2.5rem] h-[2.5rem] rounded-full ml-[1rem] flex justify-center items-center"><a href="https://www.instagram.com/hub200.tiq/">{% bs_icon 'instagram' size='1.5rem' color="black" %}</a></div>
+            </div>
+            <div class="h-[1px] w-[15rem] bg-black"></div>
+            <p class='text-[0.7rem] mt-[0.4rem]'>Contact email: hub200@gmail.com "i will change it later"</p>
+
+        </footer>
+    </body>
+</html>
