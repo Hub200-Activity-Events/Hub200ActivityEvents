@@ -2,8 +2,49 @@
 {% load static %}
 {% load bootstrap_icons %}
 {% block body %}
-<section>
-    <h1>sign up</h1>
+<section class="min-h-screen flex flex-col items-center p-8 pl-9 pr-9 ">
+    <div class="flex flex-row w-full h-full justify-center items-center   ">
+      
+        <div class="w-2/4 h-full  flex flex-col items-center ">
+            <img class="w-[8rem] h-[2rem]" src="{% static 'ActivityEvents/hub200logo.png' %}" />
+        </div>
+        <form action="{% url 'signup'  %}" method="POST" class="w-2/4 h-full  flex flex-col items-center justify-center ">
+            {% csrf_token %}
+            <img class="w-[8rem] h-[2rem]" src="{% static 'ActivityEvents/hub200logo.png' %}" />
+            <h3 class="text-[1.6rem] mt-[1rem]">Sign up to Hub200</h3>
+            <div class="flex flex-col h-[5rem] mt-[1rem] items-start text-left  ">
+                <label class="text-left" for="name">Name</label>
+                <input class="w-[18rem] h-[2.5rem] rounded-[0.5rem]" type="text" name="name" placeholder="AzizAhsaan" required>
+            </div>
+            <div class="flex flex-col h-[5rem] mt-[1rem] items-start text-left  ">
+                <label class="text-left" for="phone">Phone Number</label>
+                <input class="w-[18rem] h-[2.5rem] rounded-[0.5rem]" type="number" name="phone" placeholder="07743953622" required>
+            </div>
+            <div class="flex flex-col h-[5rem] mt-[1rem] items-start text-left  ">
+                <label class="text-left" for="lcoation">Location</label>
+                <select class="w-[18rem] h-[2.5rem] rounded-[0.5rem]"  name="Location" placeholder="baghdad" required>
+                    <option value="baghdad">baghdad</option>
+                    <option value="basrah">basrah</option>
+                    <option value="erbil">erbil</option>
+                    <!-- as I said before this location field is optional, if you don't want to use it in the signing form tell me!    -->
+                </select>
+            </div>
+            <div class="flex flex-col h-[5rem] mt-[1rem] items-start text-left  ">
+                <label class="text-left" for="email">E-mail</label>
+                <input class="w-[18rem] h-[2.5rem] rounded-[0.5rem]" type="email" name="email" placeholder="AzizAhsaan@gmail.com" required>
+            </div>
+            <div class="flex flex-col h-[5rem] mt-[1rem] items-start text-left  ">
+                <label class="text-left" for="password">Password</label>
+                <input class="w-[18rem] h-[2.5rem] rounded-[0.5rem]" type="password" name="password" placeholder="*******" required>
+            </div>
+            <div class="flex flex-col h-[5rem] mt-[1rem] items-start text-left  ">
+                <label class="text-left" for="confirmpassword">Confirm Password</label>
+                <input class="w-[18rem] h-[2.5rem] rounded-[0.5rem]" type="password" name="confirmpassword" placeholder="*******" required>
+            </div>
+            <button class="w-[14rem] mt-[1rem] h-[3rem] bg-[#499DEC] rounded-[0.5rem] text-white font-semibold text-[1.3rem]" type="submit">Sign up</button>
+        </form>
+
+    </div>
 </section>
 
 {% endblock %}
