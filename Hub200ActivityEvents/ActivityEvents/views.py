@@ -30,3 +30,16 @@ def signin(request):
 def signup(request):
     return render(request,'ActivityEvents/signup.html')
 
+def forgotpassword(request):
+    return render(request,'ActivityEvents/forgotpassword.html')
+
+def resetpassword(request):
+    return render(request,'ActivityEvents/resetpassword.html')
+
+def signingupdone(request):
+    return render(request,'ActivityEvents/signingupdone.html') #Maybe you will need to render the signingupdone.html in the signup function(after he comepletes the sign up)
+
+def errorpage(request):
+    return render(request,'ActivityEvents/errorpage.html') #Maybe you will need to render the signingupdone.html in the signup function(after he comepletes the sign up)
+
+
