@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 
@@ -25,10 +26,36 @@ def registration(request):
     return render(request,'ActivityEvents/registration.html')
 
 def signin(request):
-    return render(request,'ActivityEvents/signin.html')
+    if request.method == 'POST':
+        email = request.POST.get('inputsigninemail')
+        password = request.POST.get('inputsigninpassword')
+        rememberme= request.POST.get('remeberme')
+        return HttpResponseRedirect(reverse('home'))
+    else:
+        return render(request,'ActivityEvents/signin.html')
 
 def signup(request):
-    return render(request,'ActivityEvents/signup.html')
+    if request.method == 'POST':
+        inputusername = request.POST.get('inputusername')
+        inputphonenumber = request.POST.get('inputphonenumber')
+        inputemail = request.POST.get('inputemail')
+        inputpassword = request.POST.get('inputpassword')
+        inputconfirmpassword = request.POST.get('inputconfirmpassword')
+        inputphoto = request.FILES.get('inputphoto')
+
+        
+        print(f'Username: {inputusername}')
+        print(f'Phone Number: {inputphonenumber}')
+        print(f'Email: {inputemail}')
+        print(f'Password: {inputpassword}')
+        print(f'Confirm Password: {inputconfirmpassword}')
+        print(f'image: {inputphoto}')
+
+
+        return HttpResponseRedirect(reverse('signingupdone'))
+    else:
+        return render(request,'ActivityEvents/signup.html')
+    
 
 def forgotpassword(request):
     return render(request,'ActivityEvents/forgotpassword.html')

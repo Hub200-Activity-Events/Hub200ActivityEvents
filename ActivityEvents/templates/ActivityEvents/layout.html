@@ -7,17 +7,22 @@
     <head>
         <title>{% block title %}ActivityEvents{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
         <link rel="stylesheet" href="{% static 'ActivityEvents/styless.css' %}">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{% static '/ActivityEvents/index.js' %}" type="text/javascript"></script>  
         <script src="https://cdn.tailwindcss.com"></script>     
-        <script src="{% static 'ActivityEvents/index.js' %}"></script>
+        <script src="https://kit.fontawesome.com/ffe1fea523.js" crossorigin="anonymous"></script>
+    
+
 
         {% block script %}
         {% endblock %}
     </head>
     <body>
-        <header class=" fixed top-0 left-0 right-0 mx-auto p-2 px-5 w-full h-[5rem] bg-[#E8F5FF] flex justify-between items-center">
+        <header class=" fixed top-0 left-0 right-0 mx-auto p-2 px-5 w-full h-[5rem] bg-[#E8F5FF] flex justify-between items-center z-50	">
             <img class="w-[8rem] h-[2rem]" src="{% static 'ActivityEvents/hub200logo.png' %}" />
-            <nav class="flex flex-row justify-center items-center mt-[1rem] ml-[3.5rem] ">
+            <nav class="flex flex-row justify-center items-center  ml-[3.5rem] ">
                 <ul class="flex flex-row justify-center items-center">
                     {% for link in navigationlinks %}
                     <li><a class='text-[0.9rem] text-black mr-[1.5rem] font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
@@ -32,7 +37,10 @@
 
         </header>
         <main class="min-h-screen pt-[5rem] box-border scroll-smooth overflow-x-hidden flex flex-col ">
+            <div id="toastbox"></div>
+
             {% block body %}
+
             {% endblock %}
         </main>
         <footer class="bg-[#E8F5FF] h-[13rem] flex flex-col  items-center ">

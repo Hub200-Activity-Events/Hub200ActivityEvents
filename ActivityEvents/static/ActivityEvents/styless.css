@@ -11,3 +11,148 @@ a:hover {
     color: #3B9DF8 ;
     text-decoration: none;
 }
+.inputdivparent{
+    display:flex;
+    flex-direction: column;
+    height: 5rem;
+    margin-top: 1rem;
+    position: relative;
+    align-items: center;
+}
+
+.inputdivparent.success input {
+    border-color: #09c372;
+}
+
+.inputdivparent.error input {
+    border-color: #ff3860;
+}
+
+.inputdivparent .error {
+    color: #ff3860;
+    font-size: 9px;
+    height: 13px;
+}
+
+
+.avatar-upload {
+    position: relative;
+    max-width: 205px;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.avatar-upload .avatar-edit {
+    position: absolute;
+    right: 12px;
+    z-index: 1;
+    top: 10px;
+}
+
+.avatar-upload .avatar-edit input {
+    display: none;
+}
+
+.avatar-upload .avatar-preview {
+    width: 10rem;
+    height: 10rem;
+    position: relative;
+    border-radius: 100%;
+    border: 6px solid #D2ECFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-upload .avatar-preview > div {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.inputsclass{
+    padding: 0.9rem 3rem 0.9rem 2rem;
+    border: 2px solid gray;
+    outline: none;
+    border-radius: 6px;
+}
+.inputsclass:is(:focus, :valid){
+    border: 2px solid #D2ECFF;
+}
+.placeholderlabel{
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    color: gray;
+    left: 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin-top: 0.2rem;
+    transition: all 0.2s ease-in;
+}
+.inputsclass:is(:focus, :valid) + .placeholderlabel {
+    transform: translatey(calc(-1 * 0.8rem - 12px)) ;
+    font-size: 0.9rem;
+    color: #5eb1ff;
+    font-weight: 400;
+  }
+
+
+
+
+#toastbox{
+    position: absolute;
+    margin-bottom: 5.5rem;
+    right: 30px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 15px;
+}
+
+
+.toasts{
+    width: 400px;
+    height: 70px;
+    background-color: #fff;
+    font-weight: 500;
+    margin: 15px 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.toasts i{
+    margin: 0 20px;
+    font-size: 30px;
+    color: green;
+}
+.toasts.error i{
+    color: red;
+}
+.toasts.invalid i{
+    color: orange;
+}
+.toasts::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background: green;
+    animation: anim 5s linear forwards;
+}
+@keyframes anim {
+    100%{
+        width: 0;
+    }
+}
+.toasts.error::after{
+    background: red;
+}
+.toasts.invalid::after{
+    background: orange;
+}
