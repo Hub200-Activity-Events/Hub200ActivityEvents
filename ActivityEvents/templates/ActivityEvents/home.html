@@ -1,9 +1,269 @@
 {% extends "ActivityEvents/layout.html" %}
 {% load static %}
-
+{% load bootstrap_icons %}
 {% block body %}
-<section>
-    <h1>Home</h1>
-</section>
+<style>#curved{
+    position: relative;
+    background: #E8F5FF;
+    height: 28rem;
+    border-bottom-left-radius: 50% 20%;
+    border-bottom-right-radius: 50% 20%;
+  }
+  
+
+
+.vjs-custom-theme .vjs-control-bar {
+  background-color: transparent ;
+}
+
+.vjs-custom-theme .vjs-control-bar {
+  height: 54px;
+  background: none;
+  display: flex;
+  visibility: visible;
+}
+
+.vjs-custom-theme .vjs-volume-panel {
+  order: 4;
+  margin-top: 0.75rem;
+}
+
+.vjs-custom-theme .vjs-fullscreen-control {
+    display: none;
+}
+.vjs-custom-theme .vjs-picture-in-picture-control,
+.vjs-custom-theme .vjs-remaining-time {
+  display: none;
+}
+
+.vjs-custom-theme .vjs-play-control {
+  width: 5em ;
+  margin-top: 0.75rem;
+}
+
+.vjs-custom-theme .vjs-play-control .vjs-icon-placeholder::before {
+  font-size: 13px;
+  letter-spacing: 0.16px;
+  content: "Play" ;
+  font-family: sans-serif;
+  line-height: 30px;
+}
+
+.vjs-custom-theme .vjs-play-control.vjs-playing .vjs-icon-placeholder::before {
+  content: "Pause" ;
+  font-family: sans-serif;
+}
+  </style>
+<section  class="h-full w-full flex flex-col items-center justify-center  mb-[2rem]  ">
+
+
+    <div id="curved" class="relative w-[99%] mx-auto flex flex-row justify-center items-center" >
+        <div class="flex flex-col w-6/12 h-full items-center mt-[7rem]">
+            <h1 class="text-[3.2rem] font-medium ml-[13rem]	 text-[#404040]">Explore Hub200’s </br> Exciting Event </br> Lineup. </h1>
+            <button class="w-[12rem] h-[3rem] bg-white rounded-full ml-[6rem] mt-[2rem] text-[1.1rem] text-[#499DEC] font-medium">Discover The Events</button>
+        </div>
+        <div class="flex flex-col w-6/12 h-full items-center mt-[6rem] relative mr-[4rem] ">
+            <img class="w-[31rem] h-[31rem]  absolute right-[5.6rem] bottom-[2.6rem] z-10 " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
+
+            <div class="w-[22rem] h-[19rem] bg-white relative rounded-[0.9rem]">
+                <div class="w-[22rem] h-[18rem] bg-gradient-to-t from-[#F6FBFF] to-[#9DD5FF] absolute right-[0.9rem] top-[0.6rem] rounded-[0.9rem]"></div>
+            </div>
+        </div>
+    </div>
+    <div class="relative w-[94%] mx-auto flex flex-col justify-center items-center mt-[3rem]" >
+        <h1 class="text-[2.2rem] font-medium  text-center text-[#1763AA]	">What Hub200’s Activity Events </br> Provides</h1>
+        <div class="w-full h-[40rem] mt-[1rem]  ">
+            <div class="w-full h-[18rem] flex flex-row items-center justify-center bg-[#F3F9FE]  rounded-[1rem]">
+                <div class="w-[22rem] h-full  flex flex-col justify-center ">
+                    <h1 class="text-[2rem] text-[#404040] text-left">
+                        Networking community
+                    </h1>
+                    <p class="text-[1rem] mt-[1rem] text-[#404040]">
+                        Create opportunities for you to network with instoctors, mentors, alumni, software companies, you never know which connections will end up being valuable to your career going forward.
+                    </p>
+                </div>
+                <div class="w-[28rem] h-full  flex flex-col justify-center">
+                    <img class="w-[32rem] h-[32rem] z-10 " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
+                </div>
+            </div>
+
+
+            <div class="w-full h-[18rem] flex flex-row mt-[2rem] justify-center items-center">
+                <div class="w-[37rem]	 h-full flex flex-row items-center justify-center bg-[#F3F9FE]  rounded-[1rem] mr-[2.5rem]">
+                    <div class="w-[22rem] h-full  flex flex-col justify-center ml-[2rem] ">
+                        <h1 class="text-[1.6rem] text-[#404040] text-left text-[#404040]">
+                            Gamification of learning
+                        </h1>
+                        <p class="text-[0.8rem] mt-[1rem] text-[#404040] text-[#404040]">
+                            Maximize your enjoyment and engagement through gamification techniques to motivate you by using game elements in learning environments
+                        </p>
+                    </div>
+                    <div class="w-[28rem] h-full  flex flex-col justify-center">
+                        <img class="w-[32rem] h-[32rem] z-10 " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
+                    </div>
+                </div>
+                
+                <div class="w-[37rem]	 h-full flex flex-row items-center justify-center bg-[#F3F9FE]  rounded-[2rem]">
+                    <div class="w-[22rem] h-full  flex flex-col justify-center ml-[2rem] ">
+                        <h1 class="text-[1.6rem] text-[#404040] text-left text-[#404040]">
+                            Networking community
+                        </h1>
+                        <p class="text-[0.8rem] mt-[1rem] text-[#404040] ">
+                            Create opportunities for you to network with instoctors, mentors, alumni, software companies, you never know which connections will end up being valuable to your career going forward.
+                        </p>
+                    </div>
+                    <div class="w-[28rem] h-full  flex flex-col justify-center">
+                        <img class="w-[32rem] h-[32rem] z-10 " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class=" w-[94%] mx-auto justify-center items-center mb-[10rem]">
+        <h1 class="text-[3.5rem] font-medium  text-center text-[#1763AA]	">Hub Thursday</h1>
+        <div class="w-full h-[70vh] mt-[2rem] bg-[#F3F9FE] rounded-[1rem] flex flex-row justify-center items-center relative ">
+            <div class="w-[37rem] h-full flex items-center justify-center ">
+                <img class="h-[40rem] w-[40rem] mb-[15.5rem]  " src="{% static 'ActivityEvents/thursdayhub.png' %}" alt="">
+            </div>
+            <div class="w-[28rem] h-full flex flex-col mb-[7rem] justify-center  ">
+                <h1 class="text-[3.5rem] text-left font-medium text-[#404040]">Hub Thursday</h1>
+                <p class="text-[1.2rem] text-[#404040] ">It is weekly events for Hub200
+                    that we do every Thursday with different activities and it includes activities such as</p>
+            </div>
+            <div class="flex flex-row w-full h-full justify-center items-center absolute top-[11.8rem]">
+                <div class="w-[16rem] h-[10rem] flex flex-col justify-center items-center bg-white rounded-[1rem] drop-shadow-xl">
+                    <img class="h-[5.5rem] w-[5.5rem]  " src="{% static 'ActivityEvents/movienight.png' %}" alt="">
+                    <h2 class="text-[1.3rem] text-center mt-[1rem] font-medium text-[#404040]" >Movie Night</h2>
+                </div>
+                <div class="w-[16rem] h-[10rem] flex flex-col justify-center items-center ml-[3rem] bg-white rounded-[1rem] drop-shadow-xl">
+                    <img class="h-[5.5rem] w-[5.5rem]  " src="{% static 'ActivityEvents/keyracing.png' %}" alt="">
+                    <h2 class="text-[1.3rem] text-center mt-[1rem] font-medium text-[#404040]" >KeyRacing</h2>
+                </div>
+                <div class="w-[16rem] h-[10rem] flex flex-col justify-center items-center ml-[3rem] bg-white rounded-[1rem] drop-shadow-xl">
+                    <img class="h-[5.5rem] w-[5.5rem]  " src="{% static 'ActivityEvents/songhub.png' %}" alt="">
+                    <h2 class="text-[1.3rem] text-center mt-[1rem] font-medium text-[#404040]" >Hang out & Music</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class=" w-[94%] mx-auto justify-center items-center mb-[3rem] ">
+        <h1 class="text-[3.5rem] font-medium  text-center text-[#1763AA]	">Popular Events</h1>
+        <div class="w-full h-[70vh] mt-[2rem] bg-[#F3F9FE] rounded-[1rem] flex flex-row justify-center items-center relative ">
+            <div class="w-[28rem] h-full flex flex-col mb-[8rem] justify-center ">
+                <h1 class="text-[3.5rem] mt-[1rem] text-left font-medium text-[#404040]">Hub Thursday</h1>
+                <p class="text-[1.2rem] mt-[1rem] text-[#404040]">It is weekly events for Hub200
+                    that we do every Thursday with different activities and it includes activities such as</p>
+            </div>
+
+            <div class="w-[37rem] h-full flex items-center justify-center ml-[4rem] ">
+                <video id="my-video" class="w-[35rem] rounded-[1rem] h-[22rem] video-js vjs-custom-theme" muted controls autoplay loop data-setup='{}'>
+                    <source src="{% static 'ActivityEvents/hubvideo.mp4' %}" type="video/mp4" />
+                 </video>
+            </div>
+        </div>
+
+    </div>
+    <div class=" w-[94%] mx-auto justify-center items-center ">
+        <h1 class="text-[3.5rem] font-medium  text-center text-[#1763AA]	">Hub Thursday</h1>
+        <div class="w-full h-[50rem] mt-[3rem] rounded-[1rem] flex flex-col justify-center items-center ">
+            <div class="w-full h-[11.5rem] bg-[#F3F9FE] flex flex-row justify-between items-center rounded-[1.5rem] drop-shadow-lg	">
+                <img class="w-[12rem]  h-full rounded-[1.5rem] " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
+                <div class="w-[17rem]  h-full flex flex-col justify-center">
+                    <h1 class="text-[2rem] text-left font-medium text-[#404040]">English Meetup</h1>
+                    <p class="text-[0.6rem] mt-[2rem] text-[#404040]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="w-[17rem]  h-full flex flex-col justify-center items-center">
+                    <h1 class="text-[2rem] font-medium text-[#404040]">Date</h1>
+                    <p class="text-[1.5rem] mt-[2rem] text-[#404040]">27 Jun</p>
+                </div>
+                <div class="w-[17rem]  h-full flex flex-col justify-center items-center">
+                    <h1 class="text-[2rem] font-medium text-[#404040]">Location</h1>
+                    <p class="text-[1.5rem] mt-[2rem] text-[#404040]">Baghdad</p>
+                </div>
+                <button class="w-[7rem] h-[3rem] mr-[2rem] rounded-[1rem] bg-[#569BE1] text-white" type="button">Learn more</button>
+            </div>
+
+            <div class="w-full h-[11.5rem] mt-[2rem] bg-[#F3F9FE] flex flex-row justify-between items-center rounded-[1.5rem] drop-shadow-lg	">
+                <img class="w-[12rem]  h-full rounded-[1.5rem] " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
+                <div class="w-[17rem]  h-full flex flex-col justify-center">
+                    <h1 class="text-[2rem] text-left font-medium text-[#404040]">English Meetup</h1>
+                    <p class="text-[0.6rem] mt-[2rem] text-[#404040]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="w-[17rem]  h-full flex flex-col justify-center items-center">
+                    <h1 class="text-[2rem] font-medium text-[#404040]">Date</h1>
+                    <p class="text-[1.5rem] mt-[2rem] text-[#404040]">27 Jun</p>
+                </div>
+                <div class="w-[17rem]  h-full flex flex-col justify-center items-center">
+                    <h1 class="text-[2rem] font-medium text-[#404040]">Location</h1>
+                    <p class="text-[1.5rem] mt-[2rem] text-[#404040]">Baghdad</p>
+                </div>
+                <button class="w-[7rem] h-[3rem] mr-[2rem] rounded-[1rem] bg-[#569BE1] text-white" type="button">Learn more</button>
+            </div>
+
+            <div class="w-full h-[11.5rem] mt-[2rem] bg-[#F3F9FE] flex flex-row justify-between items-center rounded-[1.5rem] drop-shadow-lg	">
+                <img class="w-[12rem]  h-full rounded-[1.5rem] " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
+                <div class="w-[17rem]  h-full flex flex-col justify-center">
+                    <h1 class="text-[2rem] text-left font-medium text-[#404040]">English Meetup</h1>
+                    <p class="text-[0.6rem] mt-[2rem] text-[#404040]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="w-[17rem]  h-full flex flex-col justify-center items-center">
+                    <h1 class="text-[2rem] font-medium text-[#404040]">Date</h1>
+                    <p class="text-[1.5rem] mt-[2rem] text-[#404040]">27 Jun</p>
+                </div>
+                <div class="w-[17rem]  h-full flex flex-col justify-center items-center">
+                    <h1 class="text-[2rem] font-medium text-[#404040]">Location</h1>
+                    <p class="text-[1.5rem] mt-[2rem] text-[#404040]">Baghdad</p>
+                </div>
+                <button class="w-[7rem] h-[3rem] mr-[2rem] rounded-[1rem] bg-[#569BE1] text-white" type="button">Learn more</button>
+            </div>
+            <div class="w-full h-[11.5rem] mt-[2rem] bg-[#F3F9FE] flex flex-row justify-center items-center rounded-[1.5rem] drop-shadow-lg	">
+                <img class="w-[19rem] h-[19rem] mb-[1rem] " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
+                <button class="w-[10rem] h-[3rem] mt-[7rem] mr-[2rem] rounded-[3rem] bg-[#569BE1] text-white" type="button">All Events</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class=" w-[94%] mx-auto justify-center items-center mt-[6rem] mb-[5rem] ">
+
+        <h1 class="text-[3.5rem] font-medium  text-center text-[#1763AA] mb-[1rem]">Ask a question</h1>
+        <div class="w-full h-[30rem] mt-[1rem] flex flex-row justify-center items-center relative ">
+            <div class="w-[36rem] h-full flex flex-col mt-[4rem] justify-center">
+                <h1 class="text-[1.8rem] font-medium text-left">If you have anything in mind you would like to share send us a message</h1>
+
+                <form id="formQAs" class="h-full w-full flex flex-col justify-first items-first ">
+                   <div class="flex flex-row">
+                     <div class="inputdivparent" >
+                         <input id="usernameinputQA" name="usernameinputQA" class="inputsclass" type="text" required>
+                         <label class="placeholderlabel text-[1.2rem]"   for="usernameinputQA">Username</label>
+                     </div>
+                     <div class="inputdivparent ml-[2rem]" >
+                         <input id="emailinputQA" name="emailinputQA" class="inputsclass" type="email" required>
+                         <label class="placeholderlabel text-[1.2rem]"   for="emailinputQA">Email</label>
+                     </div>
+                   </div>
+
+                    <div class="w-[36rem] flex flex-col relative items-center" >
+                        <textarea id="messageinputQA" name="messageinputQA" class="inputsclass w-full" col="50" rows="10" required></textarea>
+                        <label class="placeholderlabel text-[2.2rem] "   for="messageinputQA">Message</label>
+                    </div>
+                    <button id="buttonsubmitQA" class="w-[11rem] h-[3rem] bg-[#569BE1] text-[1.3rem] text-white rounded-[6px] mt-[1.5rem] drop-shadow-xl " type="submit">Send Message</button>
+                </form>
+            </div>
+
+            <div class="w-[35rem] h-full flex items-center justify-center ml-[4rem] ">
+                <img class="h-[34rem] mt-[2rem] w-full  " src="{% static 'ActivityEvents/askaquestionhub.png' %}" alt="">
+
+            </div>
+        </div>
+
+    </div>
+ </section>
 
 {% endblock %}
