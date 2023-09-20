@@ -32,7 +32,7 @@ def signin(request):
         email = request.POST.get('inputsigninemail')
         password = request.POST.get('inputsigninpassword')
         rememberme= request.POST.get('remeberme')
-        user = authenticate(request, username=email, password=password)
+        user = authenticate(request, email=email, password=password)
         if user is not None:
             if rememberme:
                 request.session.set_expiry(1209600)
@@ -65,7 +65,9 @@ def signup(request):
              )
           
         try:
-            user = User.objects.create_user(inputusername,inputphonenumber ,inputemail, inputpassword,inputphoto)
+            user = User.objects.create_user(inputusername,inputemail,inputpassword)
+            user.phone_number = inputphonenumber
+            user.image = inputphoto
             user.save()
         except IntegrityError:
             return render(request, "auctions/errorpage.html", {
