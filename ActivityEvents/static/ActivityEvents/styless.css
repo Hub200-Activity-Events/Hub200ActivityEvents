@@ -2,6 +2,9 @@
 body{
     font-family: 'Roboto';
 }
+:root {
+    --primary-clr: #E8F5FF;
+  }
 a:hover {
     text-decoration: none;
     color:black
@@ -109,6 +112,7 @@ a:hover {
     flex-direction: column;
     overflow: hidden;
     padding: 15px;
+    z-index: 1000;
 }
 
 
@@ -121,7 +125,9 @@ a:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
-    position: relative;
+    position: fixed;
+    z-index: 1000;
+
 }
 
 .toasts i{
@@ -156,3 +162,6 @@ a:hover {
 .toasts.invalid::after{
     background: orange;
 }
+
+
+
