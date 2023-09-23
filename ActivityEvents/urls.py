@@ -1,6 +1,5 @@
 from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
+
 
 from . import views
 urlpatterns = [
@@ -14,6 +13,8 @@ urlpatterns = [
     path("resetpassword", views.resetpassword, name="resetpassword"),
     path("signingupdone", views.signingupdone, name="signingupdone"),
     path("errorpage", views.errorpage, name="errorpage"),
+    path("display_event/<int:event_id>", views.display_event, name="display_event"),
+    # path("apply_filter", views.apply_filter, name="apply_filter"),
 
 
 ]
