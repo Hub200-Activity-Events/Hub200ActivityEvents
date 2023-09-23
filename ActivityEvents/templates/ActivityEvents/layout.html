@@ -18,6 +18,10 @@
         <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet">
         {% block script %}
         {% endblock %}
+        <style>.activelink{
+            color: #3B9DF8 ;
+            text-decoration: none;
+        }</style>
     </head>
     <body>
         <header class=" fixed top-0 left-0 right-0 mx-auto p-2 px-5 w-[99%] h-[5rem] bg-[#E8F5FF] flex justify-between items-center z-50	">
@@ -25,14 +29,13 @@
             <nav class="flex flex-row justify-center items-center  ml-[3.5rem] ">
                 <ul class="flex flex-row justify-center items-center">
                     {% for link in navigationlinks %}
-                    <li><a class='text-[0.9rem] text-black mr-[1.5rem] font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
+                    <li><a class='text-[0.9rem] mr-[1.5rem] font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
                     {% endfor %}
                 <ul>
             </nav>
 
             <div>
-                <button class="w-[6rem] h-[2.2rem] rounded-[4rem] bg-[#E3F3FF] border-[0.09rem] border-[#379EFF] font-semibold hover:text-white hover:bg-[#71B3F1]"><a href="{% url 'signin' %}">Sign In</a></button>
-                <button class="w-[6rem] h-[2.2rem] rounded-[4rem]  bg-[#fefefe] border-[0.09rem] border-[#379EFF] font-semibold ml-[0.5rem] hover:bg-[#71B3F1] hover:text-white"><a href="{% url 'signup' %}">Sign Up</a></button>
+                <button class="w-[7rem] h-[2.2rem] text-[0.8rem] rounded-[4rem] bg-[#E3F3FF] border-[0.09rem] border-[#379EFF] font-semibold hover:text-white hover:bg-[#71B3F1]"><a href="{% url 'signin' %}">GetStarted Now</a></button>
             </div>
 
         </header>

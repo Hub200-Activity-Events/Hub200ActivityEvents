@@ -10,10 +10,7 @@ a:hover {
     color:black
 
 }
-.active{
-    color: #3B9DF8 ;
-    text-decoration: none;
-}
+
 .inputdivparent{
     display:flex;
     flex-direction: column;
@@ -37,6 +34,8 @@ a:hover {
     height: 13px;
 }
 
+
+/* upload photo field in the signup form */
 
 .avatar-upload {
     position: relative;
@@ -74,7 +73,7 @@ a:hover {
     background-position: center;
 }
 
-
+/* input animation */
 .inputsclass{
     padding: 0.9rem 3rem 0.9rem 2rem;
     border: 2px solid gray;
@@ -101,7 +100,7 @@ a:hover {
   }
 
 
-
+/* ToastBox notification */
 
 #toastbox{
     position: absolute;
@@ -165,3 +164,7 @@ a:hover {
 
 
 
+
+
+
+    
