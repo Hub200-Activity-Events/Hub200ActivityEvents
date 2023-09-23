@@ -475,7 +475,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ];
   let eventsArr = []
 
-  fetch('/get-events/')  // Replace with the actual URL of your Django view
+  fetch('/get_events/')  // Replace with the actual URL of your Django view
   .then(response => response.json())
   .then(data => {
     const eventsData = JSON.parse(data.events);
@@ -485,6 +485,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const day = eventDate.getDate();
       const month = eventDate.getMonth();
       const year = eventDate.getFullYear();
+      console.log(event.fields.image)
 
       // Create an object with the required structure for eventsArr
       const eventObj = {

@@ -274,13 +274,13 @@ input[type=date]:focus::-webkit-datetime-edit {
 
         <div  class="w-full  flex flex-row h-full justify-center items-center">
             <div class="w-4/12 h-full  flex flex-col items-center justify-center  ">
-               <div class="w-full h-full  bg-[#D2ECFF] flex flex-col justify-center items-center   rounded-tr-[2.1rem] rounded-br-[2.1rem]">
+               <div class="w-full h-full  bg-[#D2ECFF] flex flex-col justify-center items-center  rounded-tr-[2.1rem] rounded-br-[2.1rem]">
                 <h1 class="text-[2.5rem] mb-[1rem] font-medium">Registration Form</h1>
                 <p class="text-[1rem] ml-[1rem] font-normal">After completing the registration process, we will be sending a message to your email and we will inform you with date of the event, location and more details!</p>
                    <img class="w-[28rem]  h-[26rem]" src="{% static 'ActivityEvents/thankyouimageregisteration.png' %}" alt="">
                </div>
             </div>
-            <form id="registerform" action="{% url 'registrations'  %}" method="POST"   enctype="multipart/form-data" class="w-8/12 h-full flex flex-col items-center justify-center relative mt-[2rem] mb-[2rem]">
+            <form id="registerform" action="{% url 'registrations'  %}" method="POST"   enctype="multipart/form-data" class="w-8/12 h-full flex flex-col items-center justify-center relative mt-[6rem] mb-[2rem]">
                 {% csrf_token %}
                  <div class='w-full h-[8rem] flex flex-row justify-center '>
                       <div class="inputdivparent" >
