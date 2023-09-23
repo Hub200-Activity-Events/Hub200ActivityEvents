@@ -98,29 +98,29 @@ def errorpage(request):
 
 
 #this is a function for the date filter next week brings out the events for the next week and next month brings out the events for the next month >shanshal
-# def all_events(request):
-#     all_events = Events.objects.all()
-#     next_month = datetime.date.today() + datetime.timedelta(days=30)
-#     next_week = datetime.date.today() + datetime.timedelta(days=7)
-#     next_month_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_month])
-#     next_week_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_week])
-#     if request.POST.get('filter') == 'next_month':
-#         return render(request,'ActivityEvents/all_events.html',{'all_events':next_month_events})
-#     elif request.POST.get('filter') == 'next_week':
-#         return render(request,'ActivityEvents/all_events.html',{'all_events':next_week_events})
-#     else:
-#         return render(request,'ActivityEvents/all_events.html',{'all_events':all_events})
+def all_events(request):
+    all_events = Events.objects.all()
+    next_month = datetime.date.today() + datetime.timedelta(days=30)
+    next_week = datetime.date.today() + datetime.timedelta(days=7)
+    next_month_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_month])
+    next_week_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_week])
+    if request.POST.get('filter') == 'next_month':
+        return render(request,'ActivityEvents/all_events.html',{'all_events':next_month_events})
+    elif request.POST.get('filter') == 'next_week':
+        return render(request,'ActivityEvents/all_events.html',{'all_events':next_week_events})
+    else:
+        return render(request,'ActivityEvents/all_events.html',{'all_events':all_events})
 
 
-# def display_event(request,event_id):
-#     event = Events.objects.get(id=event_id)
-#     return render(request,'ActivityEvents/display_event.html',{'event':event})
-#     #you can use the events details in the html with event.title event.blah blah
+def display_event(request,event_id):
+    event = Events.objects.get(id=event_id)
+    return render(request,'ActivityEvents/display_event.html',{'event':event})
+    #you can use the events details in the html with event.title event.blah blah
 
 
 
-# def register_event(request,event_id):
-#     event = Events.objects.get(id=event_id)
-#     event.registered_users.add(request.user)
-#     event.save()
-#     return HttpResponseRedirect(reverse('display_event',args=(event_id,)))
+def register_event(request,event_id):
+    event = Events.objects.get(id=event_id)
+    event.registered_users.add(request.user)
+    event.save()
+    return HttpResponseRedirect(reverse('display_event',args=(event_id,)))
