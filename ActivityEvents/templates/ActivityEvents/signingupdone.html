@@ -1,0 +1,16 @@
+{% extends "ActivityEvents/layout.html" %}
+{% load static %}
+{% load bootstrap_icons %}
+{% block body %}
+<section class="min-h-screen flex flex-col items-center p-8 pl-9 pr-9 ">
+    <div class="flex flex-col w-full h-full justify-center items-center   ">
+        <img class="w-[9.5rem] h-[2.5rem]" src="{% static 'ActivityEvents/hub200logo.png' %}" />
+        <img class="w-[25rem] h-[20rem]" src="{% static 'ActivityEvents/signupdone.png' %}" />
+        <h1 class="text-[#1D5589]">Thanks for signing up!</h1>
+        <p>We have sent you an email verification to azizahsaan@gmail.com
+            please check it, and grap the link from there</p>
+
+    </div>
+</section>
+
+{% endblock %}

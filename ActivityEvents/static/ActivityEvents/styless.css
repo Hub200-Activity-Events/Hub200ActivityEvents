@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+body{
+    font-family: 'Roboto';
+}
+a:hover {
+    text-decoration: none;
+    color:rgb(245, 241, 241)
+
+}
+.active{
+    color: #3088da ;
+    text-decoration: none;
+}
+
+.serach-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+#search-input{
+    padding: 8px;
+    border: 1px solid;
+    border-radius: 20px; 
+}
+#search-button{
+    margin-left: 8px;
+    padding: 8px 16px;
+    background-color: #8eb4dc;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 20%;
+}  
+#search-button{
+    background-color: #bbd1ee;
+} 
+
+.searchlogo{
+    /* image 1 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 50px;
+height: 50px;
+
+background: url(image.png);
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+}
+

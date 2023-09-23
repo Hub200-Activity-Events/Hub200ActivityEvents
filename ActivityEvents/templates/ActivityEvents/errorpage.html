@@ -1,0 +1,16 @@
+{% extends "ActivityEvents/layout.html" %}
+{% load static %}
+{% load bootstrap_icons %}
+{% block body %}
+<section class="min-h-screen flex flex-col items-center p-8 pl-9 pr-9 ">
+    <div class="flex flex-col w-full h-full justify-center items-center   ">
+        <img class="w-[9.5rem] h-[2.5rem]" src="{% static 'ActivityEvents/hub200logo.png' %}" />
+
+        <img class="w-[25rem] h-[20rem]" src="{% static 'ActivityEvents/errorpage.png' %}" />
+        <h1 class="text-[#1D5589]">404 error page or file not found</h1>
+        <p>The link is broken or the page has been moved, Try these pages instead:</p>
+
+    </div>
+</section>
+
+{% endblock %}
