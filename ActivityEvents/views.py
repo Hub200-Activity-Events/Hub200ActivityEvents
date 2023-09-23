@@ -5,6 +5,8 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from .models import Events
 import datetime
+from django.core import serializers
+from django.http import JsonResponse
 # Create your views here.
 
 def navigationlinks(request):
@@ -21,7 +23,23 @@ def home(request):
     return render(request,'ActivityEvents/home.html')
 
 def events(request):
-    return render(request,'ActivityEvents/events.html')
+    all_events = Events.objects.all()
+    next_month = datetime.date.today() + datetime.timedelta(days=30)
+    next_week = datetime.date.today() + datetime.timedelta(days=7)
+    next_month_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_month])
+    next_week_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_week])
+
+
+
+
+
+
+    if request.POST.get('filter') == 'next_month':
+        return render(request,'ActivityEvents/events.html',{'all_events':next_month_events})
+    elif request.POST.get('filter') == 'next_week':
+        return render(request,'ActivityEvents/events.html',{'all_events':next_week_events})
+    else:
+        return render(request,'ActivityEvents/events.html',{'all_events':all_events})
 
 def calendar(request):
     return render(request,'ActivityEvents/calendar.html')
@@ -126,12 +144,13 @@ def all_events(request):
     next_week = datetime.date.today() + datetime.timedelta(days=7)
     next_month_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_month])
     next_week_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_week])
+    print(all_events)
     if request.POST.get('filter') == 'next_month':
-        return render(request,'ActivityEvents/all_events.html',{'all_events':next_month_events})
+        return render(request,'ActivityEvents/events.html',{'all_events':next_month_events})
     elif request.POST.get('filter') == 'next_week':
-        return render(request,'ActivityEvents/all_events.html',{'all_events':next_week_events})
+        return render(request,'ActivityEvents/events.html',{'all_events':next_week_events})
     else:
-        return render(request,'ActivityEvents/all_events.html',{'all_events':all_events})
+        return render(request,'ActivityEvents/events.html',{'all_events':all_events})
 
 
 def display_event(request,event_id):
@@ -146,3 +165,11 @@ def register_event(request,event_id):
     event.registered_users.add(request.user)
     event.save()
     return HttpResponseRedirect(reverse('display_event',args=(event_id,)))
+
+
+
+
+def get_events(request):
+    events = Events.objects.all()  
+    serialized_events = serializers.serialize('json', events)
+    return JsonResponse({'events': serialized_events})

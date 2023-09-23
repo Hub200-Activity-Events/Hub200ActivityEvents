@@ -25,7 +25,6 @@ class Events(models.Model):
     image = models.ImageField(upload_to='images/',null=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     atendees = models.ManyToManyField(User, related_name="event_atendees", blank=True)
-    status = models.CharField(max_length=50,default="pending")
     def __str__(self):
         return f"{self.title}"
 
@@ -35,6 +34,7 @@ class Event_registration(models.Model):
     date_of_birth=models.DateField()
     guests = models.IntegerField()
     comment = models.CharField(max_length=50)
+    status = models.CharField(max_length=50,default="pending")
     def __str__(self):
         return f"{self.event}"
 
