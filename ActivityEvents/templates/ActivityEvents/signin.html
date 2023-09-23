@@ -2,13 +2,299 @@
 {% load static %}
 {% load bootstrap_icons %}
 {% block body %}
+
+<style>
+
+/* Submit Button Animation */
+
+
+#buttonwrapper {
+    display: none;
+    width: 100%;
+    height: 100%;
+  font-size:21px;
+  letter-spacing:6px;
+  color:white;
+  overflow: visible;
+  margin-top: 2rem;
+  background-color: black;
+}
+
+#buttonwrapper2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  font-size:21px;
+  letter-spacing:6px;
+  color:white;
+  overflow: visible;
+  margin-top: 2rem;
+  background-color: black;
+}
+
+.submit, .loader, .loader-wrapper{
+  position:absolute;
+  left:0;
+  right:0;
+  margin:0 auto;
+}
+
+.submit {
+  z-index:2;
+  width:16rem;
+  height:60px;
+  background: #52a9f9; 
+  display:block;
+  border-radius:0.5rem;
+  text-align:center;
+  color:rgba(255,255,255,1);
+  text-decoration:none;
+  transition: all 0.5s ease, line-height 0s ease, color 0.4s ease, filter 0.2s ease;
+}
+
+#buttonwrapper::selection, .submit::selection {
+  background: transparent;
+}
+
+#buttonwrapper2::selection, .submit::selection {
+  background: transparent;
+}
+
+
+
+.submit:before {
+  content:"";
+  z-index:-2;
+  width:100%;
+  height:100%;
+  background: #52a9f9; 
+  display:block;
+  border-radius:50%;
+  position:absolute;
+  left:0;
+  top:0;
+  opacity:0.8;
+  transform:scale(0.9) translateY(15px);
+  filter:blur(45px);
+  transition:all 0.2s ease;
+}
+
+.submit:after {
+  content:"";
+  z-index:-4;
+  width:100%;
+  height:100%;
+  background: #52a9f9; 
+  display:block;
+  border-radius:50%;
+  position:absolute;
+  left:0;
+  top:0;
+  opacity:0;
+  transform:scale(1);
+}
+
+.submit:hover:before {
+  transform:scale(0.9) translateY(5px);
+  filter:blur(40px);
+}
+
+.submit:active {
+  line-height:460%;
+  filter:brightness(0.95);
+  transition:all 0s;
+}
+
+.checked .submit:before {
+  top:0px;
+  opacity:0;
+}
+
+.checked .submit:after {
+    animation: submit-after-anim 0.5s 2.4s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.checked {
+   -webkit-filter: url("#goo");
+   filter: url("#goo");
+}
+
+.white {
+  background-color: #ffffff;
+  box-shadow: 40px 47px 49px 40px rgba(0, 0, 0, 0.1);
+}
+
+.blue {
+  background-color: #0084ff;
+  }
+
+.blue2 {
+  background-color: #7aa5cd;
+  box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  transform:scale(0.2) rotate(30deg) translate(0px);
+}
+
+.checked .blue {
+  animation: loader-anim-blue 2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.checked .white  {
+  animation: loader-anim-white 2s 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.checked .blue2 {
+   animation: loader-anim-blue2 2s 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.loader {
+  width:95px;
+  height:95px;
+  border-radius:50%;
+  opacity:0;
+  z-index:1;
+}
+
+.checked .loader {
+  opacity:1;
+}
+
+.checked .loader-wrapper {
+  animation: wrapper-loader-anim 2.2s linear;
+  width:95px;
+  height:95px;
+  border-radius:50%;
+  transform:scale(0)
+}
+
+.checked .submit {
+  width:140px;
+  width:66px;
+  border-radius: 50%;
+  color:rgba(255,255,255,0);
+  background: #5cacf7;
+  animation: submit-anim 2s  cubic-bezier(0.39, 0.575, 0.565, 1);
+  }
+
+
+.check-wrapper {
+  position:absolute;
+  left:0;
+  right:0;
+  margin:0 auto;
+  width:95px;
+  height:95px;
+  z-index:-1;
+  opacity:1;
+}
+
+.check-wrapper svg {
+  margin-top:24px;
+  margin-left: 24px;
+}
+
+.check{fill:none;
+  stroke:#ffffff;
+  stroke-width:10;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:10;
+ stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  z-index:-1;
+  }
+
+.checked .check-wrapper {
+  z-index:3;
+}
+
+.checked .check {
+  animation: check 2s 2.2s ease forwards;
+}
+
+
+@keyframes loader-anim-blue {
+    0% {transform:scale(0.2) rotate(0deg) translate(220px, 0px); }
+  100% {transform:scale(0.2) rotate(1100deg) translate(300px, 0px);}
+}
+
+@keyframes loader-anim-white {
+     0% {transform:scale(0.2) rotate(0deg) translate(300px, 0px); }
+  100% {transform:scale(0.2) rotate(1100deg) translate(220px, 0px);}
+}
+
+@keyframes loader-anim-blue2 {
+  0%,70% {transform:scale(0.2) rotate(30deg) translate(0px); }
+  85% {transform:scale(0.2) rotate(30deg) translate(-300px);}
+  100% {transform:scale(0.2) rotate(30deg) translate(0px); }
+}
+
+@keyframes wrapper-loader-anim {
+    0% { transform: scale(0) translateY(0px); }
+    10% { transform: scale(1) translateY(20px); }
+    50% { transform: scale(1.2) translateY(10px); }
+    90% { transform: scale(1) translateY(-10px); }
+    100% { transform: scale(0) translateY(0px); }
+}
+
+@keyframes submit-after-anim {
+  0% {transform:scale(1); opacity:0.3 }
+   100% {transform:scale(2); opacity:0 }
+}
+
+@keyframes submit-anim {
+    0% {transform:scale(1) }
+      5%, 95% {transform:scale(0.7) }
+  100% {transform:scale(1)}
+}
+
+@keyframes check {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+
+
+
+/*  Gender radio button */
+
+
+  input[type="radio"] {
+        -webkit-appearance: none;
+        -moz-appearance: none; 
+        appearance: none;
+    }
+
+    input[type="radio"][id="male"]:checked + label.male-label {
+    background-color: #2c93f4; 
+    color: #ffffff;
+  }
+
+  input[type="radio"][id="female"]:checked + label.female-label {
+    background-color: #ff69b4; 
+    color: #ffffff;
+  }
+  input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
+}
+</style>
+
 <section class="h-full w-full flex flex-col items-center justify-center  mb-[2rem] mt-[4rem]">
 
-   <div class="flex flex-row w-[60rem] h-full justify-center items-center border-[0.1rem] border-[#499DEC] rounded-[3rem] overflow-hidden">
+   <div class="flex flex-row w-[65rem] h-full justify-center items-center border-[0.2rem] border-[#E8F5FF] rounded-[1rem] relative ">
             <!--signin page Form -->
 
      <div id="signinpage" class=" w-11/12	 flex flex-row h-full justify-center items-center  ">
-         <form id="signinform"  action="{% url 'signin'  %}" method="POST" class="w-2/5 h-full flex flex-col items-center justify-center ">
+         <form id="signinform"  action="{% url 'signin'  %}" method="POST" class="w-2/5 h-full flex flex-col items-center justify-center relative">
              {% csrf_token %}
              <h3 class="text-[1.6rem] mb-[2rem]">Sign in to Hub200</h3>
              <div class="inputdivparent">
@@ -27,9 +313,27 @@
 
              </div>
              <a class="text-left  w-[16.5rem] mt-[1rem]" href="{% url 'forgotpassword' %}">Forgot Password?</a>
-             <button class="w-[16.5rem] mt-[1rem] h-[3rem] bg-[#499DEC] rounded-[0.5rem] text-white font-semibold text-[1.3rem]" type="submit">Sign in</button>
-         </form>
 
+
+
+             <div id="buttonwrapper2">
+                <button  type="submit" class="submit" >Sign Up</button>
+                   <div class="loader-wrapper">
+                   <span class="loader white"></span>
+                   <span class="loader blue"></span>
+                   </div>
+                  <span class="loader blue2"></span>
+                   
+               <div class="check-wrapper">
+              <svg version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
+              <polyline class="check" points="5,13 21.8,32.4 59.5,5 "/>
+              </svg>
+               </div>
+                
+               </div>
+
+             
+         </form>
          <div class=" w-3/5 h-full  flex flex-col items-center ">
              <div class="w-full bg-[#D2ECFF] h-full  rounded-tl-[3rem] rounded-bl-[3rem]">
                  <img src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
@@ -46,7 +350,7 @@
                     <img class="w-[28rem]  h-[26rem]" src="{% static 'ActivityEvents/signupdone.png' %}" alt="">
                 </div>
              </div>
-             <form id="signupform" action="{% url 'signup'  %}" method="POST" enctype="multipart/form-data" class="w-2/5 h-full flex flex-col items-center justify-center ">
+             <form id="signupform" action="{% url 'signup'  %}" method="POST" enctype="multipart/form-data" class="w-2/5 h-full flex flex-col items-center justify-center relative ">
                  {% csrf_token %}
                  <h3 class="text-[1.6rem] mb-[2rem]">Sign up to Hub200</h3>
                  <div id="formsubmitpart1" class="flex flex-col w-full h-full justify-center items-center">
@@ -99,9 +403,32 @@
 
                     </div>
                  </div>
-                 <button id="buttonsignupnext" class="w-[18rem] mt-[1rem] h-[3rem] bg-[#499DEC] rounded-[0.5rem] text-white font-semibold text-[1.3rem]" type="button">Next</button>
-                 <button id="buttonsignupsubmit" class="w-[18rem] mt-[1rem] h-[3rem] bg-[#499DEC] rounded-[0.5rem] text-white font-semibold text-[1.3rem] hidden" type="submit">Sign up</button>
-                 <button id="buttonsignupback" class="w-[12rem] mt-[1rem] h-[3rem] bg-[#499DEC] rounded-[0.5rem] text-white font-semibold text-[1.3rem] hidden" type="submit">Back</button>
+                 <button id="buttonsignupnext" class="w-[17rem] mt-[1rem] h-[3rem] bg-[#499DEC] rounded-[0.5rem] text-white font-semibold text-[1.3rem]" type="button">Next</button>
+
+                 
+
+
+                 <div id="buttonwrapper">
+                    <button  type="submit" class="submit" >Sign Up</button>
+                       <div class="loader-wrapper">
+                       <span class="loader white"></span>
+                       <span class="loader blue"></span>
+                       </div>
+                      <span class="loader blue2"></span>
+                       
+                   <div class="check-wrapper">
+                  <svg version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
+                  <polyline class="check" points="5,13 21.8,32.4 59.5,5 "/>
+                  </svg>
+                   </div>
+                    
+                   </div>
+                   
+
+
+
+
+                 <button id="buttonsignupback" class="w-[12rem] mt-[6rem] h-[3rem] bg-[#499DEC] rounded-[0.5rem] text-white font-semibold text-[1.3rem] hidden" type="button">Back</button>
 
              </form>
      
@@ -109,15 +436,16 @@
     
     
      <div class=" w-[8rem]	 h-full bg-white   flex flex-col items-center justify-center ">
-            <div class="flex flex-row w-full h-full justify-center items-center border-none">
-                <button  type="button" id="showsigninpage" class="w-full h-[5.5rem] text-[1.5rem] flex flex-col justify-center items-center border-none ">
+            <div class="flex flex-row w-full h-full justify-center items-center ">
+                <button  type="button" id="showsigninpage" class="w-full h-[5.5rem] text-[1.5rem] flex flex-col justify-center items-center  ">
                     <div >{% bs_icon 'box-arrow-in-left' size='3rem' color="black" %}</div>
                     <h4>sign in</h4>
                 </button>
                 <div id="togglesigninbar" class="h-[8.5rem] w-[1.5rem] bg-[#499DEC] rounded-l-[0.9rem] "></div>
             </div>
-            <div class="flex flex-row w-full h-full justify-center items-center mt-[8rem] border-none ">
-                <button  type="button" id="showsignuppage" class="w-full h-[5.5rem] text-[1.5rem] flex flex-col justify-center items-center border-none ">
+            <div class="flex flex-row w-full h-full justify-center items-center mt-[8rem]  ">
+                
+                <button  type="button" id="showsignuppage" class="w-full h-[5.5rem] text-[1.5rem] flex flex-col justify-center items-center  ">
                     <div >{% bs_icon 'box-arrow-in-right' size='3rem' color="black" %}</div>
                     <h4>sign up</h4>
                 </button>
@@ -129,5 +457,9 @@
     </div>     
 
 </section>
+<script>
+
+
+</script>
 
 {% endblock %} 

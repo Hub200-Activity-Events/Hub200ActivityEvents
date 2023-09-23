@@ -22,8 +22,30 @@ def events(request):
 def calendar(request):
     return render(request,'ActivityEvents/calendar.html')
 
-def registration(request):
-    return render(request,'ActivityEvents/registration.html')
+def registrations(request):
+    print(request.method)
+    if request.method == 'POST':
+        UsernameRegistration = request.POST.get('UsernameRegistration')
+        PhonenumberRegistration = request.POST.get('PhonenumberRegistration')
+        EmailRegistration = request.POST.get('EmailRegistration')
+        DateofbirthRegistration = request.POST.get('DateofbirthRegistration')
+        LocationRegistration = request.POST.get('LocationRegistration')
+        EventsRegistration = request.POST.get('EventsRegistration')
+        gender = request.POST.get('gender')
+        GuestsRegistration = request.POST.get('GuestsRegistration')
+        CommentRegistration = request.POST.get('CommentRegistration')
+        print(UsernameRegistration)
+        print(PhonenumberRegistration)
+        print(EmailRegistration)
+        print(DateofbirthRegistration)
+        print(LocationRegistration)
+        print(EventsRegistration)
+        print(gender)
+        print(GuestsRegistration)
+        print(CommentRegistration)
+        return HttpResponseRedirect(reverse('home'))
+    else:
+        return render(request,'ActivityEvents/registrations.html')
 
 def signin(request):
     if request.method == 'POST':
