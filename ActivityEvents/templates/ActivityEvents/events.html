@@ -6,21 +6,17 @@
 
 <section class="intro">
     <div class="h-[32rem] w-full">
-       <img class="w-full h-full" src="{% static 'ActivityEvents/hub.jpg'%}" alt="">
+       <img class="w-full h-[40rem] " src="{% static 'ActivityEvents/HUB200image-main.png'%}" alt="">
     </div>
 </section>
 <section class="events mb-[2rem]">
-   <h1 class="mt-12 ml-9 mb-10 text-2xl" id="title"><strong>Upcoming Events</strong></h1>
-   <div class="search-container">
-      <input class="ml-[70rem] mb-3" type="text" id="search-input" placeholder="Search...">
-      <button type="button" id="search-button">Search</button>
-    </div>
+   <h1 class="mt-20 ml-9 mb-10 text-3xl mb-20" id="title"><strong>Upcoming Events</strong></h1>
 
-   <div class="w-full h-full grid grid-cols-3 grid-row-3 gap-[4rem] ">
+   <div class="w-full h-full grid grid-cols-3 grid-row-3 gap-[4rem]">
 
       {% for event in all_events %}
 
-    <div class=" w-[23rem] max-w-md bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-h-xl ml-9">
+    <div class="w-[23rem] max-w-md bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-h-xl ml-9">
       <div class="w-full" id="post">
        <div class="w-full">
           <img class="h-80 w-full object-cover" src="media/{{event.image}}" alt="">
@@ -40,9 +36,41 @@
     </div>
 
 
-  
+
 
 </div>
 </section>
+
+
+
+<div class="modal" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="details-modal-title" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h5 class="modal-title" id="details-modal-title"></h5>
+           </div>
+           <div class="modal-body" id="details-modal-body"></div>
+       </div>
+   </div>
+</div>
+
+<script>
+   document.addEventListener("DOMContentLoaded", function() {
+       var readMoreLinks = document.getElementsByClassName("read-more-link");
+       for (var i = 0; i < readMoreLinks.length; i++) {
+           readMoreLinks[i].addEventListener("click", function() {
+               var eventId = this.getAttribute("data-event");
+               var event = document.getElementById(eventId);
+
+               //event details URL
+               var detailsUrl = "{% url 'events_details' %}?event_id=" + eventId;
+
+               // Open the event details page
+               window.open(detailsUrl, "_blank");
+           });
+       }
+   });
+</script>
+
 
 {% endblock %}

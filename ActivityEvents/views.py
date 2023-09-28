@@ -1,12 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.shortcuts import render,HttpResponseRedirect
+from django.shortcuts import render,HttpResponseRedirect,redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
 from .models import Events
 import datetime
 from django.core import serializers
 from django.http import JsonResponse
+
 # Create your views here.
 
 def navigationlinks(request):
@@ -28,12 +29,6 @@ def events(request):
     next_week = datetime.date.today() + datetime.timedelta(days=7)
     next_month_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_month])
     next_week_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_week])
-
-
-
-
-
-
     if request.POST.get('filter') == 'next_month':
         return render(request,'ActivityEvents/events.html',{'all_events':next_month_events})
     elif request.POST.get('filter') == 'next_week':
@@ -73,7 +68,7 @@ def signin(request):
     if request.method == 'POST':
         email = request.POST.get('inputsigninemail')
         password = request.POST.get('inputsigninpassword')
-        rememberme= request.POST.get('remeberme')
+        rememberme = request.POST.get('remeberme')
         user = authenticate(request, email=email, password=password)
         if user is not None:
             if rememberme:
@@ -81,44 +76,96 @@ def signin(request):
             else:
                 request.session.set_expiry(0)
             login(request, user)
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('events'))
         else:
             return render(request,'ActivityEvents/errorpage.html', {
                 'error':'invalid email or password'})
     else:
         return render(request,'ActivityEvents/signin.html')
 
+
+
+
+
+    # if request.method == 'POST':
+    #     email = request.POST.get('inputsigninemail')
+    #     password = request.POST.get('inputsigninpassword')
+    #     rememberme= request.POST.get('remeberme')
+    #     user = authenticate(request, email=email, password=password)
+    #     if user is not None:
+    #         if rememberme:
+    #             request.session.set_expiry(1209600)
+    #         else:
+    #             request.session.set_expiry(0)
+    #         login(request, user)
+    #         return HttpResponseRedirect(reverse('home'))
+    #     else:
+    #         return render(request,'ActivityEvents/errorpage.html', {
+    #             'error':'invalid email or password'})
+    # else:
+    #     return render(request,'ActivityEvents/signin.html')
+
+
+
+# SIGN UP IS WORKING LETS GOOOOO
 def signup(request):
     if request.method == 'POST':
-        inputusername = request.POST.get('inputusername')
-        inputphonenumber = request.POST.get('inputphonenumber')
-        inputemail = request.POST.get('inputemail')
-        inputpassword = request.POST.get('inputpassword')
-        inputconfirmpassword = request.POST.get('inputconfirmpassword')
-        inputphoto = request.FILES.get('inputphoto')
-        
-        if inputusername == "" or inputphonenumber == "" or inputemail == "" or inputpassword == "" or inputconfirmpassword == "":
+        username = request.POST.get('inputusername')
+        # phone_number = request.POST.get('inputphonenumber')
+        email = request.POST.get('inputemail')
+        password = request.POST.get('inputpassword')
+        confirm_password = request.POST.get('inputconfirmpassword')
+        # photo = request.FILES.get('inputphoto')]
+
+        if not (username and email and password and confirm_password):
             return render(request,'ActivityEvents/errorpage.html', {
                 'error':'please fill all the fields'})
-        
-        if inputpassword != inputconfirmpassword:
-            return render(request,'ActivityEvents/errorpage.html',
-             {'error':'passwords do not match'}
-             )
-          
-        try:
-            user = User.objects.create_user(inputusername,inputemail,inputpassword)
-            user.phone_number = inputphonenumber
-            user.image = inputphoto
+        elif User.objects.filter(username=username).exists():
+            return render(request,'ActivityEvents/errorpage.html', {
+                'error':'username already exists'})
+        elif User.objects.filter(email=email).exists():
+            return render(request,'ActivityEvents/errorpage.html', {
+                'error':'email already exists'})
+        elif password != confirm_password:
+            return render(request,'ActivityEvents/errorpage.html', {
+                'error':'passwords do not match'})
+        else:
+            user = User.objects.create_user(username=username, email=email, password=password)
+            # user.phone_number = phone_number
+            # user.image = photo
+            user = authenticate(email=email, password=password)
             user.save()
-        except IntegrityError:
-            return render(request, "auctions/errorpage.html", {
-                "message": "Username already taken."
-            })  
-        login(request, user)
-        return HttpResponseRedirect(reverse('signingupdone'))
-    else:
-        return render(request,'ActivityEvents/signup.html')
+            if user:
+                login(request, user)
+                return HttpResponseRedirect(reverse('signingupdone'))
+    return render(request, 'ActivityEvents/signup.html')
+
+
+
+
+    #     if inputusername == "" or inputphonenumber == "" or inputemail == "" or inputpassword == "" or inputconfirmpassword == "":
+    #         return render(request,'ActivityEvents/errorpage.html', {
+    #             'error':'please fill all the fields'})
+    #
+    #     if inputpassword != inputconfirmpassword:
+    #         return render(request,'ActivityEvents/errorpage.html',
+    #          {'error':'passwords do not match'}
+    #          )
+    #
+    #     try:
+    #         user = User.objects.create_user(inputusername,inputemail,inputpassword)
+    #         user.phone_number = inputphonenumber
+    #         user.image = inputphoto
+    #         user.save()
+    #     except IntegrityError:
+    #         return render(request, "auctions/errorpage.html", {
+    #             "message": "Username already taken."
+    #         })
+    #     login(request, user)
+    #     return HttpResponseRedirect(reverse('signingupdone'))
+    # else:
+    #     return render(request,'ActivityEvents/signup.html')
+
     
 
 def forgotpassword(request):
@@ -173,3 +220,7 @@ def get_events(request):
     events = Events.objects.all()  
     serialized_events = serializers.serialize('json', events)
     return JsonResponse({'events': serialized_events})
+
+def events_details(request,event_id):
+    event = Events.objects.get(id=event_id)
+    return render(request,'ActivityEvents/event_details.html',{'event':event})

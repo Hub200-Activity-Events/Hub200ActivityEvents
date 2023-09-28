@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ActivityEvents',
     'django_bootstrap_icons',
-    
 ]
 
 NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
