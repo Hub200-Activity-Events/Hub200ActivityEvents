@@ -26,8 +26,8 @@
        <br/>
         <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold mb-3 text-stone-900  ">{{event.title}}</div>
         <br/>
-        <a href="#" class="block mt-1 text-lg leading-tight font-medium text-gray-500 mb-5">{{event.description}}</a>
-        <a href="#" class="ml-40 text-cyan-500 hover:line-sky-700">Read More...</a>
+        <a href="{% url 'display_event' event_id=event.id %}" class="block mt-1 text-lg leading-tight font-medium text-gray-500 mb-5">{{event.description}}</a>
+        <a href="{% url 'display_event' event_id=event.id %}" class="ml-40 text-cyan-500 hover:line-sky-700">Read More...</a>
        <br/>
        </div>
     </div>
@@ -54,23 +54,6 @@
    </div>
 </div>
 
-<script>
-   document.addEventListener("DOMContentLoaded", function() {
-       var readMoreLinks = document.getElementsByClassName("read-more-link");
-       for (var i = 0; i < readMoreLinks.length; i++) {
-           readMoreLinks[i].addEventListener("click", function() {
-               var eventId = this.getAttribute("data-event");
-               var event = document.getElementById(eventId);
-
-               //event details URL
-               var detailsUrl = "{% url 'events_details' %}?event_id=" + eventId;
-
-               // Open the event details page
-               window.open(detailsUrl, "_blank");
-           });
-       }
-   });
-</script>
 
 
 {% endblock %}
