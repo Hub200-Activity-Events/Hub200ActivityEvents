@@ -55,6 +55,14 @@
   font-family: sans-serif;
 }
   </style>
+   <!-- displaying the username, you can change it desgin as you want! -->
+  {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}!</p>
+   
+{% else %}
+    <p>You are not logged in.</p>
+   
+{% endif %}
 <section  class="h-full w-full flex flex-col items-center justify-center  mb-[2rem]  ">
 
 

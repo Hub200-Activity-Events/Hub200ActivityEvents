@@ -10,6 +10,7 @@ from django.http import JsonResponse
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
+from .models import Events,Event_registration
 
 
 
@@ -47,31 +48,40 @@ def events(request):
 def calendar(request):
     return render(request, 'ActivityEvents/calendar.html')
 
-
 def registrations(request):
-    print(request.method)
     if request.method == 'POST':
-        UsernameRegistration = request.POST.get('UsernameRegistration')
-        PhonenumberRegistration = request.POST.get('PhonenumberRegistration')
-        EmailRegistration = request.POST.get('EmailRegistration')
-        DateofbirthRegistration = request.POST.get('DateofbirthRegistration')
-        LocationRegistration = request.POST.get('LocationRegistration')
-        EventsRegistration = request.POST.get('EventsRegistration')
-        gender = request.POST.get('gender')
-        GuestsRegistration = request.POST.get('GuestsRegistration')
-        CommentRegistration = request.POST.get('CommentRegistration')
-        print(UsernameRegistration)
-        print(PhonenumberRegistration)
-        print(EmailRegistration)
-        print(DateofbirthRegistration)
-        print(LocationRegistration)
-        print(EventsRegistration)
-        print(gender)
-        print(GuestsRegistration)
-        print(CommentRegistration)
-        return HttpResponseRedirect(reverse('home'))
+        Username = request.POST.get('UsernameRegistration')
+        Phonenumber = request.POST.get('PhonenumberRegistration')
+        Email = request.POST.get('EmailRegistration')
+        Dateofbirth = request.POST.get('DateofbirthRegistration')
+        Location = request.POST.get('LocationRegistration')
+        event_id = request.POST.get('EventsRegistration')
+        Guests = request.POST.get('GuestsRegistration')
+        Comment = request.POST.get('CommentRegistration')
+
+        
+        try:
+            event = Events.objects.get(pk=event_id)
+        except Events.DoesNotExist:
+            return render(request, 'ActivityEvents/errorpage.html', {
+                'error': 'Event does not exist'
+            })
+
+        else:
+            registration = Event_registration(
+                 username=Username,
+                phone_number=Phonenumber,
+                email=Email,
+                date_of_birth=Dateofbirth,
+                location=Location,
+                guests=Guests,
+                comment=Comment,
+            )
+            registration.save()
+            return HttpResponseRedirect(reverse('home'))
     else:
         return render(request, 'ActivityEvents/registrations.html')
+
 
 
 def signin(request):
@@ -79,19 +89,28 @@ def signin(request):
         email = request.POST.get('inputsigninemail')
         password = request.POST.get('inputsigninpassword')
         rememberme = request.POST.get('remeberme')
-        user = authenticate(request, email=email, password=password)
+    
+        if not (email and password):
+            
+            return render(request, 'ActivityEvents/errorpage.html', {
+                'error': 'Please fill in both email and password fields'
+            })
+        
+        user = authenticate(request, username=email, password=password)
+        print(user)
         if user is not None:
             if rememberme:
                 request.session.set_expiry(1209600)
             else:
                 request.session.set_expiry(0)
             login(request, user)
-            return HttpResponseRedirect(reverse('events'))
+            return HttpResponseRedirect(reverse('home'))
         else:
             return render(request, 'ActivityEvents/errorpage.html', {
                 'error': 'invalid email or password'})
     else:
         return render(request, 'ActivityEvents/signin.html')
+     
 
     # if request.method == 'POST':
     #     email = request.POST.get('inputsigninemail')
