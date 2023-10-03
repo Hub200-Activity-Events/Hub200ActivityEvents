@@ -48,42 +48,42 @@ def calendar(request):
     return render(request,'ActivityEvents/calendar.html')
 
 def registrations(request):
-    if request.method == 'POST':
+    if request.method == 'POST':    
         Username = request.POST.get('UsernameRegistration')
         Phonenumber = request.POST.get('PhonenumberRegistration')
         Email = request.POST.get('EmailRegistration')
         Dateofbirth = request.POST.get('DateofbirthRegistration')
-        location = request.POST.get('LocationRegistration')
+        Location = request.POST.get('LocationRegistration')
         event_id = request.POST.get('EventsRegistration')
         Guests = request.POST.get('GuestsRegistration')
         Comment = request.POST.get('CommentRegistration')
-        gender=request.POST.get('gender')
-        
+
+     
         try:
-            event = Events.objects.get(pk=event_id)
+            events = Events.objects.get(id=event_id)
         except Events.DoesNotExist:
             return render(request, 'ActivityEvents/errorpage.html', {
                 'error': 'Event does not exist'
             })
         else:
             registration = Event_registration(
+                event = events,
                 Username=Username,
                 Phonenumber=Phonenumber,
                 Email=Email,
-                date_of_birth=Dateofbirth,
-                Location=location,
-                guests=Guests,
-                comment=Comment,
-                gender=gender,
-                event=event_id
-
+                Location = Location,
+                date_of_birth = Dateofbirth,
+                guests = Guests,
+                comment = Comment,
+                status = 'pending'
             )
             registration.save()
             return HttpResponseRedirect(reverse('home'))
     else:
-        all_events=Events.objects.all()
-        return render(request, 'ActivityEvents/registrations.html',{"all_events":all_events})
-
+           all_events = Events.objects.all()
+    return render(request, 'ActivityEvents/registrations.html',{
+            'all_events': all_events
+        })
 
 def signin(request):
     if request.method == 'POST':

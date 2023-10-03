@@ -452,7 +452,7 @@ registerform = document.getElementById('registerform')
 
 if(registerform){
   registerform.addEventListener('submit', (e)=>{
-    e.preventDefault()
+  
     validateInputsRegisteration()
 
   })
