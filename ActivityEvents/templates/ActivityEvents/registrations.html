@@ -291,13 +291,13 @@ input[type=date]:focus::-webkit-datetime-edit {
                 <div class="xl:w-[45rem] lg:w-[40rem] md:w-[37rem] flex flex-col bg-white drop-shadow-lg rounded-xl  mt-[2rem] items-center h-full">
                   <div class='xl:w-[40rem] lg:w-[37rem] md:w-[33rem] md:w-[33rem] h-[7rem] mt-[2rem] flex flex-row justify-between '>
                     <div class="inputdivparent required" >
-                        <input name="UsernameRegistration" id="UsernameRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" type="text" required>
+                        <input value="{{user.username}}" name="UsernameRegistration" id="UsernameRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" type="text" required>
                         <label class="placeholderlabel"   for="UsernameRegistration">Username</label>
                         <div class="error"></div>
 
                     </div>
                     <div class="inputdivparent required ml-[4rem]" >
-                      <input name="PhonenumberRegistration" id="PhonenumberRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" type="tel" required>
+                      <input value="{{user.phone_number}}" name="PhonenumberRegistration" id="PhonenumberRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" type="tel" required>
                       <label class="placeholderlabel"   for="PhonenumberRegistration">Phone Number</label>
                       <div class="error"></div>
 
@@ -306,7 +306,7 @@ input[type=date]:focus::-webkit-datetime-edit {
   
                <div class='xl:w-[40rem] lg:w-[37rem] md:w-[33rem] h-[7rem] flex flex-row justify-between '>
                   <div class="inputdivparent required" >
-                      <input name="EmailRegistration" id="EmailRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" type="email" required>
+                      <input value="{{user.email}}" name="EmailRegistration" id="EmailRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" type="email" required>
                       <label class="placeholderlabel"   for="EmailRegistration">Email</label>
                       <div class="error"></div>
 
@@ -334,7 +334,7 @@ input[type=date]:focus::-webkit-datetime-edit {
               <div class="inputdivparent" >
                   <select name="EventsRegistration" id="EventsRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" >
                     {% for event in all_events %}
-                    <option value="{{event.title}}">{{event.title}}</option>
+                    <option value="{{event.id}}">{{event.title}}</option>
                     {% endfor %}
                   </select>
                   <label class="placeholderlabel"   for="EventsRegistration">Events</label>
