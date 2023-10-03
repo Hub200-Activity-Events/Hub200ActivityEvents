@@ -1,6 +1,5 @@
 {% extends "ActivityEvents/layout.html" %}
 {% load static %}
-{% load bootstrap_icons %}
 {% block body %}
 <style>
 #curved{
@@ -54,199 +53,454 @@
   content: "Pause" ;
   font-family: sans-serif;
 }
+.slide[data-active] {
+  opacity: 1;
+  z-index: 1;
+  transition-delay: 0ms;
+}
+
+
+.carousel-button:focus {
+  outline: 1px solid black;
+}
+.hoverzoom {
+    transition: transform 0.4s ease-in-out;
+}
+
+.hoverzoom:hover {
+    color: white;
+    transform: scale(1.05);
+}
+
+
+
+
+#buttonwrapper {
+
+    width: 100%;
+    height: 100%;
+  font-size:21px;
+  letter-spacing:6px;
+  color:white;
+  overflow: visible;
+  margin-top: 1rem;
+}
+
+.submit, .loader, .loader-wrapper{
+  position:absolute;
+}
+
+.submit {
+  z-index:2;
+  width:15rem;
+  height:3.5rem;
+  background: #66b5ff; 
+  display:block;
+  border-radius: 15rem;
+
+  text-align:center;
+  color:rgba(255,255,255,1);
+  text-decoration:none;
+  transition: all 0.5s ease, line-height 0s ease, color 0.4s ease, filter 0.2s ease;
+}
+
+#buttonwrapper::selection, .submit::selection {
+  background: transparent;
+}
+
+
+
+
+.submit:before {
+  content:"";
+  z-index:-2;
+  width:100%;
+  height:100%;
+  background: #66b5ff; 
+  display:block;
+  border-radius:50%;
+  position:absolute;
+  left:0;
+  top:0;
+  opacity:0.8;
+  transform:scale(0.9) translateY(15px);
+  filter:blur(45px);
+  transition:all 0.2s ease;
+}
+
+.submit:after {
+  content:"";
+  z-index:-4;
+  width:100%;
+  height:100%;
+  background: #66b5ff; 
+  display:block;
+  border-radius:50%;
+  position:absolute;
+  left:0;
+  top:0;
+  opacity:0;
+  transform:scale(1);
+}
+
+.submit:hover:before {
+  transform:scale(0.9) translateY(5px);
+  filter:blur(40px);
+}
+
+.submit:active {
+  line-height:460%;
+  filter:brightness(0.95);
+  transition:all 0s;
+}
+
+.checked .submit:before {
+  top:0px;
+  opacity:0;
+}
+
+.checked .submit:after {
+    animation: submit-after-anim 0.5s 2.4s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.checked {
+   -webkit-filter: url("#goo");
+   filter: url("#goo");
+}
+
+.white {
+  background-color: #ffffff;
+  box-shadow: 40px 47px 49px 40px rgba(0, 0, 0, 0.1);
+}
+
+.blue {
+  background-color: #0084ff;
+  }
+
+.blue2 {
+  background-color: #7aa5cd;
+  box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  transform:scale(0.2) rotate(30deg) translate(0px);
+}
+
+.checked .blue {
+  animation: loader-anim-blue 2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.checked .white  {
+  animation: loader-anim-white 2s 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.checked .blue2 {
+   animation: loader-anim-blue2 2s 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.loader {
+  width:95px;
+  height:95px;
+  border-radius:50%;
+  opacity:0;
+  z-index:1;
+}
+
+.checked .loader {
+  opacity:1;
+}
+
+.checked .loader-wrapper {
+  animation: wrapper-loader-anim 2.2s linear;
+  width:95px;
+  height:95px;
+  border-radius:50%;
+  transform:scale(0)
+}
+
+.checked .submit {
+  height:70px;
+  width:70px;
+  border-radius: 50%;
+  color:rgba(255,255,255,0);
+  background: #66b5ff;
+  animation: submit-anim 2s  cubic-bezier(0.39, 0.575, 0.565, 1);
+  }
+
+
+.check-wrapper {
+  position:absolute;
+  left:0;
+  right:0;
+  margin:0 auto;
+  width:95px;
+  height:95px;
+  z-index:-1;
+  opacity:1;
+}
+
+.check-wrapper svg {
+  margin-top:20px;
+  margin-left: 24px;
+}
+
+.check{fill:none;
+  stroke:#ffffff;
+  stroke-width:10;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:10;
+ stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  z-index:-1;
+  }
+
+.checked .check-wrapper {
+  z-index:3;
+}
+
+.checked .check {
+  animation: check 2s 2.2s ease forwards;
+}
+
+
+@keyframes loader-anim-blue {
+    0% {transform:scale(0.2) rotate(0deg) translate(220px, 0px); }
+  100% {transform:scale(0.2) rotate(1100deg) translate(300px, 0px);}
+}
+
+@keyframes loader-anim-white {
+     0% {transform:scale(0.2) rotate(0deg) translate(300px, 0px); }
+  100% {transform:scale(0.2) rotate(1100deg) translate(220px, 0px);}
+}
+
+@keyframes loader-anim-blue2 {
+  0%,70% {transform:scale(0.2) rotate(30deg) translate(0px); }
+  85% {transform:scale(0.2) rotate(30deg) translate(-300px);}
+  100% {transform:scale(0.2) rotate(30deg) translate(0px); }
+}
+
+@keyframes wrapper-loader-anim {
+    0% { transform: scale(0) translateY(0px); }
+    10% { transform: scale(1) translateY(20px); }
+    50% { transform: scale(1.2) translateY(10px); }
+    90% { transform: scale(1) translateY(-10px); }
+    100% { transform: scale(0) translateY(0px); }
+}
+
+@keyframes submit-after-anim {
+  0% {transform:scale(1); opacity:0.3 }
+   100% {transform:scale(2); opacity:0 }
+}
+
+@keyframes submit-anim {
+    0% {transform:scale(1) }
+      5%, 95% {transform:scale(0.7) }
+  100% {transform:scale(1)}
+}
+
+@keyframes check {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
   </style>
 <section  class="h-full w-full flex flex-col items-center justify-center  mb-[2rem]  ">
 
 
-    <div id="curved" class="relative w-[99%] mx-auto flex flex-row justify-center items-center" >
-        <div class="flex flex-col w-6/12 h-full items-center mt-[7rem]">
-            <h1 class="text-[3.2rem] font-medium ml-[13rem]	 text-[#404040]">Explore Hub200’s </br> Exciting Event </br> Lineup. </h1>
-            <button class="w-[15rem] h-[3rem] bg-white rounded-[1rem] ml-[3rem] mt-[2rem] text-[1.1rem] text-[#499DEC] font-medium">Discover The Events</button>
+    <section  id="curved" class="relative w-[99%] mx-auto flex flex-row justify-center items-center" >
+        <div class="flex flex-col w-6/12 h-full justify-center items-center">
+                <h1 class="xl:text-[3.2rem] lg:text-[2rem] md:text-[1.8rem] font-medium ml-[13rem]	 text-[#464747] drop-shadow-xl">Explore <span class="text-[#50A8F5]">Hub200’s</span> </br> Exciting Event </br> Lineup. </h1>
+                <button onclick="scrollfunction('hubevents')" class="xl:w-[10rem] xl:h-[3rem] lg:w-[7rem] lg:h-[2rem] md:w-[7rem] md:h-[2rem] xl:text-[0.86rem] lg:text-[0.6rem] md:text-[0.6rem] mt-[2rem] xl:mr-[2.1rem] xl:ml-[0rem] lg:ml-[4rem] md:ml-[5.5rem] bg-[#85C5FF] rounded-[10rem]   text-white   font-medium hoverzoom ">Discover The Events</button>
         </div>
-        <div class="flex flex-col w-6/12 h-full items-center mt-[6rem] relative mr-[4rem] ">
-            <img class="w-[31rem] h-[31rem]  absolute right-[5.6rem] bottom-[2.6rem] z-10 " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
+        <div class="flex flex-col w-6/12 h-full justify-center items-center relative mr-[4rem] ">
+            <div class="xl:w-[24.5rem] xl:h-[18rem] lg:w-[20.5rem] lg:h-[14rem] md:w-[20.5rem] md:h-[14rem] bg-white relative rounded-[0.3rem] rounded-tr-[0.8rem]">
+                <div class="xl:w-[24.5rem] xl:h-[17rem] lg:w-[20.5rem] lg:h-[13rem] md:w-[20.5rem] md:h-[13rem]  bg-gradient-to-t from-[#F6FBFF] to-[#9DD5FF] absolute right-[0.9rem] top-[0.6rem] rounded-[0.3rem] rounded-tr-[0.8rem]"></div>
+                <img class="xl:h-[36rem] lg:h-[28rem] md:h-[28rem]  absolute right-[2rem] bottom-[-7rem]  z-10 " src="{% static 'ActivityEvents/Pairprogrammingrafiki.png' %}" alt="">
 
-            <div class="w-[22rem] h-[19rem] bg-white relative rounded-[0.9rem]">
-                <div class="w-[22rem] h-[18rem] bg-gradient-to-t from-[#F6FBFF] to-[#9DD5FF] absolute right-[0.9rem] top-[0.6rem] rounded-[0.9rem]"></div>
             </div>
         </div>
-    </div>
-    <div class="relative w-[94%] mx-auto flex flex-col justify-center items-center mt-[3rem]" >
+    </section>
+
+    <section class="relative w-[94%] mx-auto flex flex-col justify-center items-center mt-[3rem]" >
         <div class="w-full h-full flex justify-first items-first">
             <div class="w-[5.5rem] h-[5.5rem] bg-[#E8F5FF]  drop-shadow-xl  rounded-[0.3rem]  relative">
                 <div class="w-[5.5rem] h-[5rem] bg-white  absolute mt-[1.5rem]  rounded-[0.3rem] left-[1rem] drop-shadow-md  "></div>
             </div>
 </div>
-        <h1 class="text-[2.2rem] font-medium  text-center text-[#1763AA]	">What Hub200’s Activity Events </br> Provides</h1>
-        <div class="w-full h-[40rem] mt-[1rem]  ">
-            <div class="w-full h-[18rem] flex flex-row items-center justify-center bg-[#F3F9FE]  rounded-[1rem]">
-                <div class="w-[22rem] h-full  flex flex-col justify-center ">
-                    <h1 class="text-[2rem] text-[#404040] text-left">
+        <h1 class="text-[2.2rem] font-medium  text-center text-[#50A8F5]	">What Hub200’s Activity Events </br> Provides</h1>
+        <div class="w-full h-[40rem] mt-[1rem] activityeventscontainer ">
+            <div class="w-full xl:h-[18rem] lg:h-[16rem] md:h-[14rem] flex flex-row items-center justify-center bg-[#EFF8FF] drop-shadow-lg  rounded-[0.5rem] rounded-b-[1rem] border-[0.1rem] border-[#F8F8F8] hover:border-[0.2rem] hover:border-[#95befe] hoverzoom ">
+                <div class="xl:w-[22rem] lg:w-[20rem] md:w-[18rem] h-full  flex flex-col justify-center  ">
+                    <h1 class="xl:text-[2rem] lg:text-[1.8rem] md:text-[1.6rem] text-[#464747] text-left">
                         Networking community
                     </h1>
-                    <p class="text-[1rem] mt-[1rem] text-[#404040]">
+                    <p class="xl:text-[1rem] lg:text-[0.9rem] md:text-[0.8rem] mt-[1rem] text-[#5F5F5F]">
                         Create opportunities for you to network with instoctors, mentors, alumni, software companies, you never know which connections will end up being valuable to your career going forward.
                     </p>
                 </div>
-                <div class="w-[28rem] h-full  flex flex-col justify-center">
-                    <img class="w-[32rem] h-[32rem] z-10 " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
+                <div class="xl:w-[28rem] lg:w-[26rem] md:w-[24rem] h-full  flex flex-col justify-center ">
+                    <img class="xl:w-[23rem] xl:h-[23rem] lg:w-[30rem] lg:h-[30rem] md:w-[28rem] md:h-[28rem] z-10 " src="{% static 'ActivityEvents/Teamspiritcuate.png' %}" alt="">
                 </div>
             </div>
 
 
-            <div class="w-full h-[18rem] flex flex-row mt-[2rem] justify-center items-center">
-                <div class="w-[37rem]	 h-full flex flex-row items-center justify-center bg-[#F3F9FE]  rounded-[1rem] mr-[2.5rem]">
+            <div class="w-full xl:h-[18rem] lg:h-[16rem] md:h-[14rem] flex flex-row mt-[3rem] justify-center items-center ">
+                <div class="xl:w-[37rem] lg:w-[29rem] md:w-[27.5rem]	 h-full flex flex-row items-center justify-center bg-[#EFF8FF] drop-shadow-lg  rounded-[0.5rem] rounded-b-[1rem] mr-[2.5rem] border-[0.1rem] border-[#F8F8F8] hover:border-[0.2rem] hover:border-[#95befe] hoverzoom">
                     <div class="w-[22rem] h-full  flex flex-col justify-center ml-[2rem] ">
-                        <h1 class="text-[1.6rem] text-[#404040] text-left text-[#404040]">
+                        <h1 class="xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.3rem]  text-[#464747] text-left">
                             Gamification of learning
                         </h1>
-                        <p class="text-[0.8rem] mt-[1rem] text-[#404040] text-[#404040]">
+                        <p class="xl:text-[0.8rem] lg:text-[0.6rem] md:text-[0.5rem] mt-[1rem] text-[#5F5F5F] text-[#5F5F5F]">
                             Maximize your enjoyment and engagement through gamification techniques to motivate you by using game elements in learning environments
                         </p>
                     </div>
                     <div class="w-[28rem] h-full  flex flex-col justify-center">
-                        <img class="w-[32rem] h-[32rem] z-10 " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
+                        <img class="w-[32rem] h-[32rem] z-10 " src="{% static 'ActivityEvents/Knowledgecuate.png' %}" alt="">
                     </div>
                 </div>
-                
-                <div class="w-[37rem]	 h-full flex flex-row items-center justify-center bg-[#F3F9FE]  rounded-[2rem]">
+                <div class="xl:w-[37rem] lg:w-[29rem] md:w-[27.5rem]	 h-full flex flex-row items-center justify-center bg-[#EFF8FF] drop-shadow-lg  rounded-[0.5rem] rounded-b-[1rem] border-[0.1rem] border-[#F8F8F8] hover:border-[0.2rem] hover:border-[#95befe] hoverzoom">
                     <div class="w-[22rem] h-full  flex flex-col justify-center ml-[2rem] ">
-                        <h1 class="text-[1.6rem] text-[#404040] text-left text-[#404040]">
-                            Networking community
+                        <h1 class="xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.3rem]  text-[#464747] text-left">
+                            Gamification of learning
                         </h1>
-                        <p class="text-[0.8rem] mt-[1rem] text-[#404040] ">
-                            Create opportunities for you to network with instoctors, mentors, alumni, software companies, you never know which connections will end up being valuable to your career going forward.
+                        <p class="xl:text-[0.8rem] lg:text-[0.6rem] md:text-[0.5rem] mt-[1rem] text-[#5F5F5F] text-[#5F5F5F]">
+                            Maximize your enjoyment and engagement through gamification techniques to motivate you by using game elements in learning environments
                         </p>
                     </div>
                     <div class="w-[28rem] h-full  flex flex-col justify-center">
-                        <img class="w-[32rem] h-[32rem] z-10 " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
+                        <img class="w-[32rem] h-[32rem] z-10 " src="{% static 'ActivityEvents/Knowledgecuate.png' %}" alt="">
                     </div>
                 </div>
+
+                
+
             </div>
 
 
         </div>
-    </div>
-    <div class=" w-[94%] mx-auto justify-center items-center mb-[10rem]">
-        <h1 class="text-[3.5rem] font-medium  text-center text-[#1763AA]	">Hub Thursday</h1>
-        <div class="w-full h-[70vh] mt-[2rem] bg-[#F3F9FE] rounded-[1rem] flex flex-row justify-center items-center relative ">
-            <div class="w-[37rem] h-full flex items-center justify-center ">
-                <img class="h-[40rem] w-[40rem] mb-[15.5rem]  " src="{% static 'ActivityEvents/thursdayhub.png' %}" alt="">
+    </section>
+    <section class=" w-[94%]  justify-center items-center mb-[10rem]">
+        <div class="w-full flex justify-end items-end">
+            <div class="w-[4.4rem] h-[4.4rem]  bg-white  drop-shadow-xl  rounded-[0.3rem]  relative">
+                <div class="w-[4.4rem] h-[4rem] bg-[#E8F5FF]  absolute mt-[1.3rem]  rounded-[0.3rem] right-[1rem] drop-shadow-md  "></div>
             </div>
-            <div class="w-[28rem] h-full flex flex-col mb-[7rem] justify-center  ">
-                <h1 class="text-[3.5rem] text-left font-medium text-[#404040]">Hub Thursday</h1>
-                <p class="text-[1.2rem] text-[#404040] ">It is weekly events for Hub200
+</div>
+        <h1 class="text-[3.5rem] font-medium  text-center text-[#50A8F5]	">Hub Thursday</h1>
+        <div class="w-full xl:h-[26rem] lg:h-[22rem] md:h-[20rem] mt-[2rem] bg-[#EFF8FF] rounded-[0.3rem] rounded-b-[1.2rem] flex flex-row justify-center items-center relative hubthursdaycontainer ">
+            <div class="xl:w-[37rem] lg:w-[34rem] md:w-[32rem] h-full flex items-center justify-center xl:mt-[0rem] lg:mt-[4rem] md:mt-[4rem] ">
+                <img class="xl:h-[40rem] xl:w-[40rem] lg:h-[32rem] lg:w-[32rem] md:h-[28rem] md:w-[28rem] mb-[15.5rem]  " src="{% static 'ActivityEvents/thursdayhub.png' %}" alt="">
+            </div>
+            <div class="xl:w-[28rem] lg:w-[26rem] md:w-[24rem] h-full flex flex-col mb-[7rem] justify-center xl:mt-[0rem] lg:mt-[4rem] md:mt-[4rem]  ">
+                <h1 class="xl:text-[3.5rem] lg:text-[3rem] md:text-[2.5rem] text-left font-medium text-[#464747]">Hub Thursday</h1>
+                <p class="xl:text-[1.2rem] lg:text-[1rem] md:text-[0.8rem] text-[#5F5F5F] ">It is weekly events for Hub200
                     that we do every Thursday with different activities and it includes activities such as</p>
             </div>
-            <div class="flex flex-row w-full h-full justify-center items-center absolute top-[11.8rem]">
-                <div class="w-[16rem] h-[10rem] flex flex-col justify-center items-center bg-white rounded-[1rem] drop-shadow-xl">
-                    <img class="h-[5.5rem] w-[5.5rem]  " src="{% static 'ActivityEvents/movienight.png' %}" alt="">
-                    <h2 class="text-[1.3rem] text-center mt-[1rem] font-medium text-[#404040]" >Movie Night</h2>
+            <div class="flex flex-row w-full h-full justify-center items-center absolute xl:top-[11.8rem] lg:top-[11.8rem] md:top-[9rem]">
+                    <div class="xl:w-[16rem] xl:h-[10rem] lg:w-[14rem] lg:h-[9rem] md:w-[12rem] md:h-[8rem] flex flex-col justify-center items-center bg-white rounded-[0.4rem] rounded-b-[1rem] drop-shadow-xl border-[0.1rem] border-[#F8F8F8] hover:border-[0.2rem] hover:border-[#95befe] hoverzoom">
+                      <img class="xl:h-[5.5rem] xl:w-[5.5rem] lg:h-[4.5rem] lg:w-[4.5rem] md:h-[3.5rem] md:w-[3.5rem]  " src="{% static 'ActivityEvents/movienight.png' %}" alt="">
+                      <h2 class="xl:text-[1.3rem] lg:text-[1rem] md:text-[0.8rem] text-center mt-[1rem] font-medium text-[#5F5F5F]" >Movie Night</h2>
                 </div>
-                <div class="w-[16rem] h-[10rem] flex flex-col justify-center items-center ml-[3rem] bg-white rounded-[1rem] drop-shadow-xl">
-                    <img class="h-[5.5rem] w-[5.5rem]  " src="{% static 'ActivityEvents/keyracing.png' %}" alt="">
-                    <h2 class="text-[1.3rem] text-center mt-[1rem] font-medium text-[#404040]" >KeyRacing</h2>
+                    <div class="xl:w-[16rem] xl:h-[10rem] lg:w-[14rem] lg:h-[9rem] md:w-[12rem] md:h-[8rem] flex flex-col justify-center items-center bg-white rounded-[0.4rem] rounded-b-[1rem] drop-shadow-xl border-[0.1rem] border-[#F8F8F8] hover:border-[0.2rem] hover:border-[#95befe] ml-[2rem] hoverzoom">
+                        <img class="xl:h-[5.5rem] xl:w-[5.5rem] lg:h-[4.5rem] lg:w-[4.5rem] md:h-[3.5rem] md:w-[3.5rem]  " src="{% static 'ActivityEvents/keyracing.png' %}" alt="">
+                        <h2 class="text-[1.3rem]  text-center mt-[1rem] font-medium text-[#5F5F5F]" >KeyRacing</h2>
                 </div>
-                <div class="w-[16rem] h-[10rem] flex flex-col justify-center items-center ml-[3rem] bg-white rounded-[1rem] drop-shadow-xl">
-                    <img class="h-[5.5rem] w-[5.5rem]  " src="{% static 'ActivityEvents/songhub.png' %}" alt="">
-                    <h2 class="text-[1.3rem] text-center mt-[1rem] font-medium text-[#404040]" >Hang out & Music</h2>
-                </div>
+                <div class="xl:w-[16rem] xl:h-[10rem] lg:w-[14rem] lg:h-[9rem] md:w-[12rem] md:h-[8rem] flex flex-col justify-center items-center bg-white rounded-[0.4rem] rounded-b-[1rem] drop-shadow-xl border-[0.1rem] border-[#F8F8F8] hover:border-[0.2rem] hover:border-[#95befe] ml-[2rem] hoverzoom">
+                    <img class="xl:h-[5.5rem] xl:w-[5.5rem] lg:h-[4.5rem] lg:w-[4.5rem] md:h-[3.5rem] md:w-[3.5rem]  " src="{% static 'ActivityEvents/songhub.png' %}" alt="">
+                    <h2 class="xl:text-[1.3rem] lg:text-[1rem] md:text-[0.8rem] text-center mt-[1rem] font-medium text-[#5F5F5F]" >Hang out & Music</h2>
+              </div>
+                
             </div>
         </div>
 
-    </div>
+    </section>
 
 
 
-    <div class=" w-[94%] mx-auto justify-center items-center mb-[3rem] ">
-        <h1 class="text-[3.5rem] font-medium  text-center text-[#1763AA]	">Popular Events</h1>
-        <div class="w-full h-[70vh] mt-[2rem] bg-[#F3F9FE] rounded-[1rem] flex flex-row justify-center items-center relative ">
-            <div class="w-[28rem] h-full flex flex-col mb-[8rem] justify-center ">
-                <h1 class="text-[3.5rem] mt-[1rem] text-left font-medium text-[#404040]">Hub Thursday</h1>
-                <p class="text-[1.2rem] mt-[1rem] text-[#404040]">It is weekly events for Hub200
+    <section class=" w-[94%] mx-auto justify-center items-center mb-[3rem] ">
+        <h1 class="text-[3.5rem] font-medium  text-center text-[#50A8F5]	">Popular Events</h1>
+        <div class="w-full xl:h-[26rem] lg:h-[22rem] md:h-[20rem] mt-[2rem] bg-[#EFF8FF] rounded-[0.3rem] rounded-b-[1.2rem] flex flex-row justify-center items-center relative ">
+            <div class="xl:w-[28rem] lg:w-[25rem] md:w-[22rem] h-full flex flex-col mb-[8rem] justify-center items-center ">
+                <h1 class="xl:text-[3.5rem] lg:text-[3rem] md:text-[2.5rem] mt-[5rem] text-left font-medium text-[#464747]">Hub Thursday</h1>
+                <p class="xl:text-[1.2rem] lg:text-[1rem] md:text-[0.8rem] mt-[1rem] text-[#5F5F5F] text-center">It is weekly events for Hub200
                     that we do every Thursday with different activities and it includes activities such as</p>
             </div>
 
-            <div class="w-[37rem] h-full flex items-center justify-center ml-[4rem] ">
-                <video id="my-video" class="w-[35rem] rounded-[1rem] h-[22rem] video-js vjs-custom-theme" muted controls autoplay loop data-setup='{}'>
+            <div class="xl:w-[37rem] lg:w-[34rem] md:w-[30rem] h-full flex items-center justify-center ml-[4rem] ">
+                <video id="my-video" class="xl:w-[35rem] xl:h-[22rem] lg:w-[30rem] lg:h-[18rem] md:w-[26rem] md:h-[16rem] rounded-[0.3rem] rounded-b-[1rem]  video-js vjs-custom-theme" muted controls autoplay loop data-setup='{}'>
                     <source src="{% static 'ActivityEvents/hubvideo.mp4' %}" type="video/mp4" />
                  </video>
             </div>
         </div>
 
-    </div>
-    <div class=" w-[94%] mx-auto justify-center items-center ">
-        <h1 class="text-[3.5rem] font-medium  text-center text-[#1763AA]	">Hub Thursday</h1>
-        <div class="w-full h-[50rem] mt-[3rem] rounded-[1rem] flex flex-col justify-center items-center ">
-            <div class="w-full h-[11.5rem] bg-[#F3F9FE] flex flex-row justify-between items-center rounded-[1.5rem] drop-shadow-lg	">
-                <img class="w-[12rem]  h-full rounded-[1.5rem] " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
-                <div class="w-[17rem]  h-full flex flex-col justify-center">
-                    <h1 class="text-[2rem] text-left font-medium text-[#404040]">English Meetup</h1>
-                    <p class="text-[0.6rem] mt-[2rem] text-[#404040]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="w-[17rem]  h-full flex flex-col justify-center items-center">
-                    <h1 class="text-[2rem] font-medium text-[#404040]">Date</h1>
-                    <p class="text-[1.5rem] mt-[2rem] text-[#404040]">27 Jun</p>
-                </div>
-                <div class="w-[17rem]  h-full flex flex-col justify-center items-center">
-                    <h1 class="text-[2rem] font-medium text-[#404040]">Location</h1>
-                    <p class="text-[1.5rem] mt-[2rem] text-[#404040]">Baghdad</p>
-                </div>
-                <button class="w-[7rem] h-[3rem] mr-[2rem] rounded-[1rem] bg-[#569BE1] text-white" type="button">Learn more</button>
-            </div>
+    </section>
+    <section id="hubevents" class=" w-[94%] mx-auto flex flex-col justify-center items-center ">
+        
+        <h1 class="text-[3.5rem] font-medium  text-center text-[#50A8F5]	">Hub200's Events</h1>
+                <div class="carousel xl:w-[60rem] xl:h-[43rem] lg:w-[55rem] lg:h-[40rem] md:w-[50rem] md:h-[36rem] flex flex-col justify-center items-center  relative" data-carousel>
 
-            <div class="w-full h-[11.5rem] mt-[2rem] bg-[#F3F9FE] flex flex-row justify-between items-center rounded-[1.5rem] drop-shadow-lg	">
-                <img class="w-[12rem]  h-full rounded-[1.5rem] " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
-                <div class="w-[17rem]  h-full flex flex-col justify-center">
-                    <h1 class="text-[2rem] text-left font-medium text-[#404040]">English Meetup</h1>
-                    <p class="text-[0.6rem] mt-[2rem] text-[#404040]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="w-[17rem]  h-full flex flex-col justify-center items-center">
-                    <h1 class="text-[2rem] font-medium text-[#404040]">Date</h1>
-                    <p class="text-[1.5rem] mt-[2rem] text-[#404040]">27 Jun</p>
-                </div>
-                <div class="w-[17rem]  h-full flex flex-col justify-center items-center">
-                    <h1 class="text-[2rem] font-medium text-[#404040]">Location</h1>
-                    <p class="text-[1.5rem] mt-[2rem] text-[#404040]">Baghdad</p>
-                </div>
-                <button class="w-[7rem] h-[3rem] mr-[2rem] rounded-[1rem] bg-[#569BE1] text-white" type="button">Learn more</button>
-            </div>
+                  
+                  <ul class="m-0 p-0 w-full h-full"  data-slides>
+                    {% for event in all_events %}
 
-            <div class="w-full h-[11.5rem] mt-[2rem] bg-[#F3F9FE] flex flex-row justify-between items-center rounded-[1.5rem] drop-shadow-lg	">
-                <img class="w-[12rem]  h-full rounded-[1.5rem] " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
-                <div class="w-[17rem]  h-full flex flex-col justify-center">
-                    <h1 class="text-[2rem] text-left font-medium text-[#404040]">English Meetup</h1>
-                    <p class="text-[0.6rem] mt-[2rem] text-[#404040]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="w-[17rem]  h-full flex flex-col justify-center items-center">
-                    <h1 class="text-[2rem] font-medium text-[#404040]">Date</h1>
-                    <p class="text-[1.5rem] mt-[2rem] text-[#404040]">27 Jun</p>
-                </div>
-                <div class="w-[17rem]  h-full flex flex-col justify-center items-center">
-                    <h1 class="text-[2rem] font-medium text-[#404040]">Location</h1>
-                    <p class="text-[1.5rem] mt-[2rem] text-[#404040]">Baghdad</p>
-                </div>
-                <button class="w-[7rem] h-[3rem] mr-[2rem] rounded-[1rem] bg-[#569BE1] text-white" type="button">Learn more</button>
-            </div>
-            <div class="w-full h-[11.5rem] mt-[2rem] bg-[#F3F9FE] flex flex-row justify-center items-center rounded-[1.5rem] drop-shadow-lg	">
-                <img class="w-[19rem] h-[19rem] mb-[1rem] " src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
-                <button class="w-[10rem] h-[3rem] mt-[7rem] mr-[2rem] rounded-[3rem] bg-[#569BE1] text-white" type="button">All Events</button>
-            </div>
+                    <li class="slide w-full h-3/5 absolute flex flex-col justify-center items-center	" data-active>
+                        <div class="w-full absolute flex justify-between items-center z-10" >
+                            <button class="carousel-button prev xl:h-[3.5rem] xl:w-[3.5rem] lg:h-[3rem] lg:w-[3rem] md:h-[2.5rem] md:w-[2.5rem] bg-[#50A8F5] flex justify-center items-center z-10 cursor-pointer rounded-[0.25rem] drop-shadow-md" data-carousel-button="prev"><box-icon size="3rem" color="#ffffff" name='left-arrow-alt'></box-icon></button>
+                            <button class="carousel-button next xl:h-[3.5rem] xl:w-[3.5rem] lg:h-[3rem] lg:w-[3rem] md:h-[2.5rem] md:w-[2.5rem] bg-[#50A8F5] flex justify-center items-center z-10 cursor-pointer rounded-[0.25rem] drop-shadow-md" data-carousel-button="next"><box-icon size="3rem" color="#ffffff" name='right-arrow-alt' ></box-icon></button>
+                        </div>
+                      <div class="xl:w-[36rem] xl:h-[24rem] lg:w-[32rem] lg:h-[20rem] md:w-[28rem] md:h-[16rem] flex flex-col justify-center items-center relative">
+                        <img class="w-full h-full block object-cover object-center rounded-[0.3rem] rounded-b-[1.2rem] drop-shadow-sm " src="media/{{event.image}}">
+                        <div class="xl:w-[27rem] xl:h-[17rem] lg:w-[24rem] lg:h-[14rem] md:w-[22rem] md:h-[13rem] flex flex-col items-center bg-[#fcfcfc] rounded-[0.3rem] rounded-b-[1.2rem] drop-shadow-xl absolute xl:top-[10rem] xl:left-[15rem] lg:top-[7rem] lg:left-[12rem] md:top-[7rem] md:left-[12rem]">
+                          <div class="w-full h-3/4	 flex flex-col items-center">
+                              <h1 class="xl:text-[2rem] lg:text-[1.6rem] md:text-[1.4rem] text-[#464747] font-medium mt-[1rem]">{{event.title}}</h1>
+                              <p class="xl:text-[1rem] lg:text-[0.8rem] md:text-[0.6rem] text-[#5F5F5F] font-normal mt-[1rem]">{{event.description}}</p>
+                          </div>
+                          <div class="w-11/12 h-1/4	 flex justify-between absolute bottom-[1rem]">
+                              <div class="xl:w-[17rem] xl:h-[5rem] lg:w-[15rem] lg:h-[4rem] md:w-[15rem] md:h-[4rem] flex flex-col justify-center items-center   ">
+                                  <div class="xl:w-[6rem] xl:h-[2.3rem] lg:w-[5rem] lg:h-[2rem] md:w-[4rem] md:h-[1.8rem] rounded-[4rem] bg-[#50A8F5] drop-shadow-lg  flex justify-center items-center text-white font-medium xl:text-[1.15rem] lg:text-[0.9rem] md:text-[0.7rem]">Location</div>
+                                  <h1 class="mt-[0.5rem] xl:text-[1.2rem] lg:text-[1rem] md:text-[0.8rem] font-medium">{{event.location}}</h1>
+                              </div>
+                              <div class="xl:w-[17rem] xl:h-[5rem] lg:w-[15rem] lg:h-[4rem] md:w-[15rem] md:h-[4rem] flex flex-col justify-center items-center  ">
+                                  <div class="xl:w-[6rem] xl:h-[2.3rem] lg:w-[5rem] lg:h-[2rem] md:w-[4rem] md:h-[1.8rem] rounded-[4rem] bg-[#50A8F5] drop-shadow-lg  flex justify-center items-center text-white font-medium xl:text-[1.15rem] lg:text-[0.9rem] md:text-[0.7rem]">Date</div>
+                                  <h1 class="mt-[0.5rem] xl:text-[1.2rem] lg:text-[1rem] md:text-[0.8rem] font-medium">{{event.event_date|date:"M d" }}</h1>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    {% endfor %}
 
+                  </ul>
+
+            <div class="w-full h-2/5 flex flex-col items-center	">
+                <h1 class="text-center xl:text-[2rem] lg:text-[1.7rem] md:text-[1.4rem] text-[#464747] font-medium">Explore our events at <span class="text-[#61B4FD]">Hub200</span> </h1>
+                 <p class="xl:text-[1.2rem] lg:text-[1rem] md:text-[0.9rem] text-[#5F5F5F] font-normal text-center mt-[0.5rem]"> which provide opportunities to connect with like-minded individuals, create new friendships and parcticipating in activities from which you will learn and make your day better!     </p>
+              <div class="w-full flex flex-row justify-center items-center mt-[1rem]">
+                <a href="{% url 'events' %}" class="xl:w-[8rem] xl:h-[2.5rem] lg:w-[7rem] lg:h-[2.1rem] md:w-[6rem] md:h-[1.9rem] rounded-[4rem] bg-[#50A8F5] drop-shadow-md  flex justify-center items-center text-white font-medium xl:text-[1.15rem] lg:text-[0.9rem] md:text-[0.85rem] hoverzoom">All Events</a>
+                <a href="{% url 'calendar' %}" class="xl:w-[8rem] xl:h-[2.5rem] lg:w-[7rem] lg:h-[2.1rem] md:w-[6rem] md:h-[1.9rem] rounded-[4rem] bg-[#50A8F5] drop-shadow-md  flex justify-center items-center text-white font-medium xl:text-[1.15rem] lg:text-[0.9rem] md:text-[0.85rem] ml-[2rem] hoverzoom">Calendar</a>
+
+              </div>
+            </div>
         </div>
 
-    </div>
-    <div class=" w-[94%] mx-auto justify-center items-center mt-[6rem] mb-[5rem] ">
 
-        <h1 class="text-[3.5rem] font-medium  text-center text-[#1763AA] mb-[1rem]">Ask a question</h1>
+    </section>
+
+
+
+    <section class=" w-[94%] mx-auto justify-center items-center mt-[6rem] mb-[5rem] ">
+
+        <h1 class="text-[3.5rem] font-medium  text-center text-[#50A8F5] mb-[1rem]">Ask a question</h1>
 <div class="w-full h-full flex justify-end items-end">
             <div class="w-[7.5rem] h-[7.5rem] bg-white drop-shadow-xl  rounded-[0.3rem]  relative">
                 <div class="w-[7rem] h-[6rem] bg-[#E8F5FF]  absolute mt-[2.5rem]  rounded-[0.3rem] right-[2rem] drop-shadow-md  "></div>
             </div>
 </div>
-        <div class="w-full h-[30rem] mt-[1rem] flex flex-row justify-center items-center relative ">
+        <div class="w-full h-[30rem] mt-[1rem] flex flex-row justify-center items-center relative  ">
             <div class="w-[36rem] h-full flex flex-col mt-[4rem] justify-center">
-                <h1 class="text-[1.8rem] font-medium text-left">If you have anything in mind you would like to share send us a message</h1>
+                <h1 class="xl:text-[1.8rem] lg:text-[1.6rem] md:text-[1.4rem] text-[#464747] font-medium text-left">If you have anything in mind you would like to share send us a message</h1>
 
                 <form id="formQAs" class="h-full w-full flex flex-col justify-first items-first ">
                    <div class="flex flex-row">
@@ -260,21 +514,74 @@
                      </div>
                    </div>
 
-                    <div class="w-[36rem] flex flex-col relative items-center" >
-                        <textarea id="messageinputQA" name="messageinputQA" class="inputsclass w-full" col="50" rows="10" required></textarea>
+                    <div class="xl:w-[33.7rem] flex flex-col relative items-center" >
+                        <textarea id="messageinputQA" name="messageinputQA" class="inputsclass w-full h-[15rem]" col="50" rows="10" required></textarea>
                         <label class="placeholderlabel text-[2.2rem] "   for="messageinputQA">Message</label>
                     </div>
-                    <button id="buttonsubmitQA" class="w-[11rem] h-[3rem] bg-[#569BE1] text-[1.3rem] text-white rounded-[6px] mt-[1.5rem] drop-shadow-xl " type="submit">Send Message</button>
+                    <div id="buttonwrapper">
+                        <button  type="submit" class="submit w-[2rem] h-[3rem]" >Send Message</button>
+                           <div class="loader-wrapper">
+                           <span class="loader white"></span>
+                           <span class="loader blue"></span>
+                           </div>
+                          <span class="loader blue2"></span>
+                           
+                       <div class="check-wrapper">
+                      <svg version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
+                      <polyline class="check" points="5,13 21.8,32.4 59.5,5 "/>
+                      </svg>
+                       </div>
+                        
+                       </div>
                 </form>
             </div>
 
-            <div class="w-[35rem] h-full flex items-center justify-center ml-[4rem] ">
-                <img class="h-[34rem] mt-[2rem] w-full  " src="{% static 'ActivityEvents/askaquestionhub.png' %}" alt="">
+            <div class="w-[35rem]  h-full flex items-center justify-center ml-[4rem] ">
+                <img class="xl:h-[34rem] lg:h-[23rem] md:h-[21rem] mt-[2rem] w-full  " src="{% static 'ActivityEvents/askaquestionhub.png' %}" alt="">
 
             </div>
         </div>
 
-    </div>
+    </section>
+
  </section>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+const buttons = document.querySelectorAll("[data-carousel-button]")
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    const offset = button.dataset.carouselButton === "next" ? 1 : -1
+    const slides = button
+      .closest("[data-carousel]")
+      .querySelector("[data-slides]")
+
+    const activeSlide = slides.querySelector("[data-active]")
+    let newIndex = [...slides.children].indexOf(activeSlide) + offset
+    if (newIndex < 0) newIndex = slides.children.length - 1
+    if (newIndex >= slides.children.length) newIndex = 0
+
+    slides.children[newIndex].dataset.active = true
+    delete activeSlide.dataset.active
+  })
+})
+
+// Scroll Reveal 
+
+ScrollReveal({ 
+  reset: true,
+  distance:'80px',
+  duration:1000,
+  delay:100
+});
+ScrollReveal().reveal('.activityeventscontainer', { origin: 'top' });
+ScrollReveal().reveal('.hubthursdaycontainer', { origin: 'bottom' });
+})
+
+</script>
 
 {% endblock %}

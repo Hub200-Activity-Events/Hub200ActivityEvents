@@ -2,29 +2,35 @@
 body{
     font-family: 'Roboto';
 }
-:root {
-    --primary-clr: #E8F5FF;
-  }
-a:hover {
-    text-decoration: none;
-    color:black
-
+/* input autofill color sets to white */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+    background-color: #FFFFFF !important;
+    color: #555 !important;
+    -webkit-text-fill-color: #555555 !important;
 }
 
 .inputdivparent{
     display:flex;
     flex-direction: column;
-    height: 5rem;
+    height: 6rem;
     margin-top: 1rem;
     position: relative;
-    align-items: center;
 }
 
 .inputdivparent.success input {
     border-color: #09c372;
 }
+.inputdivparent.success select {
+    border-color: #09c372;
+}
 
 .inputdivparent.error input {
+    border-color: #ff3860;
+}
+.inputdivparent.error select {
     border-color: #ff3860;
 }
 
@@ -33,7 +39,6 @@ a:hover {
     font-size: 9px;
     height: 13px;
 }
-
 
 /* upload photo field in the signup form */
 
@@ -56,8 +61,7 @@ a:hover {
 }
 
 .avatar-upload .avatar-preview {
-    width: 10rem;
-    height: 10rem;
+
     position: relative;
     border-radius: 100%;
     border: 6px solid #D2ECFF;
@@ -75,11 +79,13 @@ a:hover {
 
 /* input animation */
 .inputsclass{
-    padding: 0.9rem 3rem 0.9rem 2rem;
+    width: 16rem;
+    height: 3.5rem;
     border: 2px solid gray;
     outline: none;
     border-radius: 6px;
 }
+
 .inputsclass:is(:focus, :valid){
     border: 2px solid #D2ECFF;
 }
@@ -114,11 +120,11 @@ a:hover {
     z-index: 1000;
 }
 
-
 .toasts{
     width: 400px;
     height: 70px;
     background-color: #fff;
+    border-radius: 0.2rem;
     font-weight: 500;
     margin: 15px 0;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -126,8 +132,57 @@ a:hover {
     align-items: center;
     position: fixed;
     z-index: 1000;
-
 }
+
+
+@media (max-width: 1280px) {
+    .toasts{
+        width: 400px;
+        height: 70px;
+        background-color: #fff;
+        border-radius: 0.2rem;
+        font-weight: 500;
+        margin: 15px 0;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        position: fixed;
+        z-index: 1000;
+    }
+  }
+  
+  /* Large screens (lg) */
+  @media (max-width: 1024px) {
+    .toasts{
+        width: 320px;
+        height: 60px;
+        background-color: #fff;
+        border-radius: 0.2rem;
+        font-weight: 500;
+        margin: 15px 0;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        position: fixed;
+        z-index: 1000;
+    }
+  }
+  
+  /* Medium screens (md) */
+  @media (max-width: 768px) {
+    .toasts{
+        width: 280px;
+        height: 55px;
+        background-color: #fff;
+        font-weight: 500;
+        margin: 15px 0;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        position: fixed;
+        z-index: 1000;
+    }
+  }
 
 .toasts i{
     margin: 0 20px;
@@ -208,3 +263,5 @@ background: url(image.png);
 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
 }
+
+

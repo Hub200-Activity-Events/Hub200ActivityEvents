@@ -4,6 +4,7 @@ from django.urls import path
 from . import views
 urlpatterns = [
     path("", views.home, name="home"),
+    path("display_event/<int:event_id>", views.display_event, name="display_event"),
     path("events", views.events, name="events"),
     path("calendar", views.calendar, name="calendar"),
     path("signin", views.signin, name="signin"),
@@ -14,7 +15,6 @@ urlpatterns = [
     path("signingupdone", views.signingupdone, name="signingupdone"),
     path("errorpage", views.errorpage, name="errorpage"),
     path("get_events/", views.get_events, name="get_events"),
-    path("display_event/<int:event_id>", views.display_event, name="display_event"),
     # path("apply_filter", views.apply_filter, name="apply_filter"),
 
 
