@@ -274,12 +274,14 @@
     justify-content: center;
     flex-direction: column;
     color: #fff;
-    cursor: pointer;
   }
   .event-image{
     width: 100%;
-    margin-top: 5rem;
-    margin-bottom: 10rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border-radius: 1rem;
+    object-fit: cover;
+    
   }
   .events .event:nth-child(even) {
     background: transparent;
@@ -287,12 +289,12 @@
   .events .event .title {
     display: flex;
     align-items: center;
-    pointer-events: none;
+    justify-content: center;
   }
   .events .event .title .event-title {
-    font-size: 1rem;
-    font-weight: 400;
-    margin-left: 20px;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-align: center;
   }
   .events .event i {
     color: #757575;
@@ -302,31 +304,11 @@
     color: #fff;
   }
   .events .event .event-time {
-    font-size: 0.8rem;
+    margin-top:0.6rem;
+    font-size: 1.5rem;
     font-weight: 400;
-    color: #878895;
-    margin-left: 15px;
-    pointer-events: none;
-  }
-  .events .event:hover .event-time {
     color: #fff;
-  }
-  .events .event::after {
-    content: "✓";
-    position: absolute;
-    top: 50%;
-    right: 0;
-    font-size: 3rem;
-    line-height: 1;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.3;
-    color: #757575;
-    transform: translateY(-50%);
-  }
-  .events .event:hover::after {
-    display: flex;
+    text-align: center;
   }
   .events .no-event {
     width: 100%;

@@ -7,8 +7,8 @@ from .models import Events
 import datetime
 from django.core import serializers
 from django.http import JsonResponse
-# Create your views here.
 
+# Create your views here.
 def navigationlinks(request):
     navigation_links = [
         {'text': 'Home', 'href': 'home'},
@@ -20,7 +20,8 @@ def navigationlinks(request):
     
     return render(request, 'ActivityEvents/layout.html', {'navigation_links': navigation_links})
 def home(request):
-    return render(request,'ActivityEvents/home.html')
+    all_events = Events.objects.only('title', 'description', 'event_date', 'location', 'image')[:3]
+    return render(request,'ActivityEvents/home.html', {"all_events":all_events})
 
 def events(request):
     all_events = Events.objects.all()
@@ -28,12 +29,6 @@ def events(request):
     next_week = datetime.date.today() + datetime.timedelta(days=7)
     next_month_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_month])
     next_week_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_week])
-
-
-
-
-
-
     if request.POST.get('filter') == 'next_month':
         return render(request,'ActivityEvents/events.html',{'all_events':next_month_events})
     elif request.POST.get('filter') == 'next_week':
@@ -41,11 +36,17 @@ def events(request):
     else:
         return render(request,'ActivityEvents/events.html',{'all_events':all_events})
 
+
+def display_event(request,event_id):
+    event = Events.objects.get(id=event_id)
+    return render(request,'ActivityEvents/display_event.html',{'event':event})
+    #you can use the events details in the html with event.title event.blah blah
+
 def calendar(request):
     return render(request,'ActivityEvents/calendar.html')
 
 def registrations(request):
-    print(request.method)
+    all_events = Events.objects.all()
     if request.method == 'POST':
         UsernameRegistration = request.POST.get('UsernameRegistration')
         PhonenumberRegistration = request.POST.get('PhonenumberRegistration')
@@ -67,7 +68,7 @@ def registrations(request):
         print(CommentRegistration)
         return HttpResponseRedirect(reverse('home'))
     else:
-        return render(request,'ActivityEvents/registrations.html')
+        return render(request,'ActivityEvents/registrations.html',{"all_events":all_events})
 
 def signin(request):
     if request.method == 'POST':
@@ -130,8 +131,8 @@ def resetpassword(request):
 def signingupdone(request):
     return render(request,'ActivityEvents/signingupdone.html') #Maybe you will need to render the signingupdone.html in the signup function(after he comepletes the sign up)
 
-def errorpage(request):
-    return render(request,'ActivityEvents/errorpage.html') #Maybe you will need to render the signingupdone.html in the signup function(after he comepletes the sign up)
+def errorpage(request,  exception=None):
+    return render(request,'ActivityEvents/errorpage.html', status=404) #Maybe you will need to render the signingupdone.html in the signup function(after he comepletes the sign up)
 
 
 

@@ -1,4 +1,8 @@
+
 document.addEventListener('DOMContentLoaded', function() {
+
+
+
 
 // Active Link Indicator
 const links = document.querySelectorAll('nav a');
@@ -8,7 +12,6 @@ links.forEach(link => {
   console.log(link.href)
 console.log(window.location.href)
   if(link.href === window.location.href) {
-    console.log('matched')
     link.classList.add('activelink');
   }
 })
@@ -23,7 +26,7 @@ let successmsgQAform = '<i class="fa-solid fa-circle-check"></i> We Have Receive
 let errormsgQAform = '<i class="fa-solid fa-circle-check"></i> There Was An error Please Try Again Later'
 let successmsg = '<i class="fa-solid fa-circle-check"></i> Sign-up successful! You can now log in.'
 let errormsg = '<i class="fa-sharp fa-solid fa-circle-xmark"></i> Please fix the error!'
-let invalidmsg = '<i class="fa-solid fa-circle-exclamation"></i> Sign-up failed. PPlease Fill All The Requirements!'
+let invalidmsg = '<i class="fa-solid fa-circle-exclamation"></i> Sign-up failed. Please Fill All The Requirements!'
 let registerMessageSuccess = '<i class="fa-solid fa-circle-check"></i> We Have Received Your information Thank You For Registeration into this event!'
 let registerMessageInvalid = '<i class="fa-solid fa-circle-exclamation"></i> Registeration failed. Please Fill All The Requirements!'
 
@@ -158,7 +161,30 @@ const setSuccess = element => {
 
 var	wrapper = $( "#buttonwrapper" );
 
-const validateInputs = () => {
+function phonenumber(phone){
+  var patternphonenumber = /^[0-9]+$/;
+  if(typeof phone === 'string' && phone.match(patternphonenumber))
+  {
+    return true
+  }
+  else{
+    return false
+  }
+}
+
+function emailvalidation(email){
+  var patternemail = /^[^ ]+@[^ ]+\.[a-zA-Z]{2,3}$/;
+  if(typeof email === 'string' && email.match(patternemail))
+  {
+    return true
+  }
+  else{
+    return false
+  }
+}
+
+
+const validateInputsSignup = () => {
   const inputusername = document.getElementById('inputusernames')
   const inputphonenumber = document.getElementById('inputphonenumber')
   const inputphoto = document.getElementById('inputphoto')
@@ -178,14 +204,22 @@ const validateInputs = () => {
   if (inputemails.value === '') {
       setError(inputemails, 'Email is required')
       allValid = false
-  } else {
+  }else if(!emailvalidation(inputemails.value)){
+    setError(inputemails, 'Unvalid Email')
+    allValid = false
+  }
+   else{
       setSuccess(inputemails)
   }
-
   if (inputphonenumber.value === '') {
       setError(inputphonenumber, 'Phonenumber is required')
       allValid = false
-  } else if (inputphonenumber.value.length < 11) {
+  }
+  else if(!phonenumber(inputphonenumber.value)){
+    setError(inputphonenumber, 'PhoneNumber Must be numbers only!')
+    allValid=false
+  }
+  else if (inputphonenumber.value.length < 11) {
       setError(inputphonenumber, 'Phonenumber must be at least 11 characters.')
       allValid = false
   } else {
@@ -258,7 +292,7 @@ const signupform = document.getElementById('signupform')
 if(signupform){
   signupform.addEventListener('submit' , (event)=>{
     event.preventDefault()
-    validateInputs()
+    validateInputsSignup()
   });
 }
 
@@ -291,37 +325,116 @@ if(formQAs){
 
 
 
-// Registeration Form 
-registerform = document.getElementById('registerform')
 
-if(registerform){
-  registerform.addEventListener('submit', (e)=>{
-    e.preventDefault()
-    UsernameRegistration = document.getElementById('UsernameRegistration').value
-    PhonenumberRegistration = document.getElementById('PhonenumberRegistration').value
-    EmailRegistration = document.getElementById('EmailRegistration').value
-    DateofbirthRegistration = document.getElementById('DateofbirthRegistration').value
-    LocationRegistration = document.getElementById('LocationRegistration').value
-    EventsRegistration = document.getElementById('EventsRegistration').value
-    const selectedGender = document.querySelector('input[name="gender"]:checked')
-    const genderValue = selectedGender.id
-    GuestsRegistration = document.getElementById('GuestsRegistration').value
-    CommentRegistration = document.getElementById('CommentRegistration').value
-    console.log(genderValue)
-    if(UsernameRegistration !== "" && PhonenumberRegistration !== "" && EmailRegistration !== "" && DateofbirthRegistration !== "" && LocationRegistration !== "" && EventsRegistration !== "" && 
-genderValue !== "" && GuestsRegistration !== "" &&  CommentRegistration !== ""){
+
+
+
+// Registeration Form 
+
+
+
+
+
+const validateInputsRegisteration = () => {
+  UsernameRegistration = document.getElementById('UsernameRegistration')
+  PhonenumberRegistration = document.getElementById('PhonenumberRegistration')
+  EmailRegistration = document.getElementById('EmailRegistration')
+  DateofbirthRegistration = document.getElementById('DateofbirthRegistration')
+  LocationRegistration = document.getElementById('LocationRegistration')
+  EventsRegistration = document.getElementById('EventsRegistration')
+  const selectedGender = document.querySelector('input[name="gender"]:checked')
+  const genderValue = selectedGender.id
+  GuestsRegistration = document.getElementById('GuestsRegistration')
+  CommentRegistration = document.getElementById('CommentRegistration')
+  let allValid = true
+
+  // If any validation fails, set allValid to false
+  if (UsernameRegistration.value === '') {
+      setError(UsernameRegistration, 'Username is required')
+      allValid = false
+  } else {
+      setSuccess(UsernameRegistration)
+  }
+
+  if (EmailRegistration.value === '') {
+      setError(EmailRegistration, 'Email is required')
+      allValid = false
+  }else if(!emailvalidation(EmailRegistration.value)){
+    setError(EmailRegistration, 'Uncorrect Valid Email')
+    allValid = false
+  }
+   else{
+      setSuccess(EmailRegistration)
+  }
+  if (PhonenumberRegistration.value === '') {
+      setError(PhonenumberRegistration, 'Phonenumber is required')
+      allValid = false
+  }
+  else if(!phonenumber(PhonenumberRegistration.value)){
+    setError(PhonenumberRegistration, 'PhoneNumber Must be numbers only!')
+    allValid=false
+  }
+  else if (PhonenumberRegistration.value.length < 11) {
+      setError(PhonenumberRegistration, 'Phonenumber must be at least 11 characters.')
+      allValid = false
+  } else {
+      setSuccess(PhonenumberRegistration)
+  }
+
+  if(DateofbirthRegistration.value === ''){
+    setError(DateofbirthRegistration, 'DateOfBirth is required')
+    allValid = false
+  }else{
+    setSuccess(DateofbirthRegistration)
+  }
+
+  if(LocationRegistration.value === ''){
+    setError(LocationRegistration, 'Location is required')
+    allValid = false
+  }else{
+    setSuccess(LocationRegistration)
+  }
+
+  if(EventsRegistration.value === ''){
+    setError(EventsRegistration, 'Events is required')
+    allValid = false
+  }else{
+    console.log(EventsRegistration.value)
+    setSuccess(EventsRegistration)
+  }
+
+  
+  if(genderValue === ''){
+
+    allValid = false
+  }
+
+  
+  if (allValid) {
       if(wrapper.not( ".checked" )) {
         wrapper.addClass( "checked" );
         setTimeout(function(){
           wrapper.removeClass( "checked" );
         }, 6000);
       }
-      showToast(registerMessageSuccess)
-    }else{
-      showToast(registerMessageInvalid)
+    showToast(registerMessageSuccess)
+}else{
+  showToast(registerMessageInvalid)
+}
+}
 
-    }
 
+
+
+
+
+
+registerform = document.getElementById('registerform')
+
+if(registerform){
+  registerform.addEventListener('submit', (e)=>{
+    e.preventDefault()
+    validateInputsRegisteration()
 
   })
 }
@@ -329,3 +442,14 @@ genderValue !== "" && GuestsRegistration !== "" &&  CommentRegistration !== ""){
 })
 
 
+
+// scroll to the section
+function scrollfunction(sectionId) {
+  const section = document.getElementById(sectionId)
+  if(section){
+      window.scrollTo({
+          top:section.offsetTop,
+          behavior:'smooth'
+      })
+  }
+}

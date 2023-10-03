@@ -1,6 +1,5 @@
 {% extends "ActivityEvents/layout.html" %}
 {% load static %}
-{% load bootstrap_icons %}
 {% block body %}
 <style>
 
@@ -8,16 +7,14 @@
 
 
 #buttonwrapper {
+    display: block;
     width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 3rem;
   font-size:21px;
   letter-spacing:6px;
   color:white;
   overflow: visible;
-  margin-top: 2rem;
+  margin-top: 7rem;
 }
 
 .submit, .loader, .loader-wrapper{
@@ -29,11 +26,11 @@
 
 .submit {
   z-index:2;
-  width:16rem;
-  height:60px;
-  background: #52a9f9; 
+  width:12rem;
+  height:3.5rem;
+  background: #66b5ff; 
   display:block;
-  border-radius:0.5rem;
+  border-radius: 15rem;
   text-align:center;
   color:rgba(255,255,255,1);
   text-decoration:none;
@@ -44,12 +41,15 @@
   background: transparent;
 }
 
+
+
+
 .submit:before {
   content:"";
   z-index:-2;
   width:100%;
   height:100%;
-  background: #52a9f9; 
+  background: #66b5ff; 
   display:block;
   border-radius:50%;
   position:absolute;
@@ -66,7 +66,7 @@
   z-index:-4;
   width:100%;
   height:100%;
-  background: #52a9f9; 
+  background: #66b5ff; 
   display:block;
   border-radius:50%;
   position:absolute;
@@ -149,11 +149,11 @@
 }
 
 .checked .submit {
-  width:140px;
-  width:66px;
+  height:70px;
+  width:70px;
   border-radius: 50%;
   color:rgba(255,255,255,0);
-  background: #5cacf7;
+  background: #66b5ff;
   animation: submit-anim 2s  cubic-bezier(0.39, 0.575, 0.565, 1);
   }
 
@@ -170,7 +170,7 @@
 }
 
 .check-wrapper svg {
-  margin-top: 35px;
+  margin-top:20px;
   margin-left: 24px;
 }
 
@@ -254,11 +254,13 @@
     input[type="radio"][id="male"]:checked + label.male-label {
     background-color: #2c93f4; 
     color: #ffffff;
+    fill: white;
   }
 
   input[type="radio"][id="female"]:checked + label.female-label {
     background-color: #ff69b4; 
     color: #ffffff;
+    fill: white;
   }
   input[type=date]:required:invalid::-webkit-datetime-edit {
     color: transparent;
@@ -266,113 +268,138 @@
 input[type=date]:focus::-webkit-datetime-edit {
     color: black !important;
 }
-</style>
+.required .placeholderlabel:after {
+    content:"  *";
+    color: red;
+  }
+  </style>
 
 <section class="h-full w-full flex flex-col items-center justify-center  mb-[4rem] mt-[2rem]">
-    <div class="h-[55rem] w-[80rem] flex flex-col items-center justify-center  mb-[4rem] mt-[3rem] border-[0.2rem] border-[#E8F5FF]">
+    <div class="h-[57rem] xl:w-[80rem] lg:w-[62rem] md:w-[59rem] flex flex-col items-center justify-center  mb-[4rem] mt-[3rem] border-[0.2rem] border-[#E8F5FF]">
 
 
-        <div  class="w-full  flex flex-row h-full justify-center items-center">
+        <div  class="w-full  flex flex-row h-full justify-center items-center bg-[#E8F5FF]">
             <div class="w-4/12 h-full  flex flex-col items-center justify-center  ">
-               <div class="w-full h-full  bg-[#D2ECFF] flex flex-col justify-center items-center  rounded-tr-[2.1rem] rounded-br-[2.1rem]">
-                <h1 class="text-[2.5rem] mb-[1rem] font-medium">Registration Form</h1>
-                <p class="text-[1rem] ml-[1rem] font-normal">After completing the registration process, we will be sending a message to your email and we will inform you with date of the event, location and more details!</p>
-                   <img class="w-[28rem]  h-[26rem]" src="{% static 'ActivityEvents/thankyouimageregisteration.png' %}" alt="">
+               <div class="w-full h-full flex flex-col justify-center items-center ">
+                <h1 class="xl:text-[2.5rem] lg:text-[2.1rem] md:text-[2rem] mb-[1rem] font-medium text-[#5F5F5F]">Registration Form</h1>
+                <p class="xl:text-[1rem] lg:text-[0.8rem] md:text-[0.7rem] ml-[1rem] font-normal text-center text-[#5F5F5F]">After completing the registration process, we will be sending a message to your email and we will inform you with date of the event, location and more details!</p>
+                   <img class="xl:w-[28rem] xl:h-[26rem] lg:w-[26rem] lg:h-[24rem] md:w-[25rem] md:h-[23rem]" src="{% static 'ActivityEvents/Goodteampana.png' %}" alt="">
                </div>
             </div>
-            <form id="registerform" action="{% url 'registrations'  %}" method="POST"   enctype="multipart/form-data" class="w-8/12 h-full flex flex-col items-center justify-center relative mt-[6rem] mb-[2rem]">
+            <form id="registerform" action="{% url 'registrations'  %}" method="POST"   enctype="multipart/form-data" class="w-8/12 h-full flex flex-col items-center justify-center relative mb-[2rem]">
                 {% csrf_token %}
-                 <div class='w-full h-[8rem] flex flex-row justify-center '>
-                      <div class="inputdivparent" >
-                          <input name="UsernameRegistration" id="UsernameRegistration" class="inputsclass" type="text" required>
-                          <label class="placeholderlabel"   for="UsernameRegistration">Username</label>
-                      </div>
-                      <div class="inputdivparent ml-[4rem]" >
-                        <input name="PhonenumberRegistration" id="PhonenumberRegistration" class="inputsclass" type="tel" required>
-                        <label class="placeholderlabel"   for="PhonenumberRegistration">Phone Number</label>
+                <div class="xl:w-[45rem] lg:w-[40rem] md:w-[37rem] flex flex-col bg-white drop-shadow-lg rounded-xl  mt-[2rem] items-center h-full">
+                  <div class='xl:w-[40rem] lg:w-[37rem] md:w-[33rem] md:w-[33rem] h-[7rem] mt-[2rem] flex flex-row justify-between '>
+                    <div class="inputdivparent required" >
+                        <input name="UsernameRegistration" id="UsernameRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" type="text" required>
+                        <label class="placeholderlabel"   for="UsernameRegistration">Username</label>
+                        <div class="error"></div>
+
                     </div>
-                 </div>
-    
-                 <div class='w-full h-[8rem] flex flex-row justify-center '>
-                    <div class="inputdivparent" >
-                        <input name="EmailRegistration" id="EmailRegistration" class="inputsclass" type="email" required>
-                        <label class="placeholderlabel"   for="EmailRegistration">Email</label>
-                    </div>
-                    <div class="inputdivparent  ml-[4rem] " >
-                        <input name="DateofbirthRegistration" id="DateofbirthRegistration" class="inputsclass w-[16.8rem]" type="date" required>
-                        <label class="placeholderlabel"   for="DateofbirthRegistration">Date of birth</label>
+                    <div class="inputdivparent required ml-[4rem]" >
+                      <input name="PhonenumberRegistration" id="PhonenumberRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" type="tel" required>
+                      <label class="placeholderlabel"   for="PhonenumberRegistration">Phone Number</label>
+                      <div class="error"></div>
+
                   </div>
                </div>
-    
-               <div class='w-full h-[8rem] flex flex-row justify-center '>
-                <div class="inputdivparent mr-[3.9rem]  " >
-                  <select id="LocationRegistration" class="inputsclass h-[3.6rem] w-[16.8rem] ml-[0.5rem]" name="LocationRegistration"  >
-                    <option value="baghdad">baghdad</option>
-                    <option value="baghdad">Basra</option>
-                    <option value="baghdad">Mosul</option>
-                    <option value="baghdad">Najaf</option>
-                  </select>
-                    <label class="placeholderlabel"   for="EmailRegistration">Location</label>
+  
+               <div class='xl:w-[40rem] lg:w-[37rem] md:w-[33rem] h-[7rem] flex flex-row justify-between '>
+                  <div class="inputdivparent required" >
+                      <input name="EmailRegistration" id="EmailRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" type="email" required>
+                      <label class="placeholderlabel"   for="EmailRegistration">Email</label>
+                      <div class="error"></div>
+
+                  </div>
+                  <div class="inputdivparent required  ml-[4rem] " >
+                      <input name="DateofbirthRegistration" id="DateofbirthRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem] " type="date" required>
+                      <label class="placeholderlabel"   for="DateofbirthRegistration">Date of birth</label>
+                      <div class="error"></div>
+
                 </div>
-                <div class="inputdivparent  mr-[0.5rem]" >
-                    <input name="EventsRegistration" id="EventsRegistration" class="inputsclass w-[16.8rem]  " type="date" required>
-                    <label class="placeholderlabel"   for="EventsRegistration">Events</label>
+             </div>
+  
+             <div class='xl:w-[40rem] lg:w-[37rem] md:w-[33rem] h-[7rem] flex flex-row justify-between '>
+              <div class="inputdivparent" >
+                <select id="LocationRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem] " name="LocationRegistration"  >
+                  <option value="baghdad">baghdad</option>
+                  <option value="baghdad">Basra</option>
+                  <option value="baghdad">Mosul</option>
+                  <option value="baghdad">Najaf</option>
+                </select>
+                  <label class="placeholderlabel"   for="EmailRegistration">Location</label>
+                  <div class="error"></div>
+
               </div>
-           </div>
-    
-    
-    
-           <fieldset class="flex justify-center items-center" data-role="choose_gender">
-            <legend>Choose your gender:</legend>
-            <div>
-                <input id="male" type="radio" name="gender" >
-                <label class="male-label h-[3.8rem] w-[3.8rem]  rounded-full flex flex-col justify-center items-center relative bg-[#E3F3FF] transition duration-150" for="male">
-                    {% bs_icon 'gender-male' size='1.5rem' color="black" %}
-                    <span class="text-[0.8rem] font-medium">Male</span>
-                </label>
+              <div class="inputdivparent" >
+                  <select name="EventsRegistration" id="EventsRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" >
+                    {% for event in all_events %}
+                    <option value="{{event.title}}">{{event.title}}</option>
+                    {% endfor %}
+                  </select>
+                  <label class="placeholderlabel"   for="EventsRegistration">Events</label>
+                  <div class="error"></div>
+
             </div>
-            
-            <div class="ml-[5rem]">
-                <input type="radio" name="gender" id="female">
-                <label class="female-label h-[3.8rem] w-[3.8rem]  rounded-full flex flex-col justify-center items-center relative bg-[#E3F3FF] transition duration-150" for="female">
-                    {% bs_icon 'gender-female' size='1.5rem' color="black" %}
-                    <span class="text-[0.8rem] font-medium">Female</span>
-                </label>
-            </div>    
-        </fieldset>
-    
-        <div class='w-full h-[8rem] flex flex-row justify-center mt-[1rem] '>
-            <div class="inputdivparent" >
-                <textarea id="GuestsRegistration"  class="inputsclass " name="GuestsRegistration" cols="62" rows="18"></textarea>
-                <label class="placeholderlabel"   for="GuestsRegistration">Guests</label>
-            </div>
-       </div>
-    
-    
-       <div class='w-full h-[8rem] flex flex-row justify-center mt-[1rem] '>
-        <div class="inputdivparent" >
-            <textarea id="CommentRegistration"  class="inputsclass " name="CommentRegistration" id="" cols="62" rows="18"></textarea>
-            <label class="placeholderlabel"   for="CommentRegistration">Comment</label>
-        </div>
-    </div>
-    
-    <div id="buttonwrapper">
-        <button  type="submit" class="submit" >Sign Up</button>
-           <div class="loader-wrapper">
-           <span class="loader white"></span>
-           <span class="loader blue"></span>
-           </div>
-          <span class="loader blue2"></span>
-           
-       <div class="check-wrapper">
-      <svg version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
-      <polyline class="check" points="5,13 21.8,32.4 59.5,5 "/>
-      </svg>
-       </div>
-        
-       </div>
-    
-            </form>
+         </div>
+  
+  
+  
+         <fieldset class="flex justify-center items-center" data-role="choose_gender">
+          <legend>Choose your gender:</legend>
+          <div class="mr-[1rem]">
+              <input id="male" type="radio" name="gender"  checked>
+              <label class="male-label h-[3.8rem] w-[3.8rem]  rounded-full flex flex-col justify-center items-center relative bg-[#E3F3FF] transition duration-150" for="male">
+                <box-icon name='male-sign'></box-icon>
+                  <span class="text-[0.8rem] font-medium">Male</span>
+              </label>
+          </div>
+          
+          <div class="ml-[1rem]">
+              <input type="radio" name="gender" id="female">
+              <label class="female-label h-[3.8rem] w-[3.8rem]  rounded-full flex flex-col justify-center items-center relative bg-[#E3F3FF] transition duration-150" for="female">
+                <box-icon name='female-sign'></box-icon>
+                <span class="text-[0.8rem] font-medium">Female</span>
+              </label>
+          </div>    
+      </fieldset>
+  
+      <div class='xl:w-[40rem] lg:w-[36.5rem] md:w-[32.5rem] h-[8rem] flex flex-row justify-between mt-[1rem] '>
+          <div class="inputdivparent" >
+              <textarea id="GuestsRegistration"  class="inputsclass xl:w-[40rem] lg:w-[36.5rem] md:w-[32.5rem] h-[10rem] " name="GuestsRegistration" cols="62" rows="18"></textarea>
+              <label class="placeholderlabel"   for="GuestsRegistration">Guests</label>
+              <p class="text-[#5F5F5F]">If you are willing to bring Family or Friends with you, write their names.</p>
+          </div>
+     </div>
+  
+  
+     <div class='xl:w-[40rem] lg:w-[36.5rem] md:w-[32.5rem] h-[3rem] flex flex-row justify-between mt-[1rem] '>
+      <div class="inputdivparent" >
+          <textarea id="CommentRegistration"  class="inputsclass xl:w-[40rem] lg:w-[36.5rem] md:w-[32.5rem] h-[10rem] " name="CommentRegistration" id="" cols="62" rows="18"></textarea>
+          <label class="placeholderlabel"   for="CommentRegistration">Comment</label>
+          <p class="text-[#5F5F5F]" >if you have any comments share it to us!</p>
+      </div>
+  </div>
+  
+  <div id="buttonwrapper">
+      <button  type="submit" class="submit w-[2rem] h-[3rem]" >Sign Up</button>
+         <div class="loader-wrapper">
+         <span class="loader white"></span>
+         <span class="loader blue"></span>
+         </div>
+        <span class="loader blue2"></span>
+         
+     <div class="check-wrapper">
+    <svg version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
+    <polyline class="check" points="5,13 21.8,32.4 59.5,5 "/>
+    </svg>
+     </div>
+      
+     </div>
+  
+                </div>
+              </form>
+
     
         </div>
 
