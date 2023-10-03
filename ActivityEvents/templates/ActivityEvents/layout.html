@@ -34,17 +34,64 @@
     <body>
         <header class=" fixed top-0 left-0 right-0 mx-auto p-2 px-5 w-[99%] h-[5rem] bg-[#E8F5FF] flex justify-between items-center z-50 drop-shadow-md	">
             <img class="w-[8rem] h-[2rem]" src="{% static 'ActivityEvents/hub200logo.png' %}" />
-            <nav class="flex flex-row justify-center items-center  ml-[3.5rem] ">
+            <div class=" w-full h-[25rem] mt-[21.8rem]  xl:hidden lg:hidden md:flex flex-col items-end  mr-[2rem] ">
+                <button onclick="changeicon()" id="burgericon" class="w-[2rem] h-[2rem] mr-[3.9rem] ">
+                    <box-icon size="3rem" name='menu'></box-icon>
+                </button>
+                <div id="menubar" class="w-[9rem] bg-white drop-shadow-lg rounded-[1rem] h-[18rem] mt-[1.5rem] hidden	  ">
+                    <ul class="w-full h-full flex flex-col items-center mt-[0.4rem]">
+                        {% for link in navigationlinks %}
+                        <li class="mt-[1rem]"><a class='h-full text-[1rem]  font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
+                        {% endfor %}
+                        {% if user.is_authenticated %}
+                        <li class="mt-[1rem]"><a class='text-[0.9rem] font-semibold' href="{% url 'registrations' %}" >Registrations</a></li>
+                        {% endif %}
+                    <ul>
+                        {% if user.is_authenticated %}
+                <div class="flex flex-col justify-center items-center mt-[0.6rem]">
+                    {% if user.photo %}
+                    <img class="w-[3rem] h-[3rem] rounded-full" src="{{user.photo.url}}" alt="">
+                    {% endif %}
+                    <h1 class="text-[1rem]  text-[#464747] font-medium">{{ user.username }}</h1>
+                
+                    <button class="w-[4.7rem] mt-[0.3rem] h-[1.7rem] text-[0.7rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white"><a href="{% url 'logoutuser' %}">Logout</a></button>
+                </div>
+                {% else %}
+                <div>                
+                    <button class="w-[7rem] h-[2.6rem] text-[0.8rem] mt-[2rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white"><a href="{% url 'signin' %}">GetStarted Now</a></button>
+                </div>
+                {% endif %}
+                </div>
+            </div>
+            <nav class="xl:flex lg:flex md:hidden flex-row justify-center items-center  ml-[3.5rem] ">
                 <ul class="flex flex-row justify-center items-center">
                     {% for link in navigationlinks %}
-                    <li><a class='text-[0.9rem] mr-[1.5rem] font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
+                    <li><a class='text-[0.8rem] mr-[1.5rem] font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
                     {% endfor %}
+                    {% if user.is_authenticated %}
+                    <li><a class='text-[0.8rem] mr-[1.5rem] font-semibold' href="{% url 'registrations' %}" >registrations</a></li>
+                    {% endif %}
                 <ul>
             </nav>
 
-            <div>
-                <button class="w-[7rem] h-[2.2rem] text-[0.8rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white"><a href="{% url 'signin' %}">GetStarted Now</a></button>
+            <div class="xl:flex lg:flex md:hidden">
+                {% if user.is_authenticated %}
+                <div class="flex flex-row justify-center items-center">
+                    {% if user.photo %}
+                    <img class="w-[2.8rem] h-[2.8rem] rounded-full" src="{{user.photo.url}}" alt="">
+                    {% endif %}
+                    <h1 class="text-[0.9rem]  ml-[1rem] text-[#464747] font-medium">{{ user.username }}</h1>
+                
+                    <button class="w-[7rem] h-[2.2rem] ml-[1rem] text-[0.7rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white"><a href="{% url 'logoutuser' %}">Logout</a></button>
+                </div>
+                {% else %}
+                <div>                
+                    <button class="w-[7rem] h-[2.2rem] text-[0.65rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white"><a href="{% url 'signin' %}">GetStarted Now</a></button>
+                </div>
+                {% endif %}
             </div>
+
+
 
         </header>
         <main class="min-h-screen pt-[5rem] box-border scroll-smooth overflow-x-hidden flex flex-col items-center">
@@ -73,4 +120,19 @@
 
         </footer>
     </body>
+    <script>
+        function changeicon(){
+            const burgericon = document.getElementById('burgericon');
+        const menubar = document.getElementById('menubar');
+        const boxIcon = burgericon.querySelector('box-icon');
+        
+        if (boxIcon.getAttribute('name') === 'menu') {
+            boxIcon.setAttribute('name', 'x-circle');
+            menubar.style.display = 'flex'; // Show the div
+        } else {
+            boxIcon.setAttribute('name', 'menu');
+            menubar.style.display = 'none'; // Hide the div
+        }
+    }
+    </script>
 </html>

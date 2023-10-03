@@ -27,6 +27,8 @@ SECRET_KEY = 'django-insecure-duoxovi6o9zc7zs^zk(5eoxr!x=o7p@gb7eaj(f0o2j9=3%ft*
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL = 'ActivityEvents.CustomUser'
+
 # Application definition
 
 INSTALLED_APPS = [

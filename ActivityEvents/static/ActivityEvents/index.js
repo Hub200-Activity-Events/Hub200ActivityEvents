@@ -418,6 +418,25 @@ const validateInputsRegisteration = () => {
         }, 6000);
       }
     showToast(registerMessageSuccess)
+    const formData1 = new FormData()
+    formData1.append('UsernameRegistration', UsernameRegistration.value)
+    formData1.append('EmailRegistration', EmailRegistration.value)
+    formData1.append('PhonenumberRegistration', PhonenumberRegistration.value)
+    formData1.append('DateofbirthRegistration', DateofbirthRegistration.value)
+    formData1.append('LocationRegistration', LocationRegistration.value)
+    formData1.append('EventsRegistration', EventsRegistration.value)
+    formData1.append('genderValue', genderValue)
+    formData1.append('GuestsRegistration', GuestsRegistration.value)
+    formData1.append('CommentRegistration', CommentRegistration.value)
+
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    fetch('/registrations', {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': csrftoken,
+      },
+        body: formData1,    
+    })
 }else{
   showToast(registerMessageInvalid)
 }
