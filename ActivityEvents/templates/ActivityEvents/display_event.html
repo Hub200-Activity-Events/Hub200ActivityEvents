@@ -1,0 +1,109 @@
+{% extends "ActivityEvents/layout.html" %}
+{% load static %}
+{% block body %}
+<link href="styless.css" rel="stylesheet">
+
+<section class="relative w-[99%] mx-auto flex flex-col justify-center items-center">
+        <section class="h-[40rem] w-full">
+           <img class="w-full h-full " src="{% static 'ActivityEvents/details_image_page.jpg'%}" alt="">
+        </section>
+
+    <h1 class="mt-[5rem] mb-[1rem] text-5xl font-medium text-[#50A8F5]">{{event.title}}</h1>
+    
+    <section class="pt-3 w-[99%] h-[40rem] flex flex-col justify-center items-center">
+        <div class="w-full h-full flex flex-row justify-center items-center">
+            <div class="w-[25rem] h-full  flex flex-col justify-center">
+                <img src="{% static 'ActivityEvents/Readinglistcuate.png' %}" alt="">
+            </div>
+            <div id="post-1" class="w-[21rem] max-w-md h-[25rem] bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl bg-blue-200 shadow-sky-400">
+                <div class="md:flex">
+                  <div class="p-2 ml-2">
+                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-normal text-stone-900 text-black-900 italic text-xl mt-1">DATE AND TIME</div>
+                    <a href="#" class="block mt-1 text-3g leading-tight text-slate-800 mt-4">Saturday, September 30 at 3:00pm to 5:00pm </a>
+                    <br/>
+                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-normal text-stone-900 text-black-900 text-3xl italic text-xl mt-6">LOCATION</div>
+                    <a href="#" class="block mt-1 text-3g leading-tight text-slate-800 mt-4">Karada, st.saadoun</a>
+                    <br/>
+                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-normal text-stone-900 text-black-900 text-3xl italic text-xl mt-6">Speakers</div>
+                    <a href="#" class="block mt-1 text-3g leading-tight text-slate-800 mt-4">“names of the speakers”</a>
+            
+                  </div>
+                  
+                </div>
+              </div> 
+        </div>
+          
+          <div class="w-[35rem] h-[15rem] max-w-md mx-auto bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl  bg-blue-200 shadow-sky-400">
+              <div class="p-8">
+                <div class="uppercase tracking-wide text-sm font-semibold text-black-900">type somthing here</div>
+                <p class="mt-2 text-slate-500 text-xl text-left mt-3 italic">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
+              </div>
+          </div>
+        
+    </section>
+    
+    
+    <section class="section-2 pt-3 w-[99%] h-[80rem] mt-[3rem] flex flex-col justify-center items-center ">
+        <h1 class="mt-[3rem] mb-[1rem] text-5xl font-medium text-[#50A8F5]">Event Description</h1>
+    
+<div class="w-[65rem]  h-full flex flex-row justify-center items-center">
+        <div id="post-1" class="w-[40rem] max-w-md h-[20rem] flex flex-row justify-center items-center bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl  p-3 bg-blue-200 shadow-sky-400">
+                  <div class="p-2 w-full h-full">
+                    <div class="uppercase tracking-wide text-sm text-indigo-500 text-stone-900 text-black-500 italic text-xl mb-2 ml-4 underline decoration-solid underline decoration-sky-500">Description</div>
+                    <a href="#" class="block mt-1 leading-tight text-black-400 p-3 text-xl mr-3 italic">The English Meeting offers a valuable platform for individuals to improve their English language skills, English Meeting creates a supportive and encouraging environment where participants feel comfortable practicing their English skills without fear of judgment ,The English Meeting serves as a catalyst for personal growth and empowers individuals to unlock new opportunities in both their professional and social lives.</a>
+                  </div>   
+    
+              </div>
+
+
+<img class="w-[25rem] h-[25rem]" src="{% static 'ActivityEvents/Readinglistcuate.png' %}" alt="">
+
+</div>
+<h1 class="mt-[3rem] mb-[1rem] text-5xl font-medium text-[#50A8F5]">What our events provides</h1>
+<div class="w-[65rem]  h-full flex flex-row justify-between items-center">
+              <div class="w-[30rem] h-[20rem] max-w-md mx-auto bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl shadow-lg bg-blue-200 shadow-sky-400">
+                  <div class="p-2 w-full flex flex-col justify-center items-center">
+                    <h1 class="text-lg font-medium">Networking community</h1>
+                    <p class="mt-2 text-slate-500 text-sm text-left italic">Create opportunities for you to network with instoctors, mentors, alumni, software companies, you never know which connections will end up being valuable to your career going forward.</p>
+                    <img class="w-[15rem] h-[15rem]" src="{% static 'ActivityEvents/Teamspiritcuate.png' %}" alt="">
+
+                  </div>
+              </div>
+              <div class="w-[30rem] h-[20rem] max-w-md mx-auto bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl shadow-lg bg-blue-200 shadow-sky-400">
+                <div class="p-2 w-full flex flex-col justify-center items-center">
+                  <h1 class="text-lg font-medium">Networking community</h1>
+                  <p class="mt-2 text-slate-500 text-sm text-left italic">Create opportunities for you to network with instoctors, mentors, alumni, software companies, you never know which connections will end up being valuable to your career going forward.</p>
+                  <img class="w-[15rem] h-[15rem]" src="{% static 'ActivityEvents/Teamspiritcuate.png' %}" alt="">
+
+                </div>
+            </div>
+
+
+</div>
+    
+    
+    </section>
+    <h1 class="mt-34 ml-9 mb-6 text-5xl text-[#50A8F5]">Event Registraiton</h1>
+    <h1 class="mt-8 mb-[5rem] ml-3 mr-3 mb-10 text-2xl mb-7 italic  text-stone-700 pt-10">Register for the English Meetup!</h1>
+    <section class="pt-3 w-[99%] h-[40rem] flex flex-col justify-center items-center">       
+      <br/> 
+      <div class="w-[25rem] h-[30rem] flex flex-col justify-center items-center max-w-md mx-auto bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-3 bg-blue-200 shadow-sky-400 ml-[30rem]">
+          <div class="p-8 flex flex-col justify-center items-center">
+            <p class="mt-2 text-slate-500 text-xl text-left mt-3 italic">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <br/>
+            <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-6 py-2.5 text-center  mb-2 mt-2">Enroll Here</button>
+          </div>
+      </div>   
+    
+    </section>
+    <img class="w-[25rem] h-[25rem] mr-[50rem]" src="{% static 'ActivityEvents/registeration-image.png' %}" alt="">
+      
+</section>
+  
+
+
+
+
+
+
+{% endblock %}

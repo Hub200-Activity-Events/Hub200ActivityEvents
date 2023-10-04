@@ -1,0 +1,69 @@
+{% extends "ActivityEvents/layout.html" %}
+{% load static %}
+{% block body %}
+<link href="styless.css" rel="stylesheet">
+
+<section class="w-full h-full flex flex-col justify-center items-center">
+   <section class="intro h-[30rem] w-[99%]">
+          <img class="w-full h-full" src="{% static 'ActivityEvents/HUB200image-main.png'%}" alt="">
+   </section>
+   <section class="events w-[99%] h-full mt-[6rem] flex flex-col justify-center items-center">
+      <h1 class="  text-3xl mb-10 text-[#50A8F5]" id="title"><strong>Upcoming Events</strong></h1>
+      <form class="relative inline-block mb-[4rem] mr-[4rem]" method="post" action="">
+         {% csrf_token %}
+         <label for="Filter" class="text-xl text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-2g text-sm px-5 py-2.5 text-center mb-2 mt-2 ml-16py-2 px-4 rounded ml-[70rem] mb-6">Filter by:</label>
+         <select name="Filter" class="absolute hidden mt-2 bg-white shadow-lg rounded">
+            <option value="All" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">All Event</option>
+            <option value="Next Week" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Next Week</خ>
+            <option value="Next Month" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Next Month</option>
+            <option value="Public" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Public</option>
+            <option value="Private" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Private</option>
+            <option value="Range" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Range</option>
+     
+         </select>
+         <input type="submit" value="">
+     </form>
+   
+      <div class="w-full h-full grid grid-cols-3 grid-row-3 gap-[2rem] mb-[3rem]">
+   
+
+         {% for event in all_events %}
+       <div class="w-[22rem] h-[35rem] max-w-md bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-h-xl ml-9 shadow-sky-400">
+         <div class="w-full" id="post">
+          <div class="w-full">
+             <img class="h-80 w-full object-cover" src="media/{{event.image}}" alt="">
+          </div>
+         </div>
+       <div class="p-8">
+           <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold  text-stone-900  ">{{event.title}}</div>
+           <br/>
+           <a href="{% url 'display_event' event_id=event.id %}" class="block mt-1 text-lg leading-tight font-medium text-gray-500 mb-[2rem] ">{{event.description}}</a>
+           <a href="{% url 'display_event' event_id=event.id %}" class="ml-40 text-cyan-500 hover:line-sky-700 ">Read More...</a>
+          </div>
+       </div>
+   
+       {% endfor %}
+       </div>
+   
+   
+     
+   
+   </div>
+   </section>
+</section>
+
+
+
+<div class="modal" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="details-modal-title" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h5 class="modal-title" id="details-modal-title"></h5>
+           </div>
+           <div class="modal-body" id="details-modal-body"></div>
+       </div>
+   </div>
+</div>
+
+
+{% endblock %}
