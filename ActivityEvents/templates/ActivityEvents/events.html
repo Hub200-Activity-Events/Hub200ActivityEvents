@@ -10,6 +10,22 @@
     </div>
 </section>
 <section class="events mb-[2rem]">
+    <div>
+        <form method="post" action="{% url 'apply_filter' %}">
+        {% csrf_token %}
+        <label for="filter">Filter by:</label>
+        <select name="filter" id="filter">
+            <option value="all">All Events</option>
+            <option value="next_month">Next Month</option>
+            <option value="next_week">Next Week</option>
+            <option value="public">Public Events</option>
+            <option value="private">Private Events</option>
+            <option value="range">Date Range</option>
+        </select>
+        <input type="submit" value="Apply Filter">
+    </form>
+         <p>Selected Filter: {{ filter_option }}</p>
+    </div>
    <h1 class="mt-20 ml-9 mb-10 text-3xl mb-20" id="title"><strong>Upcoming Events</strong></h1>
 
    <div class="w-full h-full grid grid-cols-3 grid-row-3 gap-[4rem]">
@@ -27,6 +43,8 @@
         <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold mb-3 text-stone-900  ">{{event.title}}</div>
         <br/>
         <a href="{% url 'display_event' event_id=event.id %}" class="block mt-1 text-lg leading-tight font-medium text-gray-500 mb-5">{{event.description}}</a>
+        <br/>
+        <p class="text-gray-500 text-base">Date: {{event.event_date}}</p>
         <a href="{% url 'display_event' event_id=event.id %}" class="ml-40 text-cyan-500 hover:line-sky-700">Read More...</a>
        <br/>
        </div>

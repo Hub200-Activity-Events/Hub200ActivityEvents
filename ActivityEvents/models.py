@@ -23,6 +23,7 @@ class Events(models.Model):
     event_date = models.DateField(default=timezone.now().date(),null=True)
     location = models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/',null=True)
+
     # creator = models.ForeignKey(User, on_delete=models.CASCADE)
     # atendees = models.ManyToManyField(User, related_name="event_atendees", blank=True)
     def __str__(self):

@@ -30,18 +30,6 @@ def home(request):
     return render(request, 'ActivityEvents/home.html')
 
 
-def events(request):
-    all_events = Events.objects.all()
-    next_month = datetime.date.today() + datetime.timedelta(days=30)
-    next_week = datetime.date.today() + datetime.timedelta(days=7)
-    next_month_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_month])
-    next_week_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_week])
-    if request.POST.get('filter') == 'next_month':
-        return render(request, 'ActivityEvents/events.html', {'all_events': next_month_events})
-    elif request.POST.get('filter') == 'next_week':
-        return render(request, 'ActivityEvents/events.html', {'all_events': next_week_events})
-    else:
-        return render(request, 'ActivityEvents/events.html', {'all_events': all_events})
 
 
 def calendar(request):
@@ -93,23 +81,7 @@ def signin(request):
     else:
         return render(request, 'ActivityEvents/signin.html')
 
-    # if request.method == 'POST':
-    #     email = request.POST.get('inputsigninemail')
-    #     password = request.POST.get('inputsigninpassword')
-    #     rememberme= request.POST.get('remeberme')
-    #     user = authenticate(request, email=email, password=password)
-    #     if user is not None:
-    #         if rememberme:
-    #             request.session.set_expiry(1209600)
-    #         else:
-    #             request.session.set_expiry(0)
-    #         login(request, user)
-    #         return HttpResponseRedirect(reverse('home'))
-    #     else:
-    #         return render(request,'ActivityEvents/errorpage.html', {
-    #             'error':'invalid email or password'})
-    # else:
-    #     return render(request,'ActivityEvents/signin.html')
+
 
 
 # SIGN UP IS WORKING LETS GOOOOO
@@ -146,28 +118,6 @@ def signup(request):
                 return HttpResponseRedirect(reverse('signingupdone'))
     return render(request, 'ActivityEvents/signup.html')
 
-    #     if inputusername == "" or inputphonenumber == "" or inputemail == "" or inputpassword == "" or inputconfirmpassword == "":
-    #         return render(request,'ActivityEvents/errorpage.html', {
-    #             'error':'please fill all the fields'})
-    #
-    #     if inputpassword != inputconfirmpassword:
-    #         return render(request,'ActivityEvents/errorpage.html',
-    #          {'error':'passwords do not match'}
-    #          )
-    #
-    #     try:
-    #         user = User.objects.create_user(inputusername,inputemail,inputpassword)
-    #         user.phone_number = inputphonenumber
-    #         user.image = inputphoto
-    #         user.save()
-    #     except IntegrityError:
-    #         return render(request, "auctions/errorpage.html", {
-    #             "message": "Username already taken."
-    #         })
-    #     login(request, user)
-    #     return HttpResponseRedirect(reverse('signingupdone'))
-    # else:
-    #     return render(request,'ActivityEvents/signup.html')
 
 
 def forgotpassword(request):
@@ -188,20 +138,15 @@ def errorpage(request):
                   'ActivityEvents/errorpage.html')  # Maybe you will need to render the signingupdone.html in the signup function(after he comepletes the sign up)
 
 
-# this is a function for the date filter next week brings out the events for the next week and next month brings out the events for the next month >shanshal
-def all_events(request):
-    all_events = Events.objects.all()
-    next_month = datetime.date.today() + datetime.timedelta(days=30)
-    next_week = datetime.date.today() + datetime.timedelta(days=7)
-    next_month_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_month])
-    next_week_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_week])
-    print(all_events)
-    if request.POST.get('filter') == 'next_month':
-        return render(request, 'ActivityEvents/events.html', {'all_events': next_month_events})
-    elif request.POST.get('filter') == 'next_week':
-        return render(request, 'ActivityEvents/events.html', {'all_events': next_week_events})
-    else:
-        return render(request, 'ActivityEvents/events.html', {'all_events': all_events})
+# def all_events(request):
+#     all_events = Events.objects.all()
+#     print(all_events)
+#     if request.POST.get('filter') == 'next_month':
+#         return render(request, 'ActivityEvents/events.html', {'all_events': next_month_events})
+#     elif request.POST.get('filter') == 'next_week':
+#         return render(request, 'ActivityEvents/events.html', {'all_events': next_week_events})
+#     else:
+#         return render(request, 'ActivityEvents/events.html', {'all_events': all_events})
 
 
 def display_event(request, event_id):
@@ -234,11 +179,47 @@ def send_welcome_email(email, username):
     html_template = get_template('ActivityEvents/email.html')
     context = {'username': username}
     html_content = html_template.render(Context(context))
-
     email_message = EmailMultiAlternatives(subject, 'this is the plain text version of the email', from_email, to)
     email_message.attach_alternative(html_content, 'text/html')
-
     email_message.send()
 
+
+from django.utils import timezone
+
+
 def apply_filter(request):
-    events = Events.objects.all()
+    if request.method == 'POST':
+        filter_option = request.POST.get('filter')
+
+        if filter_option == 'next_month':
+            end_date = timezone.now() + timezone.timedelta(days=30)
+            events = Events.objects.filter(event_date__range=[timezone.now(), end_date])
+        elif filter_option == 'next_week':
+            end_date = timezone.now() + timezone.timedelta(days=7)
+            events = Events.objects.filter(event_date__range=[timezone.now(), end_date])
+        elif filter_option == 'public':
+            events = Events.objects.filter(event_type='public')
+        elif filter_option == 'private':
+            events = Events.objects.filter(event_type='private')
+        elif filter_option == 'range':
+            start_date = request.POST.get('start_date')
+            end_date = request.POST.get('end_date')
+            events = Events.objects.filter(event_date__range=[start_date, end_date])
+        else:
+            events = Events.objects.all()
+
+        if filter_option in ['next_month', 'next_week', 'range']:
+            events = Events.objects.filter(event_date__range=[timezone.now(), end_date])
+
+        context = {'all_events': events, 'filter_option': filter_option}
+
+        return render(request, 'ActivityEvents/events.html', context)
+
+    # If the request method is not POST, simply return all events
+    all_events = Events.objects.all()
+    return render(request, 'ActivityEvents/events.html', {'all_events': all_events})
+
+def events(request):
+    if request.method == 'GET':
+        all_events = Events.objects.all()
+        return render(request, 'ActivityEvents/events.html', {'all_events': all_events})
