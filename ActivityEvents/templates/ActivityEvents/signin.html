@@ -292,6 +292,32 @@ input[type=date]:focus::-webkit-datetime-edit {
   <div class="flex flex-row xl:h-[37rem] xl:w-[75rem] lg:h-[31rem] lg:w-[62rem] md:h-[30.5rem] md:w-[59.2rem] justify-center items-center border-[0.2rem] border-[#E8F5FF] rounded-[1rem]  ">
            <!--signin page Form -->
 
+<<<<<<< HEAD
+     <div id="signinpage" class=" w-11/12	 flex flex-row h-full justify-center items-center  ">
+         <form id="signinform"  action="{% url 'signin'  %}" method="POST" class="w-2/5 h-full flex flex-col items-center justify-center relative">
+             {% csrf_token %}
+             <h3 class="text-[1.6rem] mb-[2rem]">Sign in to Hub200</h3>
+             <div class="inputdivparent">
+                 <input id="inputsigninemail" name="inputsigninemail"  class="inputsclass" type="text" name="email" required>
+                 <label class="placeholderlabel" for="email">E-mail</label>
+
+             </div>
+             <div class="inputdivparent">
+                 <input  id="inputsigninpassword" name="inputsigninpassword" class="inputsclass" type="password" name="password" required>
+                 <label class="placeholderlabel"  for="password">Password</label>
+
+             </div>
+             <div class="w-[16.5rem] h-full flex flex-row items-center">
+                 <input class="w-[1.5rem] h-[1.5rem] rounded-lg" type="checkbox" name="remeberme">
+                 <p class="ml-[0.8rem]">Remember me</p>
+
+             </div>
+             <a class="text-left  w-[16.5rem] mt-[1rem]" href="{% url 'forgotpassword' %}">Forgot Password?</a>
+
+
+             <div id="buttonwrapper2">
+                <button  type="submit" class="submit" >Sign In</button>
+=======
     <div id="signinpage" class=" w-11/12	 h-full flex flex-row  justify-center items-center  ">
         <form id="signinform"  action="{% url 'signin'  %}" method="POST" class="w-1/2	bg-[#E8F5FF]	 h-full flex flex-col items-center justify-center relative">
             {% csrf_token %}
@@ -316,6 +342,7 @@ input[type=date]:focus::-webkit-datetime-edit {
 
               <div id="buttonwrapper2">
                 <button  type="submit" class="submit xl:w-[13rem] xl:h-[3.5rem] lg:w-[10rem] lg:h-[3rem] md:w-[9rem] md:h-[2.7rem]" >Sign In</button>
+>>>>>>> main
                    <div class="loader-wrapper">
                    <span class="loader white"></span>
                    <span class="loader blue"></span>

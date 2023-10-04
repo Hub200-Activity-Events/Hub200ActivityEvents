@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ActivityEvents',
+<<<<<<< HEAD
+    'django_bootstrap_icons',
+=======
     
+>>>>>>> main
 ]
 
 

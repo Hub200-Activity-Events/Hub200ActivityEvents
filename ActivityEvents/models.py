@@ -28,12 +28,22 @@ class Events(models.Model):
     event_date = models.DateField(default=timezone.now().date(),null=True)
     location = models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/',null=True)
+<<<<<<< HEAD
+
+=======
+>>>>>>> main
     # creator = models.ForeignKey(User, on_delete=models.CASCADE)
     # atendees = models.ManyToManyField(User, related_name="event_atendees", blank=True)
     def __str__(self):
         return f"{self.title}"
 
 class Event_registration(models.Model):
+<<<<<<< HEAD
+    event = models.ForeignKey(Events, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_of_birth = models.DateField()
+    guests = models.IntegerField()
+=======
     event = models.ForeignKey(Events,on_delete=models.CASCADE,null=True)
     Username = models.CharField(max_length=50, null=True)
     Phonenumber=models.IntegerField(null=True)
@@ -42,6 +52,7 @@ class Event_registration(models.Model):
     date_of_birth = models.DateField(null=True)
     gender=models.CharField(max_length=50,null=True)
     guests = models.CharField(max_length=50,null=True)
+>>>>>>> main
     comment = models.CharField(max_length=50)
     status = models.CharField(max_length=50,default="pending")
     def __str__(self):
