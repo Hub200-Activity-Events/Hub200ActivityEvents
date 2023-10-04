@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-duoxovi6o9zc7zs^zk(5eoxr!x=o7p@gb7eaj(f0o2j9=3%ft*
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL = 'ActivityEvents.CustomUser'
 
 # Application definition
 
@@ -39,10 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ActivityEvents',
+<<<<<<< HEAD
     'django_bootstrap_icons',
+=======
+    
+>>>>>>> main
 ]
 
-NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
+
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    
 ]
 
 ROOT_URLCONF = 'Hub200ActivityEvents.urls'
@@ -72,7 +81,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'Hub200ActivityEvents.wsgi.application'
 
 
@@ -121,7 +129,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'theme/static/'
+
 STATIC_URL = '/static/'
 
 # Default primary key field type

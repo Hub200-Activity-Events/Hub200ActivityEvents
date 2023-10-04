@@ -1,6 +1,5 @@
 {% extends "ActivityEvents/layout.html" %}
 {% load static %}
-{% load bootstrap_icons %}
 {% block body %}
 
 <style>
@@ -11,13 +10,11 @@
 #buttonwrapper {
     display: none;
     width: 100%;
-    height: 100%;
-  font-size:21px;
+    height: 5rem;
+    font-size:21px;
   letter-spacing:6px;
   color:white;
   overflow: visible;
-  margin-top: 2rem;
-  background-color: black;
 }
 
 #buttonwrapper2 {
@@ -25,13 +22,11 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 8rem;
   font-size:21px;
   letter-spacing:6px;
   color:white;
   overflow: visible;
-  margin-top: 2rem;
-  background-color: black;
 }
 
 .submit, .loader, .loader-wrapper{
@@ -39,15 +34,15 @@
   left:0;
   right:0;
   margin:0 auto;
+
 }
 
 .submit {
   z-index:2;
-  width:16rem;
-  height:60px;
-  background: #52a9f9; 
+
+  background: #66b5ff; 
   display:block;
-  border-radius:0.5rem;
+  border-radius: 15rem;
   text-align:center;
   color:rgba(255,255,255,1);
   text-decoration:none;
@@ -69,7 +64,7 @@
   z-index:-2;
   width:100%;
   height:100%;
-  background: #52a9f9; 
+  background: #71B3F1; 
   display:block;
   border-radius:50%;
   position:absolute;
@@ -77,7 +72,7 @@
   top:0;
   opacity:0.8;
   transform:scale(0.9) translateY(15px);
-  filter:blur(45px);
+  filter:blur(15px);
   transition:all 0.2s ease;
 }
 
@@ -86,7 +81,7 @@
   z-index:-4;
   width:100%;
   height:100%;
-  background: #52a9f9; 
+  background: #71B3F1; 
   display:block;
   border-radius:50%;
   position:absolute;
@@ -169,11 +164,11 @@
 }
 
 .checked .submit {
-  width:140px;
-  width:66px;
+  height:70px;
+  width:70px;
   border-radius: 50%;
   color:rgba(255,255,255,0);
-  background: #5cacf7;
+  background: #66b5ff;
   animation: submit-anim 2s  cubic-bezier(0.39, 0.575, 0.565, 1);
   }
 
@@ -190,7 +185,7 @@
 }
 
 .check-wrapper svg {
-  margin-top:24px;
+  margin-top:20px;
   margin-left: 24px;
 }
 
@@ -286,13 +281,18 @@
 input[type=date]:focus::-webkit-datetime-edit {
     color: black !important;
 }
+.required .placeholderlabel:after {
+  content:"  *";
+  color: red;
+}
 </style>
 
-<section class="h-full w-full flex flex-col items-center justify-center  mb-[2rem] mt-[4rem]">
+<section class="h-full w-full flex flex-col items-center justify-center  mb-[2rem] mt-[2rem]">
 
-   <div class="flex flex-row w-[65rem] h-full justify-center items-center border-[0.2rem] border-[#E8F5FF] rounded-[1rem] relative ">
-            <!--signin page Form -->
+  <div class="flex flex-row xl:h-[37rem] xl:w-[75rem] lg:h-[31rem] lg:w-[62rem] md:h-[30.5rem] md:w-[59.2rem] justify-center items-center border-[0.2rem] border-[#E8F5FF] rounded-[1rem]  ">
+           <!--signin page Form -->
 
+<<<<<<< HEAD
      <div id="signinpage" class=" w-11/12	 flex flex-row h-full justify-center items-center  ">
          <form id="signinform"  action="{% url 'signin'  %}" method="POST" class="w-2/5 h-full flex flex-col items-center justify-center relative">
              {% csrf_token %}
@@ -317,6 +317,32 @@ input[type=date]:focus::-webkit-datetime-edit {
 
              <div id="buttonwrapper2">
                 <button  type="submit" class="submit" >Sign In</button>
+=======
+    <div id="signinpage" class=" w-11/12	 h-full flex flex-row  justify-center items-center  ">
+        <form id="signinform"  action="{% url 'signin'  %}" method="POST" class="w-1/2	bg-[#E8F5FF]	 h-full flex flex-col items-center justify-center relative">
+            {% csrf_token %}
+            <div class="xl:w-[25rem] xl:h-[32.5rem] lg:w-[20rem] lg:h-[29rem] md:w-[20rem] md:h-[27.8rem] rounded-2xl flex flex-col items-center  bg-white drop-shadow-xl  ">
+              <h3 class="xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.4rem] mt-[3rem] xl:mb-[1rem] lg:mb-[1rem]">Sign in to Hub200</h3>
+              <div class="inputdivparent h-[3.2rem] mt-[2rem] ">
+                  <input id="inputsigninemail" name="inputsigninemail"  class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[15rem] lg:h-[3.1rem] md:w-[14rem] md:h-[3rem]" type="text" name="email" required>
+                  <label class="placeholderlabel" for="email">UserName</label>
+  
+              </div>
+              <div class="inputdivparent h-[3.2rem] mt-[2rem]">
+                  <input  id="inputsigninpassword" name="inputsigninpassword" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[15rem] lg:h-[3.1rem] md:w-[14rem] md:h-[3rem]" type="password" name="password" required>
+                  <label class="placeholderlabel"  for="password">Password</label>
+  
+              </div>
+              <div class="xl:w-[16rem] lg:w-[15rem] md:w-[13.9rem]  h-[2rem] mt-[1rem] flex flex-row items-center">
+                  <input class="w-[1.5rem] h-[1.5rem] rounded-xl" type="checkbox" name="remeberme">
+                  <p class="ml-[0.8rem]">Remember me</p>
+  
+              </div>
+              <a class="text-left xl:w-[16rem] lg:w-[15rem] md:w-[13.9rem] mt-[1rem]" href="{% url 'forgotpassword' %}">Forgot Password?</a>
+
+              <div id="buttonwrapper2">
+                <button  type="submit" class="submit xl:w-[13rem] xl:h-[3.5rem] lg:w-[10rem] lg:h-[3rem] md:w-[9rem] md:h-[2.7rem]" >Sign In</button>
+>>>>>>> main
                    <div class="loader-wrapper">
                    <span class="loader white"></span>
                    <span class="loader blue"></span>
@@ -330,135 +356,148 @@ input[type=date]:focus::-webkit-datetime-edit {
                </div>
                 
                </div>
+  
+  
 
-             
-         </form>
-         <div class=" w-3/5 h-full  flex flex-col items-center ">
-             <div class="w-full bg-[#D2ECFF] h-full  rounded-tl-[3rem] rounded-bl-[3rem]">
-                 <img src="{% static 'ActivityEvents/signinphoto.png' %}" alt="">
-             </div>
-         </div>
-         </div>
-    
-    <!--signup page Form -->
-    
-         <div id="signuppage" class=" w-11/12	 flex flex-row h-full justify-center items-center  hidden  ">
+            </div>
+            
+        </form>
+        <div class="bg-[#E8F5FF] w-1/2			 h-full  flex flex-col items-center justify-center ">
+              <img class="xl:w-[30rem] xl:h-[30rem] lg:w-[27rem] lg:h-[27rem] md:w-[24rem] md:h-[24rem]" src="{% static 'ActivityEvents/Signinpana.png' %}" alt="">
 
-             <div class="w-3/5 h-full  flex flex-col items-center justify-center  ">
-                <div class="w-full h-[38rem]  bg-[#D2ECFF] flex flex-col justify-center items-center   rounded-tr-[3rem] rounded-br-[3rem]">
-                    <img class="w-[28rem]  h-[26rem]" src="{% static 'ActivityEvents/signupdone.png' %}" alt="">
+      </div>
+
+
+    </div>
+
+
+
+   <!--signup page Form -->
+
+   <div id="signuppage" class=" w-11/12	 h-full flex flex-row  justify-center items-center  hidden  ">
+
+
+    <form id="signupform" action="{% url 'signup'  %}" method="POST" enctype="multipart/form-data" class="w-1/2 bg-[#E8F5FF] h-full flex flex-col justify-center items-center  ">
+        {% csrf_token %}
+        <div id="formsubmitpart1" class="xl:w-[25rem] xl:h-[32.5rem] lg:w-[20rem] lg:h-[29rem] md:w-[20rem] md:h-[27.8rem] rounded-xl flex flex-col items-center bg-white drop-shadow-xl">
+          <h3 class="xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.4rem] mb-[1rem] mt-[1rem]">Sign up to Hub200</h3>
+
+          <div class="avatar-upload">
+            <div class="avatar-edit">
+                <input id="inputphoto" name="inputphoto" type='file'  accept=".png, .jpg, .jpeg" />
+                <div class="w-[2.2rem] h-[2.2rem] bg-[#D2ECFF] rounded-full flex justify-center items-center hover:bg-[#BDBDBD] cursor-pointer">
+                    <label class="mt-[0.4rem]" for="inputphoto"><box-icon color="#464747" name='pencil'></box-icon></label>
                 </div>
-             </div>
-             <form id="signupform" action="{% url 'signup'  %}" method="POST" enctype="multipart/form-data" class="w-2/5 h-full flex flex-col items-center justify-center relative ">
-                 {% csrf_token %}
-                 <h3 class="text-[1.6rem] mb-[2rem]">Sign up to Hub200</h3>
-                 <div id="formsubmitpart1" class="flex flex-col w-full h-full justify-center items-center">
-                    <div class="avatar-upload">
-                        <div class="avatar-edit">
-                            <input id="inputphoto" name="inputphoto" type='file'  accept=".png, .jpg, .jpeg" />
-                            <div class="w-[2.2rem] h-[2.2rem] bg-[#D2ECFF] rounded-full flex justify-center items-center hover:bg-[#BDBDBD] cursor-pointer">
-                                <label class="mt-[0.4rem]" for="inputphoto">{% bs_icon 'pencil' size='1.2rem' color="gray" %}</label>
-                            </div>
-                        </div>
-                        <div class="avatar-preview">
-                            <div id="imagePreview" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg);">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="inputdivparent" >
-                        <input name="inputusernames" id="inputusernames" class="inputsclass" type="text" required>
-                        <label class="placeholderlabel"   for="inputusernames">Username</label>
-                        <div class="error"></div>
-
-
-                    </div>
-                    <div class="inputdivparent">
-                        <input  name="inputphonenumber" id="inputphonenumber" class="inputsclass" type="tel"  required>
-                        <label class="placeholderlabel" for="inputphonenumber">Phone Number</label>
-                        <div class="error"></div>
-
-                    </div>
-                    
-                 </div>
-
-                 <div id="formsubmitpart2" class="flex flex-col justify-center items-center w-full h-full hidden">
-                    <div class="flex flex-col h-[5rem] mt-[1rem] focus:bg-black  relative items-center ">
-                        <input id="inputemail" name="inputemail"  class="inputsclass" type="email"   required>
-                        <label class="placeholderlabel" for="inputemail">E-mail</label>
-                        <div class="error"></div>
-
-                    </div>
-                    <div class="inputdivparent">
-                        <input id="inputpassword" name="inputpassword" class="inputsclass" type="password"   required>
-                        <label class="placeholderlabel" for="inputpassword">Password</label>
-                        <div class="error"></div>
-
-                    </div>
-                    <div class="inputdivparent">
-                        <input id="inputconfirmpassword"  name="inputconfirmpassword" class="inputsclass" type="password"  required>
-                        <label class="placeholderlabel" for="inputconfirmpassword">Confirm Password</label>
-                        <div class="error"></div>
-
-                    </div>
-                 </div>
-                 <button id="buttonsignupnext" class="w-[17rem] mt-[1rem] h-[3rem] bg-[#499DEC] rounded-[0.5rem] text-white font-semibold text-[1.3rem]" type="button">Next</button>
-
-                 
-
-
-                 <div id="buttonwrapper">
-                    <button  type="submit" class="submit" >Sign Up</button>
-                       <div class="loader-wrapper">
-                       <span class="loader white"></span>
-                       <span class="loader blue"></span>
-                       </div>
-                      <span class="loader blue2"></span>
-                       
-                   <div class="check-wrapper">
-                  <svg version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
-                  <polyline class="check" points="5,13 21.8,32.4 59.5,5 "/>
-                  </svg>
-                   </div>
-                    
-                   </div>
-                   
-
-
-
-
-                 <button id="buttonsignupback" class="w-[12rem] mt-[6rem] h-[3rem] bg-[#499DEC] rounded-[0.5rem] text-white font-semibold text-[1.3rem] hidden" type="button">Back</button>
-
-             </form>
-     
-         </div>
-    
-    
-     <div class=" w-[8rem]	 h-full bg-white   flex flex-col items-center justify-center ">
-            <div class="flex flex-row w-full h-full justify-center items-center ">
-                <button  type="button" id="showsigninpage" class="w-full h-[5.5rem] text-[1.5rem] flex flex-col justify-center items-center  ">
-                    <div >{% bs_icon 'box-arrow-in-left' size='3rem' color="black" %}</div>
-                    <h4>sign in</h4>
-                </button>
-                <div id="togglesigninbar" class="h-[8.5rem] w-[1.5rem] bg-[#499DEC] rounded-l-[0.9rem] "></div>
             </div>
-            <div class="flex flex-row w-full h-full justify-center items-center mt-[8rem]  ">
-                
-                <button  type="button" id="showsignuppage" class="w-full h-[5.5rem] text-[1.5rem] flex flex-col justify-center items-center  ">
-                    <div >{% bs_icon 'box-arrow-in-right' size='3rem' color="black" %}</div>
-                    <h4>sign up</h4>
-                </button>
-                <div id="togglesignupbar" class="h-[8.5rem] w-[1.5rem] bg-[#499DEC] rounded-l-[0.9rem] hidden "></div>
-
+            <div class="avatar-preview xl:w-[8.5rem] xl:h-[8.5rem] lg:w-[7.5rem] lg:h-[7.5rem] md:w-[6.5rem] md:h-[6.5rem]">
+                <div id="imagePreview" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg);">
+                </div>
             </div>
-    
-     </div>
-    </div>     
+        </div>
+
+        <div class="inputdivparent h-[4.2rem] mt-[1rem]" >
+          <input name="inputusernames" id="inputusernames" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[15rem] lg:h-[3.1rem] md:w-[14rem]" type="text" required>
+          <label class="placeholderlabel" for="inputusernames">Username</label>
+          <div class="error"></div>
+
+      </div>
+
+      <div class="inputdivparent h-[4.2rem] mt-[1rem]">
+        <input  name="inputphonenumber" id="inputphonenumber" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[15rem] lg:h-[3.1rem] md:w-[14rem]" type="tel"  required>
+        <label class="placeholderlabel" for="inputphonenumber">Phone Number</label>
+        <div class="error"></div>
+
+    </div>
+    <button id="buttonsignupnext" class="xl:w-[12rem] xl:h-[3.2rem] lg:w-[10rem] lg:h-[3rem] md:w-[8rem] md:h-[2.4rem] mt-[1rem] mb-[0.5rem] bg-[#71B3F1] text-[1.2rem] rounded-[10rem] text-white font-semibold text-[1.3rem] drop-shadow-xl" type="button">Next</button>
+
+        </div>
+        
+<div id="formsubmitpart2" class="xl:w-[25rem] xl:h-[32.5rem] lg:w-[20rem] lg:h-[29rem] md:w-[20rem] md:h-[27.8rem] rounded-xl flex flex-col items-center  bg-white drop-shadow-xl  hidden">
+          <div  class="w-full h-[18rem] mt-[2rem]  flex flex-col items-center">
+  
+            <div class="inputdivparent h-[4.2rem] mt-[1.5rem]">
+              <input id="inputemail" name="inputemail"  class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[15rem] lg:h-[3.1rem] md:w-[14rem]" type="email"   required>
+              <label class="placeholderlabel" for="inputemail">E-mail</label>
+              <div class="error"></div>
+          </div>
+  
+          <div class="inputdivparent h-[4.2rem] mt-[1.5rem]">
+            <input id="inputpassword" name="inputpassword" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[15rem] lg:h-[3.1rem] md:w-[14rem]" type="password"   required>
+            <label class="placeholderlabel" for="inputpassword">Password</label>
+            <div class="error"></div>
+  
+        </div>
+  
+  
+        <div class="inputdivparent h-[4.2rem] mt-[1.5rem]">
+          <input id="inputconfirmpassword"  name="inputconfirmpassword" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[15rem] lg:h-[3.1rem] md:w-[14rem]" type="password"  required>
+          <label class="placeholderlabel" for="inputconfirmpassword">Confirm Password</label>
+          <div class="error"></div>
+  
+      </div>
+  
+          </div>
+  
+          <div id="buttonwrapper">
+            <button  type="submit" class="submit xl:w-[13rem] xl:h-[3.5rem] lg:w-[10rem] lg:h-[3rem] md:w-[9rem] md:h-[2.7rem]" >Sign Up</button>
+               <div class="loader-wrapper">
+               <span class="loader white"></span>
+               <span class="loader blue"></span>
+               </div>
+              <span class="loader blue2"></span>
+               
+           <div class="check-wrapper">
+          <svg version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
+          <polyline class="check" points="5,13 21.8,32.4 59.5,5 "/>
+          </svg>
+           </div>
+            
+           </div>
+  
+           <button id="buttonsignupback" class="xl:w-[9rem] xl:h-[3rem] lg:w-[8rem] lg:h-[2.7rem] md:w-[7.5rem] md:h-[2.5rem] bg-[#71B3F1] mb-[1rem] rounded-lg text-white font-semibold text-[1.3rem] hidden" type="button">Back</button>
+</div>
+
+    </form>
+
+
+              <div class="w-1/2 bg-[#E8F5FF] h-full  flex flex-col items-center justify-center  ">
+          <img class="xl:w-[30rem] xl:h-[30rem] lg:w-[27rem] lg:h-[27rem] md:w-[24rem] md:h-[24rem]" src="{% static 'ActivityEvents/Signuprafiki.png' %}" alt="">
+   </div>
+
+</div>
+
+
+      <div class=" w-1/12		 h-full   flex flex-col items-end justify-end ">
+        <div class="flex flex-row w-full h-full justify-center items-center ">
+            <button  type="button" id="showsigninpage" class="w-full h-[5.5rem] xl:text-[1.5rem] lg:text-[1.1rem] md:text-[1rem] flex flex-col justify-center items-center  ">
+                <div ><box-icon size="3rem" name='log-in-circle'></box-icon></div>
+                <h4>sign in</h4>
+            </button>
+            <div id="togglesigninbar" class="h-[8.5rem] w-[1.5rem] bg-[#71B3F1] rounded-l-[0.9rem] "></div>
+        </div>
+        <div class="flex flex-row w-full h-full justify-center items-center mt-[8rem]  ">
+            
+            <button  type="button" id="showsignuppage" class="w-full h-[5.5rem] xl:text-[1.5rem] lg:text-[1.1rem] md:text-[1rem] flex flex-col justify-center items-center  ">
+                <div ><box-icon size="3rem" name='log-out-circle' ></box-icon></div>
+                <h4>sign up</h4>
+            </button>
+            <div id="togglesignupbar" class="h-[8.5rem] w-[1.5rem] bg-[#71B3F1] rounded-l-[0.9rem] hidden "></div>
+
+        </div>
+
+ </div>
+
+
+
+
+   
+      
+   
+   
+
+   </div>     
 
 </section>
-<script>
 
-
-</script>
 
 {% endblock %} 
