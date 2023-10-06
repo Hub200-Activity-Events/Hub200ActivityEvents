@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .models import Events, CustomUser
+from .models import Events, CustomUser, PeopleReviews, Contact_us
 import datetime
 from django.core import serializers
 from django.http import JsonResponse
@@ -11,6 +11,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
 from .models import Events,Event_registration
+from django.contrib.auth import login as auth_login
 
 # Create your views here.
 def navigationlinks(request):
@@ -18,12 +19,16 @@ def navigationlinks(request):
         {'text': 'Home', 'href': 'home'},
         {'text': 'Events', 'href': 'events'},
         {'text': 'Calendar', 'href': 'calendar'},
+        {'text': 'Registrations', 'href': 'registrations'},
+
     ]
     
     return render(request, 'ActivityEvents/layout.html', {'navigation_links': navigation_links})
 def home(request):
     all_events = Events.objects.only('title', 'description', 'event_date', 'location', 'image')[:3]
-    return render(request,'ActivityEvents/home.html', {"all_events":all_events})
+    AllPeopleReview = PeopleReviews.objects.all()
+    print(AllPeopleReview)
+    return render(request,'ActivityEvents/home.html', {"all_events":all_events,"AllPeopleReview":AllPeopleReview})
 
 def events(request):
     all_events = Events.objects.all()
@@ -31,12 +36,33 @@ def events(request):
     next_week = datetime.date.today() + datetime.timedelta(days=7)
     next_month_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_month])
     next_week_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_week])
-    if request.POST.get('filter') == 'next_month':
-        return render(request,'ActivityEvents/events.html',{'all_events':next_month_events})
-    elif request.POST.get('filter') == 'next_week':
-        return render(request,'ActivityEvents/events.html',{'all_events':next_week_events})
+    filter = request.POST.get('filter')
+    if request.method == 'POST':
+        if filter == 'allevents':
+            return render(request, 'ActivityEvents/events.html', {'all_events': all_events})
+        elif filter == 'next_week':
+            return render(request, 'ActivityEvents/events.html', {'all_events': next_week_events})
+        elif filter == 'next_month':
+            return render(request, 'ActivityEvents/events.html', {'all_events': next_month_events})
     else:
-        return render(request,'ActivityEvents/events.html',{'all_events':all_events})
+        return render(request, 'ActivityEvents/events.html', {'all_events': all_events})
+
+
+
+def eventsRange(request):
+    all_events = Events.objects.all()
+    startdate = request.POST.get('startdate')
+    enddate = request.POST.get('enddate')
+    if request.method == 'POST':
+        eventrange = Events.objects.filter(event_date__range=[startdate, enddate])
+        return render(request, 'ActivityEvents/events.html', {'all_events': eventrange})
+    else:
+        return render(request, 'ActivityEvents/events.html', {'all_events': all_events})
+
+
+
+
+
 
 
 def display_event(request,event_id):
@@ -58,15 +84,9 @@ def registrations(request):
         Guests = request.POST.get('GuestsRegistration')
         Comment = request.POST.get('CommentRegistration')
         gender=request.POST.get('gender')
-        
-        try:
-            event = Events.objects.get(pk=event_id)
-        except Events.DoesNotExist:
-            return render(request, 'ActivityEvents/errorpage.html', {
-                'error': 'Event does not exist'
-            })
-        else:
-            registration = Event_registration(
+        event_id = request.POST.get('EventsRegistration')
+        event = Events.objects.get(pk=event_id)
+        registration = Event_registration(
                 Username=Username,
                 Phonenumber=Phonenumber,
                 Email=Email,
@@ -75,11 +95,11 @@ def registrations(request):
                 guests=Guests,
                 comment=Comment,
                 gender=gender,
-                event=event_id
+                event=event 
 
             )
-            registration.save()
-            return HttpResponseRedirect(reverse('home'))
+        registration.save()
+        return HttpResponseRedirect(reverse('home'))
     else:
         all_events=Events.objects.all()
         return render(request, 'ActivityEvents/registrations.html',{"all_events":all_events})
@@ -139,8 +159,9 @@ def signup(request):
             # user.image = photo
             user = authenticate(email=email, password=password)
             user.save()
-            if user:
-                login(request, user)
+            auth_user = authenticate(request, username=email, password=password)
+            if auth_user is not None:
+                auth_login(request, auth_user)
                 send_welcome_email(email, username)
                 return HttpResponseRedirect(reverse('signingupdone'))
     return render(request, 'ActivityEvents/signup.html')
@@ -174,11 +195,16 @@ def all_events(request):
     next_week = datetime.date.today() + datetime.timedelta(days=7)
     next_month_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_month])
     next_week_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_week])
-    print(all_events)
-    if request.POST.get('filter') == 'next_month':
-        return render(request,'ActivityEvents/events.html',{'all_events':next_month_events})
-    elif request.POST.get('filter') == 'next_week':
-        return render(request,'ActivityEvents/events.html',{'all_events':next_week_events})
+
+    print(next_week_events)
+    filter=request.POST.get('filter')
+    if request.method =='POST':
+        if filter == 'allevents':
+            return render(request,'ActivityEvents/events.html',{'all_events':all_events})
+        elif filter == 'next_week':
+            return render(request,'ActivityEvents/events.html',{'all_events':next_week_events})
+        elif filter == 'next_month':
+            return render(request,'ActivityEvents/events.html',{'all_events':next_month_events})
     else:
         return render(request,'ActivityEvents/events.html',{'all_events':all_events})
 
@@ -225,3 +251,30 @@ def send_welcome_email(email, username):
 
 def apply_filter(request):
     events = Events.objects.all()
+
+
+
+
+def attendess(request):
+    eventregister=Event_registration.objects.all()
+    RegistrationCount = Event_registration.objects.count()
+    return render(request, 'ActivityEvents/attendess.html',{"eventregister":eventregister,"RegistrationCount":RegistrationCount})
+
+
+def attendessDetails(request,attendess_id):
+    RegistrationCount = Event_registration.objects.count()
+    eventregister=Event_registration.objects.all()
+    attendessdetails=Event_registration.objects.get(pk=attendess_id)
+    return render(request, 'ActivityEvents/attendess.html',{"eventregister":eventregister,"attendessdetails":attendessdetails,"RegistrationCount":RegistrationCount})
+
+
+def contactus(request):
+    if request.method == "POST":
+        usernameinputcontactusform = request.POST.get('usernameinputcontactusform')
+        emailinputcontactusform = request.POST.get('emailinputcontactusform')
+        messageinputcontactusform = request.POST.get('messageinputcontactusform')
+        contactusform = Contact_us(name=usernameinputcontactusform, email=emailinputcontactusform,message=messageinputcontactusform)
+        contactusform.save()
+        return HttpResponseRedirect(reverse('home'))
+
+

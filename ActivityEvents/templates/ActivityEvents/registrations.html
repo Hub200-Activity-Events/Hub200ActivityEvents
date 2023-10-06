@@ -274,11 +274,12 @@ input[type=date]:focus::-webkit-datetime-edit {
   }
   </style>
 
-<section class="h-full w-full flex flex-col items-center justify-center  mb-[4rem] mt-[2rem]">
+<section class="h-full w-full flex flex-col items-center justify-center  mb-[1rem] mt-[1rem]">
+  {% if user.is_authenticated %}
+
     <div class="h-[57rem] xl:w-[80rem] lg:w-[62rem] md:w-[59rem] flex flex-col items-center justify-center  mb-[4rem] mt-[3rem] border-[0.2rem] border-[#E8F5FF]">
 
-
-        <div  class="w-full  flex flex-row h-full justify-center items-center bg-[#E8F5FF]">
+      <div  class="w-full  flex flex-row h-full justify-center items-center bg-[#E8F5FF]">
             <div class="w-4/12 h-full  flex flex-col items-center justify-center  ">
                <div class="w-full h-full flex flex-col justify-center items-center ">
                 <h1 class="xl:text-[2.5rem] lg:text-[2.1rem] md:text-[2rem] mb-[1rem] font-medium text-[#5F5F5F]">Registration Form</h1>
@@ -382,7 +383,7 @@ input[type=date]:focus::-webkit-datetime-edit {
   </div>
   
   <div id="buttonwrapper">
-      <button  type="submit" class="submit w-[2rem] h-[3rem]" >Sign Up</button>
+      <button  type="submit" class="submit w-[2rem] h-[3rem]" >Register</button>
          <div class="loader-wrapper">
          <span class="loader white"></span>
          <span class="loader blue"></span>
@@ -390,7 +391,7 @@ input[type=date]:focus::-webkit-datetime-edit {
         <span class="loader blue2"></span>
          
      <div class="check-wrapper">
-    <svg version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
+    <svg class="xl:mt-[20px] xl:ml-[24px] lg:mt-[16px] lg:ml-[20px] md:mt-[13px] md:ml-[17px]" version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
     <polyline class="check" points="5,13 21.8,32.4 59.5,5 "/>
     </svg>
      </div>
@@ -402,10 +403,18 @@ input[type=date]:focus::-webkit-datetime-edit {
 
     
         </div>
+        {% else %}
+        <div class="xl:h-[33rem] lg:h-[30rem] md:h-[29rem] xl:w-[65rem] lg:w-[58rem] md:w-[40rem] flex flex-col items-center   mb-[4rem] mt-[1rem] border-[0.1rem] border-[#E8F5FF]">
+          <img class="xl:w-[21rem] xl:h-[20rem]  lg:w-[20rem] lg:h-[18rem] md:w-[18rem] md:h-[17rem] mt-[1rem]" src="{% static 'ActivityEvents/Logincuate.png' %}" alt="">
+          <h1 class="mt-[0.6rem] xl:text-[1.4rem] lg:text-[1.2rem] md:text-[1rem] text-center" >To gain the ability to register for our <span class="text-[#50A8F5] xl:text-[1.5rem] lg:text-[1.4rem] md:text-[1.1rem]">Events</span> <br> you must be logged into the website.</h1>
+          <button class="xl:w-[11rem] xl:h-[3rem] lg:w-[9rem] lg:h-[2.6rem] md:w-[8rem] md:h-[2.6rem] xl:text-[1rem]  lg:text-[0.9rem] md:text-[0.8rem] mt-[1.5rem] text-white bg-[#71B3F1] rounded-[4rem] font-medium"><a href="{% url 'signin' %}">GetStarted Now</a></button>
+          </h1>
+        </div>
 
 
     </div>
-   
+    {% endif %}
+
 </section>
 
 {% endblock %}

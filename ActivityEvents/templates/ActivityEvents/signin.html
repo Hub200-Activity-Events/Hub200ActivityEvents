@@ -184,11 +184,6 @@
   opacity:1;
 }
 
-.check-wrapper svg {
-  margin-top:20px;
-  margin-left: 24px;
-}
-
 .check{fill:none;
   stroke:#ffffff;
   stroke-width:10;
@@ -293,13 +288,13 @@ input[type=date]:focus::-webkit-datetime-edit {
            <!--signin page Form -->
 
     <div id="signinpage" class=" w-11/12	 h-full flex flex-row  justify-center items-center  ">
-        <form id="signinform"  action="{% url 'signin'  %}" method="POST" class="w-1/2	bg-[#E8F5FF]	 h-full flex flex-col items-center justify-center relative">
+        <form id="signinform"  action="{% url 'signin'  %}" method="POST" class="w-1/2	bg-[#F8FCFF]	 h-full flex flex-col items-center justify-center relative">
             {% csrf_token %}
             <div class="xl:w-[25rem] xl:h-[32.5rem] lg:w-[20rem] lg:h-[29rem] md:w-[20rem] md:h-[27.8rem] rounded-2xl flex flex-col items-center  bg-white drop-shadow-xl  ">
               <h3 class="xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.4rem] mt-[3rem] xl:mb-[1rem] lg:mb-[1rem]">Sign in to Hub200</h3>
               <div class="inputdivparent h-[3.2rem] mt-[2rem] ">
                   <input id="inputsigninemail" name="inputsigninemail"  class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[15rem] lg:h-[3.1rem] md:w-[14rem] md:h-[3rem]" type="text" name="email" required>
-                  <label class="placeholderlabel" for="email">E-mail</label>
+                  <label class="placeholderlabel" for="email">UserName</label>
   
               </div>
               <div class="inputdivparent h-[3.2rem] mt-[2rem]">
@@ -323,7 +318,7 @@ input[type=date]:focus::-webkit-datetime-edit {
                   <span class="loader blue2"></span>
                    
                <div class="check-wrapper">
-              <svg version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
+              <svg class="xl:mt-[20px] xl:ml-[24px] lg:mt-[16px] lg:ml-[20px] md:mt-[13px] md:ml-[17px]" version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
               <polyline class="check" points="5,13 21.8,32.4 59.5,5 "/>
               </svg>
                </div>
@@ -335,7 +330,7 @@ input[type=date]:focus::-webkit-datetime-edit {
             </div>
             
         </form>
-        <div class="bg-[#E8F5FF] w-1/2			 h-full  flex flex-col items-center justify-center ">
+        <div class="bg-[#F8FCFF] w-1/2			 h-full  flex flex-col items-center justify-center ">
               <img class="xl:w-[30rem] xl:h-[30rem] lg:w-[27rem] lg:h-[27rem] md:w-[24rem] md:h-[24rem]" src="{% static 'ActivityEvents/Signinpana.png' %}" alt="">
 
       </div>
@@ -350,7 +345,7 @@ input[type=date]:focus::-webkit-datetime-edit {
    <div id="signuppage" class=" w-11/12	 h-full flex flex-row  justify-center items-center  hidden  ">
 
 
-    <form id="signupform" action="{% url 'signup'  %}" method="POST" enctype="multipart/form-data" class="w-1/2 bg-[#E8F5FF] h-full flex flex-col justify-center items-center  ">
+    <form id="signupform" action="{% url 'signup'  %}" method="POST" enctype="multipart/form-data" class="w-1/2 bg-[#F8FCFF] h-full flex flex-col justify-center items-center  ">
         {% csrf_token %}
         <div id="formsubmitpart1" class="xl:w-[25rem] xl:h-[32.5rem] lg:w-[20rem] lg:h-[29rem] md:w-[20rem] md:h-[27.8rem] rounded-xl flex flex-col items-center bg-white drop-shadow-xl">
           <h3 class="xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.4rem] mb-[1rem] mt-[1rem]">Sign up to Hub200</h3>
@@ -420,7 +415,7 @@ input[type=date]:focus::-webkit-datetime-edit {
               <span class="loader blue2"></span>
                
            <div class="check-wrapper">
-          <svg version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
+          <svg class="xl:mt-[20px] xl:ml-[24px] lg:mt-[16px] lg:ml-[20px] md:mt-[13px] md:ml-[17px]" version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
           <polyline class="check" points="5,13 21.8,32.4 59.5,5 "/>
           </svg>
            </div>
@@ -433,7 +428,7 @@ input[type=date]:focus::-webkit-datetime-edit {
     </form>
 
 
-              <div class="w-1/2 bg-[#E8F5FF] h-full  flex flex-col items-center justify-center  ">
+              <div class="w-1/2 bg-[#F8FCFF] h-full  flex flex-col items-center justify-center  ">
           <img class="xl:w-[30rem] xl:h-[30rem] lg:w-[27rem] lg:h-[27rem] md:w-[24rem] md:h-[24rem]" src="{% static 'ActivityEvents/Signuprafiki.png' %}" alt="">
    </div>
 
@@ -444,17 +439,17 @@ input[type=date]:focus::-webkit-datetime-edit {
         <div class="flex flex-row w-full h-full justify-center items-center ">
             <button  type="button" id="showsigninpage" class="w-full h-[5.5rem] xl:text-[1.5rem] lg:text-[1.1rem] md:text-[1rem] flex flex-col justify-center items-center  ">
                 <div ><box-icon size="3rem" name='log-in-circle'></box-icon></div>
-                <h4>sign in</h4>
+                <h4 class="xl:text-[1.2rem] lg:text-[1rem] md:text-[0.9rem]">sign in</h4>
             </button>
-            <div id="togglesigninbar" class="h-[8.5rem] w-[1.5rem] bg-[#71B3F1] rounded-l-[0.9rem] "></div>
+            <div id="togglesigninbar" class="xl:h-[8.5rem] xl:w-[1.5rem] lg:h-[8.1rem] lg:w-[1.2rem] md:h-[6.9rem] md:w-[1.1rem] bg-[#71B3F1] rounded-l-[0.9rem] "></div>
         </div>
         <div class="flex flex-row w-full h-full justify-center items-center mt-[8rem]  ">
             
             <button  type="button" id="showsignuppage" class="w-full h-[5.5rem] xl:text-[1.5rem] lg:text-[1.1rem] md:text-[1rem] flex flex-col justify-center items-center  ">
                 <div ><box-icon size="3rem" name='log-out-circle' ></box-icon></div>
-                <h4>sign up</h4>
+                <h4 class="xl:text-[1.2rem] lg:text-[1rem] md:text-[0.9rem]">sign up</h4>
             </button>
-            <div id="togglesignupbar" class="h-[8.5rem] w-[1.5rem] bg-[#71B3F1] rounded-l-[0.9rem] hidden "></div>
+            <div id="togglesignupbar" class="xl:h-[8.5rem] xl:w-[1.5rem] lg:h-[8.1rem] lg:w-[1.2rem] md:h-[6.9rem] md:w-[1.1rem] bg-[#71B3F1] rounded-l-[0.9rem] hidden "></div>
 
         </div>
 
