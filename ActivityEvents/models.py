@@ -20,7 +20,7 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     phone_number = models.CharField(max_length=50, blank=True)
-    photo = models.ImageField(upload_to='images/', null=True)
+    photo = models.ImageField(upload_to='images/', null=True, default="Unknownperson.jpg")
 
 class Events(models.Model):
     title = models.CharField(max_length=50)
