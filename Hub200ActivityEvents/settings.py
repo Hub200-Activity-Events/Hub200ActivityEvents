@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ActivityEvents',
+    'storages',
     
 ]
 
@@ -135,3 +136,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+AWS_ACCESS_KEY_ID="AKIAYCEIYAAG6YC2QPTO"
+AWS_SECRET_ACCESS_KEY="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"
+AWS_STORAGE_BUCKET_NAME="hub200activityeventsbucket"
+DEFAULT_FILE_STORAGE="storages.backends.s3boto3.S3Boto3Storage"
+STATICFILES_STORAGE="storages.backends.s3boto3.S3Boto3Storage"
+AWS_S3_CUSTOM_DOMAIN="%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
