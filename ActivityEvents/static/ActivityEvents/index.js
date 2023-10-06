@@ -329,6 +329,46 @@ if(formQAs){
 
 
 
+    //EventDetailsContactUsForm
+    formContactUs = document.getElementById('contactusform')
+    usernameinputcontactusform = document.getElementById('usernameinputcontactusform')
+    emailinputcontactusform = document.getElementById('emailinputcontactusform')
+    messageinputcontactusform = document.getElementById('messageinputcontactusform')
+    if(formContactUs){
+        console.log(formContactUs)
+    
+      formContactUs.addEventListener('submit',(e)=>{
+        e.preventDefault()
+        const formData2 = new FormData()
+        formData2.append('usernameinputcontactusform', usernameinputcontactusform.value)
+        formData2.append('emailinputcontactusform', emailinputcontactusform.value)
+        formData2.append('messageinputcontactusform', messageinputcontactusform.value)
+    
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+        fetch('/contactus', {
+            method: 'POST',
+            headers: {
+              'X-CSRFToken': csrftoken,
+          },
+            body: formData2,    
+        }).then((response) => {
+          if (response.ok) {
+            showToast(successmsgQAform);
+          } else {
+            showToast(errormsgQAform)
+          }
+        })
+    })}
+
+
+
+
+
+
+
+
+
+
 // Registeration Form 
 
 
@@ -452,7 +492,6 @@ registerform = document.getElementById('registerform')
 
 if(registerform){
   registerform.addEventListener('submit', (e)=>{
-  
     validateInputsRegisteration()
 
   })

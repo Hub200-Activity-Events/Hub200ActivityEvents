@@ -24,10 +24,11 @@ class CustomUser(AbstractUser):
 
 class Events(models.Model):
     title = models.CharField(max_length=50)
-    description = models.CharField(max_length=50) 
+    description = models.TextField()
     event_date = models.DateField(default=timezone.now().date(),null=True)
     location = models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/',null=True)
+    status = models.BooleanField( default=True)
     # creator = models.ForeignKey(User, on_delete=models.CASCADE)
     # atendees = models.ManyToManyField(User, related_name="event_atendees", blank=True)
     def __str__(self):
@@ -53,3 +54,14 @@ class Contact_us(models.Model):
     message = models.CharField(max_length=100)
     def __str__(self):
         return f"{self.name} - {self.email}"
+    
+
+
+
+
+class PeopleReviews(models.Model):
+    UserName = models.CharField(max_length=50)
+    description = models.TextField()
+    image = models.ImageField(upload_to='images/',null=True)
+    def __str__(self):
+        return f"{self.UserName}"

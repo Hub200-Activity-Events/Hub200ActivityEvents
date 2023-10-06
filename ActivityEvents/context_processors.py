@@ -3,5 +3,7 @@ def navigation_links(request):
         {'text': 'Home', 'href': 'home'},
         {'text': 'Events', 'href': 'events'},
         {'text': 'Calendar', 'href': 'calendar'},
+        {'text': 'Registrations', 'href': 'registrations'},
+
     ]
     return {'navigationlinks': navigation_links}
