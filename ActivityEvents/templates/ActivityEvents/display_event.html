@@ -1,109 +1,221 @@
 {% extends "ActivityEvents/layout.html" %}
 {% load static %}
 {% block body %}
-<link href="styless.css" rel="stylesheet">
+<style>
+.content{
+    border-radius: 50%;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content::before{
+  content: '';
+  position: absolute;
+  inset: 40px;
+  border: 4px solid transparent;
+  border-left: 4px solid #71B3F1;
+  border-right: 4px solid #e2e2e2;
+  border-radius: 50%;
+  animation: animationcontent 5s linear infinite;
+  z-index: 1;
+  pointer-events: none;
 
+}
+@keyframes animationcontent {
+  0%{
+    rotate: 0deg;
+  }
+  100%{
+    rotate: 360deg;
+  }
+}
+
+
+</style>
 <section class="relative w-[99%] mx-auto flex flex-col justify-center items-center">
-        <section class="h-[40rem] w-full">
+    
+        <section class="xl:h-[30rem] lg:h-[37rem] md:h-[31rem]  w-full">
            <img class="w-full h-full " src="{% static 'ActivityEvents/details_image_page.jpg'%}" alt="">
         </section>
 
-    <h1 class="mt-[5rem] mb-[1rem] text-5xl font-medium text-[#50A8F5]">{{event.title}}</h1>
+    <h1 class="mt-[4rem]  xl:text-5xl lg:text-4xl md:text-3xl font-medium text-[#50A8F5]">{{event.title}}</h1>
     
-    <section class="pt-3 w-[99%] h-[40rem] flex flex-col justify-center items-center">
-        <div class="w-full h-full flex flex-row justify-center items-center">
-            <div class="w-[25rem] h-full  flex flex-col justify-center">
-                <img src="{% static 'ActivityEvents/Readinglistcuate.png' %}" alt="">
+    <section class="pt-3 w-[99%]   xl:h-[28rem] lg:h-[26rem] md:h-[22rem]  flex flex-col justify-center items-center">
+        <div class="w-full h-full flex justify-first items-first">
+            <div class="xl:w-[5.5rem] xl:h-[5.5rem] lg:w-[5rem] lg:h-[5rem] md:w-[4.5rem] md:h-[4.5rem] bg-[#E8F5FF]  drop-shadow-xl shadow-[#BABDC2] shadow-sm  rounded-[0.3rem]  relative">
+                <div class="xl:w-[5.5rem] xl:h-[5rem] lg:w-[5rem] lg:h-[5rem] md:w-[4.5rem] md:h-[4.5rem] bg-white  absolute mt-[1.5rem]  rounded-[0.3rem] left-[1rem] drop-shadow-md  "></div>
             </div>
-            <div id="post-1" class="w-[21rem] max-w-md h-[25rem] bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl bg-blue-200 shadow-sky-400">
-                <div class="md:flex">
-                  <div class="p-2 ml-2">
-                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-normal text-stone-900 text-black-900 italic text-xl mt-1">DATE AND TIME</div>
-                    <a href="#" class="block mt-1 text-3g leading-tight text-slate-800 mt-4">Saturday, September 30 at 3:00pm to 5:00pm </a>
+</div>
+        <div class="xl:w-[65rem] xl:h-[30rem] lg:w-[60rem] lg:h-[28rem] md:w-[55rem] md:h-[25rem] flex flex-row justify-center items-center relative ">
+   
+
+            <div class="content xl:w-[29rem] xl:h-[29rem] lg:w-[27rem] lg:h-[27rem] md:w-[25rem] md:h-[25rem] ml-[4rem] ">
+        
+                <div class=" xl:w-[22rem] xl:h-[22rem] lg:w-[20rem] lg:h-[20rem] md:w-[17rem] md:h-[17rem]  rounded-full  ">
+                    <img class="w-full h-full rounded-full object-cover" src="{% static 'ActivityEvents/details_image_page.jpg'%}" alt="">
+                </div>
+          
+          
+            </div>
+
+            <div id="post-1" class="xl:w-[19rem] xl:h-[23rem] lg:w-[17rem]  lg:h-[21rem] md:w-[15rem]  md:h-[19rem]   bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden xl:mt-[3rem] lg:mt-[3rem] md:mt-[2.5rem]  shadow-sky-200 ml-[25rem] ">
+                  <div class="p-2 ml-2 h-full w-full xl:mt-[2rem] lg:mt-[1rem]">
+                    <h1 class="  text-indigo-500  text-stone-900 text-black-900 italic xl:text-2xl lg:text-xl md:text-lg mt-1 font-medium">DATE AND TIME</h1>
+                    <p class=" mt-1 text-3g leading-tight text-slate-800 mt-4">{{event.event_date}} </p>
                     <br/>
-                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-normal text-stone-900 text-black-900 text-3xl italic text-xl mt-6">LOCATION</div>
-                    <a href="#" class="block mt-1 text-3g leading-tight text-slate-800 mt-4">Karada, st.saadoun</a>
+                    <h1 class="  text-indigo-500  text-stone-900 text-black-900 xl:text-2xl lg:text-xl md:text-lg italic  mt-6 font-medium">LOCATION</h1>
+                    <p class=" mt-1 text-3g leading-tight text-slate-800 mt-4">{{event.location}}</p>
                     <br/>
-                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-normal text-stone-900 text-black-900 text-3xl italic text-xl mt-6">Speakers</div>
-                    <a href="#" class="block mt-1 text-3g leading-tight text-slate-800 mt-4">“names of the speakers”</a>
+                    <h1 class="  text-indigo-500  text-stone-900 text-black-900 xl:text-2xl lg:text-xl md:text-lg italic  mt-6 font-medium">Speakers</h1>
+                    <p class=" mt-1 text-3g leading-tight text-slate-800 mt-4">“names of the speakers”</p>
             
                   </div>
                   
-                </div>
               </div> 
         </div>
-          
-          <div class="w-[35rem] h-[15rem] max-w-md mx-auto bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl  bg-blue-200 shadow-sky-400">
+          <!--
+
+          <div class="w-[35rem] h-[15rem] max-w-md mx-auto bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl   shadow-sky-400">
               <div class="p-8">
                 <div class="uppercase tracking-wide text-sm font-semibold text-black-900">type somthing here</div>
                 <p class="mt-2 text-slate-500 text-xl text-left mt-3 italic">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
               </div>
           </div>
+
+          -->
+
         
     </section>
     
     
-    <section class="section-2 pt-3 w-[99%] h-[80rem] mt-[3rem] flex flex-col justify-center items-center ">
-        <h1 class="mt-[3rem] mb-[1rem] text-5xl font-medium text-[#50A8F5]">Event Description</h1>
+    <section class="section-2  pt-3 w-[99%] xl:h-[30rem] lg:h-[28rem] md:h-[25rem] mt-[3rem] flex flex-col justify-center items-center ">
+        <h1 class="mt-[3rem] mb-[1rem] xl:text-5xl lg:text-4xl md:text-3xl font-medium text-[#50A8F5]">Event Description</h1>
+
+
+
+
     
-<div class="w-[65rem]  h-full flex flex-row justify-center items-center">
-        <div id="post-1" class="w-[40rem] max-w-md h-[20rem] flex flex-row justify-center items-center bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl  p-3 bg-blue-200 shadow-sky-400">
+<div class="xl:w-[65rem] xl:h-[25rem] lg:w-[60rem] lg:h-[23rem] flex flex-row justify-center items-center">
+        <div id="post-1" class="xl:w-[40rem] xl:h-[20rem] lg:w-[35rem] lg:h-[18rem] md:w-[33rem] md:h-[17.5rem] max-w-md  flex flex-row justify-center items-center bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl  p-3  shadow-sky-400">
                   <div class="p-2 w-full h-full">
-                    <div class="uppercase tracking-wide text-sm text-indigo-500 text-stone-900 text-black-500 italic text-xl mb-2 ml-4 underline decoration-solid underline decoration-sky-500">Description</div>
-                    <a href="#" class="block mt-1 leading-tight text-black-400 p-3 text-xl mr-3 italic">The English Meeting offers a valuable platform for individuals to improve their English language skills, English Meeting creates a supportive and encouraging environment where participants feel comfortable practicing their English skills without fear of judgment ,The English Meeting serves as a catalyst for personal growth and empowers individuals to unlock new opportunities in both their professional and social lives.</a>
+                    <h1 class="uppercase tracking-wide text-sm text-indigo-500 text-stone-900 text-black-500 italic xl:text-xl lg:text-lg md:text-lg mb-2 ml-4 underline decoration-solid underline decoration-sky-500">Description</h1>
+                    <p class="block mt-1 leading-tight text-[#6E8292] p-3 xl:text-xl lg:text-lg md:text-md mr-3 italic">The English Meeting offers a valuable platform for individuals to improve their English language skills, English Meeting creates a supportive and encouraging environment where participants feel comfortable practicing their English skills without fear of judgment ,The English Meeting serves as a catalyst for personal growth and empowers individuals to unlock new opportunities in both their professional and social lives.</p>
                   </div>   
     
               </div>
 
 
-<img class="w-[25rem] h-[25rem]" src="{% static 'ActivityEvents/Readinglistcuate.png' %}" alt="">
+<img class="xl:w-[25rem] xl:h-[25rem] lg:w-[23rem] lg:h-[23rem] md:w-[21rem] md:h-[21rem]" src="{% static 'ActivityEvents/Readinglistcuate.png' %}" alt="">
 
 </div>
-<h1 class="mt-[3rem] mb-[1rem] text-5xl font-medium text-[#50A8F5]">What our events provides</h1>
-<div class="w-[65rem]  h-full flex flex-row justify-between items-center">
-              <div class="w-[30rem] h-[20rem] max-w-md mx-auto bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl shadow-lg bg-blue-200 shadow-sky-400">
-                  <div class="p-2 w-full flex flex-col justify-center items-center">
-                    <h1 class="text-lg font-medium">Networking community</h1>
-                    <p class="mt-2 text-slate-500 text-sm text-left italic">Create opportunities for you to network with instoctors, mentors, alumni, software companies, you never know which connections will end up being valuable to your career going forward.</p>
-                    <img class="w-[15rem] h-[15rem]" src="{% static 'ActivityEvents/Teamspiritcuate.png' %}" alt="">
 
-                  </div>
-              </div>
-              <div class="w-[30rem] h-[20rem] max-w-md mx-auto bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl shadow-lg bg-blue-200 shadow-sky-400">
-                <div class="p-2 w-full flex flex-col justify-center items-center">
-                  <h1 class="text-lg font-medium">Networking community</h1>
-                  <p class="mt-2 text-slate-500 text-sm text-left italic">Create opportunities for you to network with instoctors, mentors, alumni, software companies, you never know which connections will end up being valuable to your career going forward.</p>
-                  <img class="w-[15rem] h-[15rem]" src="{% static 'ActivityEvents/Teamspiritcuate.png' %}" alt="">
+    </section>
 
-                </div>
+    <section class="pt-3 w-[99%] xl:h-[50rem] lg:h-[45rem] md:h-[40rem] mt-[7rem] mb-[7rem] flex flex-col justify-center items-center">
+
+        <h1 class="mt-[3rem] mb-[1rem] xl:text-5xl lg:text-4xl md:text-3xl font-medium text-[#50A8F5]">What our events provides</h1>
+        <div class="xl:w-[65rem] xl:h-[27.5rem] lg:w-[60rem] lg:h-[25.5rem] grid grid-cols-2 grid-rows-2 gap-[3rem] mt-[5rem]">
+                      <div class="xl:w-[30rem] xl:h-[21rem] lg:w-[28rem] lg:h-[20rem] md:w-[25rem] md:h-[17rem] max-w-md mx-auto bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl shadow-lg  shadow-sky-400">
+                          <div class="p-2 w-full flex flex-col justify-center items-center">
+                            <h1 class="xl:text-lg lg:text-lg md:text-md font-medium">Networking community</h1>
+                            <p class="mt-2 text-[#6E8292] text-sm text-left italic">Create opportunities for you to network with instoctors, mentors, alumni, software companies, you never know which connections will end up being valuable to your career going forward.</p>
+                            <img class="xl:w-[15rem] xl:h-[15rem] lg:w-[13rem] lg:h-[13rem] md:w-[10rem] md:h-[10rem]" src="{% static 'ActivityEvents/Teamspiritcuate.png' %}" alt="">
+        
+                          </div>
+                      </div>
+                      <div class="xl:w-[30rem] xl:h-[21rem] lg:w-[28rem] lg:h-[20rem] md:w-[25rem] md:h-[17rem] max-w-md mx-auto bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl shadow-lg  shadow-sky-400">
+                        <div class="p-2 w-full flex flex-col justify-center items-center">
+                          <h1 class="xl:text-lg lg:text-lg md:text-md font-medium">Technical mentor support</h1>
+                          <p class="mt-2 text-[#6E8292] text-sm text-left italic">Guide your learning by experinced traniners or 1:1 mentoring to answer your question and keep you on track.</p>
+                          <img class="xl:w-[15rem] xl:h-[15rem] lg:w-[13rem] lg:h-[13rem] md:w-[10rem] md:h-[10rem]" src="{% static 'ActivityEvents/ActiveSupportrafiki.png' %}" alt="">
+        
+                        </div>
+                    </div>
+                    <div class="xl:w-[30rem] xl:h-[21rem] lg:w-[28rem] lg:h-[20rem] md:w-[25rem] md:h-[17rem] xl:mt-[7rem] lg:mt-[5rem] md:mt-[1rem] max-w-md mx-auto bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl shadow-lg  shadow-sky-400">
+                        <div class="p-2 w-full flex flex-col justify-center items-center">
+                          <h1 class="xl:text-lg lg:text-lg md:text-md font-medium">Career services</h1>
+                          <p class="mt-2 text-[#6E8292] text-sm text-left italic">Advance your career by getting internship and job opportunities in the best software Iraqi companies.</p>
+                          <img class="xl:w-[15rem] xl:h-[15rem] lg:w-[13rem] lg:h-[13rem] md:w-[10rem] md:h-[10rem]" src="{% static 'ActivityEvents/Resumebro.png' %}" alt="">
+        
+                        </div>
+                    </div>
+                    <div class="xl:w-[30rem] xl:h-[21rem] lg:w-[28rem] lg:h-[20rem] md:w-[25rem] md:h-[17rem]  xl:mt-[7rem] lg:mt-[5rem] md:mt-[1rem] max-w-md mx-auto bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl shadow-lg  shadow-sky-400">
+                        <div class="p-2 w-full flex flex-col justify-center items-center">
+                          <h1 class="xl:text-lg lg:text-lg md:text-md font-medium">Gamification of learning</h1>
+                          <p class="mt-2 text-[#6E8292] text-sm text-left italic">Maximize your enjoyment and engagement through gamification techniques to motivate you by using game elements in learning environments</p>
+                          <img class="xl:w-[15rem] xl:h-[15rem] lg:w-[13rem] lg:h-[13rem] md:w-[10rem] md:h-[10rem]" src="{% static 'ActivityEvents/Knowledgecuate.png' %}" alt="">
+        
+                        </div>
+                    </div>
+        
+        
+        </div>
+    </section>
+   
+    <section class="pt-3 w-[99%] xl:h-[40rem] lg:h-[35rem] lg:h-[30rem] mt-[5rem] mb-[5rem] flex flex-col justify-center items-center">
+        <h1 class=" xl:text-5xl lg:text-4xl md:text-3xl text-[#50A8F5]">Event Registraiton</h1>
+        <h1 class=" xl:text-2xl lg:text-2xl md:text-xl  mb-7 italic  text-stone-700 mt-[1rem] ">Register for the {{event.title}}</h1>       
+      <div class="xl:w-[65rem] xl:h-[30rem] lg:w-[60rem] lg:h-[27rem] md:w-[55rem] md:h-[24rem] flex flex-row justify-center items-center bg-[#E8F5FF] rounded-xl shadow-md mb-3  shadow-sky-400">
+          <div class="p-8 xl:w-[30rem] xl:h-[30rem] lg:w-[28rem] lg:h-[28rem] flex flex-col justify-center items-center">
+            <p class="mt-2 text-slate-500 xl:text-xl lg:text-lg md:text-md text-left mt-3 italic">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <br/>
+            <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm xl:px-[3.5rem] xl:py-[1rem] lg:px-[3.2rem] lg:py-[1rem] md:px-[2rem] md:py-[0.9rem]  text-center  mb-2 mt-2"><a class="text-[1.4rem]" href="{% url 'registrations' %}">Registeraion</a></button>
+          </div>
+          <img class="xl:w-[30rem] lg:w-[26rem] xl:w-[24rem] h-full" src="{% static 'ActivityEvents/Goodteampana.png' %}" alt="">
+
+      </div>   
+      
+    
+    </section>
+
+    <section class=" w-[94%] mx-auto justify-center items-center mt-[6rem] mb-[5rem] ">
+
+        <h1 class="text-[3.5rem] font-medium  text-center text-[#50A8F5] mb-[1rem]">Contact With The Event Organizers </h1>
+<div class="w-full h-full flex justify-end items-end">
+            <div class="w-[7.5rem] h-[7.5rem] bg-white drop-shadow-xl shadow-[#BABDC2] shadow-sm  rounded-[0.3rem]  relative">
+                <div class="w-[7rem] h-[6rem] bg-[#E8F5FF]  absolute mt-[2.5rem]  rounded-[0.3rem] right-[2rem] drop-shadow-md  "></div>
+            </div>
+</div>
+        <div class="w-full h-[30rem] mt-[1rem] flex flex-row justify-center items-center relative  ">
+            <div class="w-[36rem] h-full flex flex-col mt-[4rem] justify-center">
+                <h1 class="xl:text-[1.8rem] lg:text-[1.6rem] md:text-[1.4rem] text-[#464747] font-medium text-left">If you have anything in mind you would like to share send us a message</h1>
+
+                <form id="contactusform" action="{% url 'contactus'  %}" method="POST"  class="h-full w-full flex flex-col justify-first items-first ">
+                    {% csrf_token %}
+                   <div class="flex flex-row">
+                     <div class="inputdivparent" >
+                         <input value="{{user.username}}" id="usernameinputcontactusform" name="usernameinputcontactusform" class="inputsclass" type="text" required>
+                         <label class="placeholderlabel text-[1.2rem]"   for="usernameinputcontactusform">Username</label>
+                     </div>
+                     <div class="inputdivparent ml-[2rem]" >
+                         <input value="{{user.email}}" id="emailinputcontactusform" name="emailinputcontactusform" class="inputsclass" type="email" required>
+                         <label class="placeholderlabel text-[1.2rem]"   for="emailinputcontactusform">Email</label>
+                     </div>
+                   </div>
+
+                    <div class="xl:w-[33.7rem] flex flex-col relative items-center" >
+                        <textarea id="messageinputcontactusform" name="messageinputcontactusform" class="inputsclass w-full h-[15rem]" col="50" rows="10" required></textarea>
+                        <label class="placeholderlabel text-[2.2rem] "   for="messageinputcontactusform">Message</label>
+                    </div>
+                    
+                    <button id="ContactUs" class="xl:w-[12rem] xl:h-[3.2rem] lg:w-[10rem] lg:h-[3rem] md:w-[8rem] md:h-[2.4rem] mt-[1rem] mb-[0.5rem] bg-[#71B3F1] xl:text-[1.2rem] lg:text-[1rem] md:text-[0.8rem] rounded-[10rem] text-white font-semibold text-[1.3rem] drop-shadow-xl" type="submit">Send Message</button>
+
+                </form>
             </div>
 
+            <div class="w-[35rem]  h-full flex items-center justify-center ml-[4rem] ">
+                <img class="xl:h-[34rem] lg:h-[23rem] md:h-[23rem] mt-[2rem] w-full  " src="{% static 'ActivityEvents/Contactuscuate.png' %}" alt="">
 
-</div>
-    
-    
+            </div>
+        </div>
+
     </section>
-    <h1 class="mt-34 ml-9 mb-6 text-5xl text-[#50A8F5]">Event Registraiton</h1>
-    <h1 class="mt-8 mb-[5rem] ml-3 mr-3 mb-10 text-2xl mb-7 italic  text-stone-700 pt-10">Register for the English Meetup!</h1>
-    <section class="pt-3 w-[99%] h-[40rem] flex flex-col justify-center items-center">       
-      <br/> 
-      <div class="w-[25rem] h-[30rem] flex flex-col justify-center items-center max-w-md mx-auto bg-[#E8F5FF] rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-3 bg-blue-200 shadow-sky-400 ml-[30rem]">
-          <div class="p-8 flex flex-col justify-center items-center">
-            <p class="mt-2 text-slate-500 text-xl text-left mt-3 italic">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <br/>
-            <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-6 py-2.5 text-center  mb-2 mt-2">Enroll Here</button>
-          </div>
-      </div>   
-    
-    </section>
-    <img class="w-[25rem] h-[25rem] mr-[50rem]" src="{% static 'ActivityEvents/registeration-image.png' %}" alt="">
+
       
 </section>
-  
 
 
-
-
-
-
-{% endblock %}
+{% endblock %}          
