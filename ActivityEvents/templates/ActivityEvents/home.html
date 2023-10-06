@@ -618,7 +618,7 @@ filter: grayscale(0);
                         <div class="xl:w-[27rem] xl:h-[17rem] lg:w-[24rem] lg:h-[14rem] md:w-[22rem] md:h-[13rem] flex flex-col items-center bg-[#fcfcfc] rounded-[0.3rem] rounded-b-[1.2rem] drop-shadow-xl shadow-[#BABDC2] shadow-sm absolute xl:top-[10rem] xl:left-[15rem] lg:top-[7rem] lg:left-[12rem] md:top-[7rem] md:left-[12rem]">
                           <div class="w-full h-3/4	 flex flex-col items-center">
                               <h1 class="xl:text-[2rem] lg:text-[1.6rem] md:text-[1.4rem] text-[#464747] font-medium mt-[1rem]">{{event.title}}</h1>
-                              <p class="xl:text-[1rem] lg:text-[0.8rem] md:text-[0.6rem] text-[#6E8292] font-medium mt-[1rem] text-center"> {{event.description}}</p>
+                              <p class="xl:text-[0.8rem] lg:text-[0.7rem] md:text-[0.5rem] text-[#6E8292] font-medium mt-[1rem] text-center"> {{event.description}}</p>
                           </div>
                           <div class="w-11/12 h-1/4	 flex justify-between absolute bottom-[1rem]">
                               <div class="xl:w-[17rem] xl:h-[5rem] lg:w-[15rem] lg:h-[4rem] md:w-[15rem] md:h-[4rem] flex flex-col justify-center items-center   ">
@@ -686,8 +686,8 @@ filter: grayscale(0);
   
             <div id="content{{forloop.counter}}" class="contentbox">
               <div class="card  xl:w-[15rem] xl:h-[15rem] lg:w-[13rem] lg:h-[13rem] md:w-[10rem] md:h-[10rem] flex flex-col ">
-                <div class="imgbox xl:w-[10rem] xl:h-[10rem] lg:w-[7.5rem] lg:h-[7.5rem] md:w-[6rem] md:h-[6rem]">
-                  <img class="w-full h-full object-cover"  src="{{peoplereview.image.url}}" alt="">
+                <div class="imgbox rounded-[50%] xl:w-[10rem] xl:h-[10rem] lg:w-[7.5rem] lg:h-[7.5rem] md:w-[6rem] md:h-[6rem]">
+                  <img class="w-full h-full rounded-[50%] object-cover"  src="{{peoplereview.image.url}}" alt="">
                 </div>
                 <div class="textbox  ">
                   <p class="text-center xl:text-[0.6rem] lg:text-[0.45rem] md:text-[0.4rem]">{{peoplereview.description}}</p>
