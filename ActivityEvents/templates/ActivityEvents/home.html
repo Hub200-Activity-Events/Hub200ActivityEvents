@@ -6,8 +6,6 @@
     position: relative;
     background: #F8FCFF;
     height: 28rem;
-    border-bottom-left-radius: 50% 20%;
-    border-bottom-right-radius: 50% 20%;
   }
   
 
@@ -306,14 +304,191 @@
 }
 
 
+
+
+
+@media (max-width: 1600px) {
+  
+  .imgpeoplereview{
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border: 1px solid #26b123;
+  border-radius: 50%;
+  transform: rotate(calc(360deg/8 *var(--i )));
+  transform-origin: 270px ;
+  overflow: hidden;
+  box-shadow: 0 0 0 4px #222, 0 0 0 6px #fff;
+  z-index: 10;
+  overflow: hidden;
+  transition: 0.3s;
+}
+  }
+  
+  /* Large screens (lg) */
+  @media (max-width: 1025px) {
+  
+    .imgpeoplereview{
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  border: 1px solid #26b123;
+  border-radius: 50%;
+  transform: rotate(calc(360deg/8 *var(--i )));
+  transform-origin: 240px ;
+  overflow: hidden;
+  box-shadow: 0 0 0 4px #222, 0 0 0 6px #fff;
+  z-index: 10;
+  overflow: hidden;
+  transition: 0.3s;
+}
+  }
+  
+  /* Medium screens (md) */
+  @media (max-width: 790px) {
+    
+    .imgpeoplereview{
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #26b123;
+  border-radius: 50%;
+  transform: rotate(calc(360deg/8 *var(--i )));
+  transform-origin: 201px ;
+  overflow: hidden;
+  box-shadow: 0 0 0 4px #222, 0 0 0 6px #fff;
+  z-index: 10;
+  overflow: hidden;
+  transition: 0.3s;
+}
+  }
+
+
+.imgpeoplereview.active{
+  box-shadow: 0 0 0 4px #71B3F1, 0 0 0 4px #71B3F1;
+
+}
+.imgpeoplereview img{
+  transform: rotate(calc(-360deg/8 *var(--i)));
+  transition: 0.3s;
+  filter: grayscale(1);
+}
+.imgpeoplereview.active img{
+filter: grayscale(0);
+}
+
+.content{
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content::before{
+  content: '';
+  position: absolute;
+  inset: 40px;
+  border: 4px solid transparent;
+  border-left: 4px solid #71B3F1;
+  border-right: 4px solid #e2e2e2;
+  border-radius: 50%;
+  animation: animationcontent 5s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+
+}
+@keyframes animationcontent {
+  0%{
+    rotate: 0deg;
+  }
+  100%{
+    rotate: 360deg;
+  }
+}
+
+.content::after{
+  content: '';
+  position: absolute;
+  inset: 65px;
+  border: 4px solid transparent;
+  border-left: 4px solid #71B3F1;
+  border-right: 4px solid #e2e2e2;
+  border-radius: 50%;
+  animation: animationcontent2 2.5s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+
+}
+@keyframes animationcontent2 {
+  0%{
+    rotate: 360deg;
+  }
+  100%{
+    rotate: 0deg;
+  }
+}
+
+
+.contentbox{
+  position: absolute;
+  transform: scale(0);
+  transition: 0.3s;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contentbox.active{
+  transform: scale(1);  
+  opacity: 1;
+  transition-delay: 0.3s;
+}
+
+.contentbox .card{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.hoverzoom:hover .changebackround{
+  display: block;
+  transition: 0.5s;
+  background-color: #71B3F1;
+}
+
+
+
+
+
+
+
+.positivity__alone {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+}
+
   </style>
 <section  class="h-full w-full flex flex-col items-center justify-center  mb-[2rem]  ">
 
 
     <section  id="curved" class="relative w-[99%] mx-auto flex flex-row justify-center items-center" >
-        <div class="flex flex-col w-6/12 h-full justify-center items-center">
-                <h1 class="xl:text-[2.8rem] lg:text-[2rem] md:text-[2.1rem] font-medium ml-[13rem]	 text-[#464747] ">Explore <span class="text-[#50A8F5]">Hub200’s</span> </br> Exciting Event </br> Lineup. </h1>
-                <button onclick="scrollfunction('hubevents')" class="xl:w-[10rem] xl:h-[3rem] lg:w-[7rem] lg:h-[2rem] md:w-[9rem] md:h-[2.8rem] xl:text-[0.86rem] lg:text-[0.6rem] md:text-[0.9rem] mt-[2rem] xl:mr-[1.8rem] xl:ml-[0rem] lg:ml-[4rem] md:ml-[5.5rem] bg-[#85C5FF] rounded-[10rem]   text-white   font-medium hoverzoom ">Discover The Events</button>
+        <div class="flex flex-col w-6/12  h-full justify-center items-center mt-[2rem]">
+                <h1 class="xl:text-[2.8rem] lg:text-[2rem] md:text-[2.1rem] font-medium 	 text-[#464747] ">Explore <span class="text-[#50A8F5]">Hub200’s</span> </br> Exciting Event </br> Lineup. </h1>
+                <div class="xl:w-[25rem] xl:h-[5rem] lg:w-[18.5rem] lg:h-[4rem] md:w-[19.5rem] md:h-[4rem]  mt-[0.7rem] flex justify-first items-first ml-[1rem] ">
+                <div class="text xl:text-[1.2rem] lg:text-[1rem] md:text-[0.9rem] font-medium text-[#50A8F5] "></div>
+                </div>
+
+                <button onclick="scrollfunction('hubevents')" class="xl:w-[10rem] xl:h-[3rem] lg:w-[7rem] lg:h-[2rem] md:w-[10rem] md:h-[2.9rem] xl:text-[0.86rem] lg:text-[0.6rem] md:text-[0.9rem] mt-[2.5rem] xl:mr-[15.3rem] lg:mr-[11rem] md:mr-[9rem] bg-[#85C5FF] rounded-[10rem]   text-white   font-medium hoverzoom ">Discover The Events</button>
         </div>
         <div class="flex flex-col w-6/12 h-full justify-center items-center relative mr-[4rem] ">
             <div class="xl:w-[24.5rem] xl:h-[18rem] flex flex-col justify-center items-center lg:w-[20.5rem] lg:h-[14rem] md:w-[20.5rem] md:h-[14rem]  bg-transparent relative rounded-[0.3rem] rounded-tr-[0.8rem]">
@@ -339,6 +514,7 @@
                     <p class="xl:text-[1.1rem] lg:text-[0.9rem] md:text-[0.8rem] mt-[1rem] text-[#6E8292]">
                         Create opportunities for you to network with instoctors, mentors, alumni, software companies, you never know which connections will end up being valuable to your career going forward.
                     </p>
+                    <div class="h-[0.3rem] mt-[1rem] rounded-[1rem] bg-transparent hidden w-[30rem] changebackround"></div>
                 </div>
                 <div class="xl:w-[28rem] lg:w-[26rem] md:w-[24rem] h-full  flex flex-col justify-center ">
                     <img class="xl:w-[23rem] xl:h-[23rem] lg:w-[30rem] lg:h-[30rem] md:w-[28rem] md:h-[28rem] z-10 " src="{% static 'ActivityEvents/Teamspiritcuate.png' %}" alt="">
@@ -352,9 +528,11 @@
                         <h1 class="xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.3rem]  text-[#464747] text-left">
                             Gamification of learning
                         </h1>
-                        <p class="xl:text-[0.8rem] lg:text-[0.6rem] md:text-[0.5rem] mt-[1rem] text-[#6E8292]">
+                        <p class="xl:text-[0.8rem] lg:text-[0.6rem] md:text-[0.5rem] mb-[1rem] mt-[1rem] text-[#6E8292]">
                             Maximize your enjoyment and engagement through gamification techniques to motivate you by using game elements in learning environments
                         </p>
+                        <div class="h-[0.3rem]  rounded-[1rem] hidden bg-transparent w-[14rem] changebackround"></div>
+
                     </div>
                     <div class="w-[28rem] h-full  flex flex-col justify-center">
                         <img class="w-[32rem] h-[32rem] z-10 " src="{% static 'ActivityEvents/Knowledgecuate.png' %}" alt="">
@@ -365,9 +543,11 @@
                         <h1 class="xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.3rem]  text-[#464747] text-left">
                             Gamification of learning
                         </h1>
-                        <p class="xl:text-[0.8rem] lg:text-[0.6rem] md:text-[0.5rem] mt-[1rem] text-[#6E8292]">
+                        <p class="xl:text-[0.8rem] lg:text-[0.6rem] md:text-[0.5rem] mt-[1rem] mb-[1rem] text-[#6E8292]">
                             Maximize your enjoyment and engagement through gamification techniques to motivate you by using game elements in learning environments
                         </p>
+                        <div class="h-[0.3rem]  rounded-[1rem] hidden bg-transparent w-[14rem] changebackround"></div>
+
                     </div>
                     <div class="w-[28rem] h-full  flex flex-col justify-center">
                         <img class="w-[32rem] h-[32rem] z-10 " src="{% static 'ActivityEvents/Knowledgecuate.png' %}" alt="">
@@ -418,23 +598,7 @@
 
 
 
-    <section class=" w-[94%] mx-auto justify-center items-center mb-[3rem] ">
-        <h1 class="text-[3.5rem] font-medium  text-center text-[#50A8F5]	">Popular Events</h1>
-        <div class="w-full xl:h-[26rem] lg:h-[22rem] md:h-[20rem] mt-[2rem] bg-[#F8FCFF] rounded-[0.3rem] rounded-b-[1.2rem] flex flex-row justify-center items-center relative ">
-            <div class="xl:w-[28rem] lg:w-[25rem] md:w-[22rem] h-full flex flex-col mb-[8rem] justify-center items-center ">
-                <h1 class="xl:text-[3.5rem] lg:text-[3rem] md:text-[2.5rem] mt-[5rem] text-left font-medium text-[#464747]">Hub Thursday</h1>
-                <p class="xl:text-[1.2rem] lg:text-[1rem] md:text-[0.8rem] mt-[1rem] text-[#6E8292] font-medium text-center">It is weekly events for Hub200
-                    that we do every Thursday with different activities and it includes activities such as</p>
-            </div>
 
-            <div class="xl:w-[37rem] lg:w-[34rem] md:w-[30rem] h-full flex items-center justify-center ml-[4rem] ">
-                <video id="my-video" class="xl:w-[35rem] xl:h-[22rem] lg:w-[30rem] lg:h-[18rem] md:w-[26rem] md:h-[16rem] rounded-[0.3rem] rounded-b-[1rem]  video-js vjs-custom-theme" muted controls autoplay loop data-setup='{}'>
-                    <source src="{% static 'ActivityEvents/hubvideo.mp4' %}" type="video/mp4" />
-                 </video>
-            </div>
-        </div>
-
-    </section>
     <section id="hubevents" class=" w-[94%] mx-auto flex flex-col justify-center items-center ">
         
         <h1 class="text-[3.5rem] font-medium  text-center text-[#50A8F5]	">Hub200's Events</h1>
@@ -454,7 +618,7 @@
                         <div class="xl:w-[27rem] xl:h-[17rem] lg:w-[24rem] lg:h-[14rem] md:w-[22rem] md:h-[13rem] flex flex-col items-center bg-[#fcfcfc] rounded-[0.3rem] rounded-b-[1.2rem] drop-shadow-xl shadow-[#BABDC2] shadow-sm absolute xl:top-[10rem] xl:left-[15rem] lg:top-[7rem] lg:left-[12rem] md:top-[7rem] md:left-[12rem]">
                           <div class="w-full h-3/4	 flex flex-col items-center">
                               <h1 class="xl:text-[2rem] lg:text-[1.6rem] md:text-[1.4rem] text-[#464747] font-medium mt-[1rem]">{{event.title}}</h1>
-                              <p class="xl:text-[1rem] lg:text-[0.8rem] md:text-[0.6rem] text-[#6E8292] font-medium mt-[1rem]">{{event.description}}</p>
+                              <p class="xl:text-[1rem] lg:text-[0.8rem] md:text-[0.6rem] text-[#6E8292] font-medium mt-[1rem] text-center"> {{event.description}}</p>
                           </div>
                           <div class="w-11/12 h-1/4	 flex justify-between absolute bottom-[1rem]">
                               <div class="xl:w-[17rem] xl:h-[5rem] lg:w-[15rem] lg:h-[4rem] md:w-[15rem] md:h-[4rem] flex flex-col justify-center items-center   ">
@@ -487,7 +651,115 @@
 
     </section>
 
+    <section class=" w-[94%] mx-auto justify-center items-center mb-[3rem] mt-[3rem] ">
+      <h1 class="text-[3.5rem] font-medium  text-center text-[#50A8F5]	">Popular Events</h1>
+      <div class="w-full xl:h-[26rem] lg:h-[22rem] md:h-[20rem] mt-[2rem] bg-[#F8FCFF] rounded-[0.3rem] rounded-b-[1.2rem] flex flex-row justify-center items-center relative ">
+          <div class="xl:w-[28rem] lg:w-[25rem] md:w-[22rem] h-full flex flex-col mb-[8rem] justify-center items-center ">
+              <h1 class="xl:text-[3.5rem] lg:text-[3rem] md:text-[2.5rem] mt-[5rem] text-left font-medium text-[#464747]">Hub Thursday</h1>
+              <p class="xl:text-[1.2rem] lg:text-[1rem] md:text-[0.8rem] mt-[1rem] text-[#6E8292] font-medium text-center">It is weekly events for Hub200
+                  that we do every Thursday with different Thursday with different  activities and it includes activities such as</p>
+          </div>
 
+          <div class="xl:w-[37rem] lg:w-[34rem] md:w-[30rem] h-full flex items-center justify-center ml-[4rem] ">
+              <video id="my-video" class="xl:w-[35rem] xl:h-[22rem] lg:w-[30rem] lg:h-[18rem] md:w-[26rem] md:h-[16rem] rounded-[0.3rem] rounded-b-[1rem]  video-js vjs-custom-theme" muted controls autoplay loop data-setup='{}'>
+                  <source src="{% static 'ActivityEvents/hubvideo.mp4' %}" type="video/mp4" />
+               </video>
+          </div>
+      </div>
+
+  </section>
+
+    <section class="w-[94%] mx-auto flex flex-col justify-center items-center mt-[6rem] mb-[2rem]">
+    
+      <div class="xl:w-[70rem] xl:h-[40rem] lg:w-[60rem]  lg:h-[40rem] md:w-[50rem]  md:h-[35rem] flex flex-row items-center">
+        <div class="container xl:w-[480px] xl:h-[480px] lg:w-[420px] lg:h-[420px] md:w-[420px] md:h-[420px]  rounded-[50%] relative border-[10px] border-black">
+          <div class="icon relative left-[-50%] w-full h-full flex justify-center items-center cursor-pointer">
+            {% for peoplereview in AllPeopleReview %}
+            <div class="imgpeoplereview"  style="--i: {{ forloop.counter }};" data-id="content{{forloop.counter}}">
+              <img class="absolute top-0 left-0 w-full h-full rounded-full object-cover" src="{{peoplereview.image.url}}" alt="" >
+            </div>
+            {% endfor %}
+  
+          </div>
+          <div class="content">
+            {% for peoplereview in AllPeopleReview %}
+  
+            <div id="content{{forloop.counter}}" class="contentbox">
+              <div class="card  xl:w-[15rem] xl:h-[15rem] lg:w-[13rem] lg:h-[13rem] md:w-[10rem] md:h-[10rem] flex flex-col ">
+                <div class="imgbox xl:w-[10rem] xl:h-[10rem] lg:w-[7.5rem] lg:h-[7.5rem] md:w-[6rem] md:h-[6rem]">
+                  <img class="w-full h-full object-cover"  src="{{peoplereview.image.url}}" alt="">
+                </div>
+                <div class="textbox  ">
+                  <p class="text-center xl:text-[0.6rem] lg:text-[0.45rem] md:text-[0.4rem]">{{peoplereview.description}}</p>
+                </div>
+              </div>
+            </div>
+  
+            {% endfor %}
+  
+          </div>
+  
+        </div>
+
+        <div class="xl:w-[28rem] lg:w-[22rem] md:w-[20rem] h-full flex flex-col mb-[8rem] justify-center items-center xl:ml-[8rem] lg:ml-[8rem] md:ml-[3.5rem] ">
+          <h1 class="xl:text-[3.5rem] lg:text-[3rem] md:text-[2.6rem] mt-[5rem] text-left font-medium text-[#464747]">People Review</h1>
+          <p class="xl:text-[1.2rem] lg:text-[1rem] md:text-[0.75rem] mt-[1rem] text-[#6E8292] font-medium text-center">Discover what people are saying about our events, how they've improved their skills, and the beautiful environment they've experienced, all while praising our excellent instructors.!</p>
+      </div>
+      </div>
+    </section>
+
+
+
+
+    <section class=" w-[94%] mx-auto flex flex-col justify-center items-center mt-[2rem] mb-[5rem] relative ">
+
+
+
+
+<div class="carousel xl:w-[55rem] xl:h-[50rem] lg:w-[55rem] lg:h-[45rem] md:w-[50rem] md:h-[40rem] flex flex-col items-center  relative" data-carousel>
+  <div class="w-[60rem] h-[2rem] flex flex-row justify-center items-center ">
+    <h1 class="xl:text-[2rem] lg:text-[1.6rem] md:text-[1.4rem] ">What Are The Most <span class="text-[#50A8F5]">Common Questions</span> ?</h1>
+</div>
+                  
+  <ul class="m-0 p-0 w-full h-full"  data-slides>
+
+    <li class="slide w-full h-3/5 absolute flex flex-col mt-[4rem]  items-center 	" data-active>
+        <div class="w-full absolute flex justify-between items-center z-10" >
+            <button class="carousel-button prev mt-[4rem] xl:h-[3.5rem] xl:w-[3.5rem] lg:h-[3rem] lg:w-[3rem] md:h-[2.5rem] md:w-[2.5rem] bg-[#50A8F5] flex justify-center items-center z-10 cursor-pointer rounded-[0.25rem] drop-shadow-md" data-carousel-button="prev"><box-icon size="3rem" color="#ffffff" name='left-arrow-alt'></box-icon></button>
+            <button class="carousel-button next  mt-[4rem] xl:h-[3.5rem] xl:w-[3.5rem] lg:h-[3rem] lg:w-[3rem] md:h-[2.5rem] md:w-[2.5rem] bg-[#50A8F5] flex justify-center items-center z-10 cursor-pointer rounded-[0.25rem] drop-shadow-md" data-carousel-button="next"><box-icon size="3rem" color="#ffffff" name='right-arrow-alt' ></box-icon></button>
+        </div>
+      <div class="xl:w-[29rem] xl:h-[14rem] lg:w-[27rem] lg:h-[13rem] md:w-[24rem] md:h-[11rem] flex flex-col  relative bg-white drop-shadow-xl rounded-[1rem]">
+        <h1 class="xl:text-[1.3rem] lg:text-[1.1rem] md:text-[0.9rem] m-[1rem]"> - How can You Register Into Our Events?</h1>
+        <p class="xl:text-[1rem] lg:text-[0.9rem] md:text-[0.8rem] m-[1rem]">You can register for our events after signing up on our website. We will collect your information to add you to our list and look forward to your participation! </p>
+      </div>
+    </li>
+
+    <li class="slide w-full h-3/5 absolute flex flex-col mt-[4rem] items-center	" data-active>
+      <div class="w-full absolute flex justify-between items-center z-10" >
+          <button class="carousel-button prev mt-[4rem] xl:h-[3.5rem] xl:w-[3.5rem] lg:h-[3rem] lg:w-[3rem] md:h-[2.5rem] md:w-[2.5rem] bg-[#50A8F5] flex justify-center items-center z-10 cursor-pointer rounded-[0.25rem] drop-shadow-md" data-carousel-button="prev"><box-icon size="3rem" color="#ffffff" name='left-arrow-alt'></box-icon></button>
+          <button class="carousel-button next mt-[4rem] xl:h-[3.5rem] xl:w-[3.5rem] lg:h-[3rem] lg:w-[3rem] md:h-[2.5rem] md:w-[2.5rem] bg-[#50A8F5] flex justify-center items-center z-10 cursor-pointer rounded-[0.25rem] drop-shadow-md" data-carousel-button="next"><box-icon size="3rem" color="#ffffff" name='right-arrow-alt' ></box-icon></button>
+      </div>
+      <div class="xl:w-[29rem] xl:h-[14rem] lg:w-[27rem] lg:h-[13rem] md:w-[24rem] md:h-[11rem] flex flex-col  relative bg-white drop-shadow-xl rounded-[1rem]">
+        <h1 class="xl:text-[1.3rem] lg:text-[1.1rem] md:text-[0.9rem] m-[1rem]"> - What do we provide in our events?</h1>
+        <p class="xl:text-[1rem] lg:text-[0.9rem] md:text-[0.8rem] m-[1rem]">We provide you with the best environment for learning, communication, and forming new friendships, along with excellent opportunities to receive job recommendations!</p>
+      </div>
+  </li>
+
+  </ul>
+  <div class="w-full h-2/5 flex flex-row justify-center items-center mt-[5.5rem] ">
+    <div id="map" class="xl:h-[280px] xl:w-[520px] lg:h-[260px] lg:w-[500px] md:h-[220px] md:w-[460px] rounded-[1rem] z-[1]"></div>
+    <div class="xl:w-[380px] lg:w-[350px] md:w-[300px] h-full flex flex-col items-center ml-[1rem] mt-[6rem]">
+      <h1 class="text-center xl:text-[2.6rem] lg:text-[2.2rem] md:text-[2rem]">Our <span class="text-[#50A8F5]">Location</span></h1>
+      <p class="text-center xl:text-[0.9rem] lg:text-[0.8rem] md:text-[0.7rem] mt-[1rem] ml-[1rem]">You can visit us whenever you'd like and come to enjoy our events every Thursday, including English Meetups and many other amazing activities. We'll be delighted to welcome you!</p>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+
+    </section>
 
     <section class=" w-[94%] mx-auto justify-center items-center mt-[6rem] mb-[5rem] ">
 
@@ -526,7 +798,7 @@
                           <span class="loader blue2"></span>
                            
                        <div class="check-wrapper">
-                      <svg version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
+                      <svg class="xl:mt-[20px] xl:ml-[24px] lg:mt-[16px] lg:ml-[20px] md:mt-[13px] md:ml-[17px]" version="1.1"width="50px" height="26px" viewBox="0 0 64.5 37.4">
                       <polyline class="check" points="5,13 21.8,32.4 59.5,5 "/>
                       </svg>
                        </div>
@@ -579,8 +851,50 @@ ScrollReveal({
 });
 ScrollReveal().reveal('.activityeventscontainer', { origin: 'top' });
 ScrollReveal().reveal('.hubthursdaycontainer', { origin: 'bottom' });
+
+
+
+var map = L.map('map').setView([33.31412416262699, 44.42276682842836], 20); 
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+var newLatitude = 33.31412416262699; 
+var newLongitude = 44.42276682842836; 
+var specificLocation = L.marker([newLatitude, newLongitude]).addTo(map);
+specificLocation.bindPopup("Baghdad-Computiq").openPopup();
+
+
+
+var typing=new Typed(".text", {
+       strings: ["", "Where can you place yourself in an environment that will help you develop your skills to new levels!"],
+       typeSpeed: 21,
+       backSpeed: 25,
+       loop: true,
+   });
 })
 
+
+
+
+
+let imgpeoplereview = document.querySelectorAll('.imgpeoplereview')
+let contentbox = document.querySelectorAll('.contentbox')
+for(let i=0; i<imgpeoplereview.length;i++){
+  imgpeoplereview[i].addEventListener('mouseover',function(){
+    for(let i=0; i<contentbox.length; i++){
+      contentbox[i].className = 'contentbox'
+    }
+    document.getElementById(this.dataset.id).className='contentbox active'
+
+    for (let i=0; i<imgpeoplereview.length; i++){
+      imgpeoplereview[i].className='imgpeoplereview'
+    }
+    this.className='imgpeoplereview active'
+  })
+}
+
 </script>
+
+
 
 {% endblock %}
