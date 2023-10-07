@@ -139,12 +139,19 @@ def signup(request):
             user = CustomUser.objects.create_user(username=username, email=email, password=password,phone_number=phone_number,photo=photo)
             # user.phone_number = phone_number
             # user.image = photo
-            user = authenticate(email=email, password=password)
-            user.save()
             if user:
-                login(request, user)
-                send_welcome_email(email, username)
-                return HttpResponseRedirect(reverse('signingupdone'))
+                user = authenticate(email=email, password=password)
+                if user:
+                    user.save()
+                    login(request, user)
+                    send_welcome_email(email, username)
+                    return HttpResponseRedirect(reverse('signingupdone'))
+                else:
+                    return render(request, 'ActivityEvents/errorpage.html', {'error': 'Authentication failed'})
+            else:
+                return render(request, 'ActivityEvents/errorpage.html', {'error': 'User creation failed'})
+
+
     return render(request, 'ActivityEvents/signup.html')
     
 
@@ -316,3 +323,10 @@ def contactus(request):
         contactusform = Contact_us(name=usernameinputcontactusform, email=emailinputcontactusform,message=messageinputcontactusform)
         contactusform.save()
         return HttpResponseRedirect(reverse('home'))
+    
+
+
+
+
+def custom_404(request, exception):
+    return render(request, 'ActivityEvents/errorpage.html', status=404)
