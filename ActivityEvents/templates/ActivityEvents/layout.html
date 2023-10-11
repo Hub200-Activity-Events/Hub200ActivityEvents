@@ -6,6 +6,7 @@
     <head>
 
         <title>{% block title %}ActivityEvents{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'ActivityEvents/styless.css' %}">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -26,7 +27,10 @@
         {% block script %}
         {% endblock %}
         <style> 
-
+        html,body{
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
         .activelink{
             color: #50A8F5 ;
             text-decoration: none;
@@ -38,34 +42,34 @@
     </head>
     <body>
         <header class=" fixed top-0 left-0 right-0 mx-auto p-2 px-5 w-[99%] h-[5rem] bg-[#E8F5FF] flex justify-between items-center z-50 drop-shadow-md	">
-            <img class="w-[8rem] h-[2rem]" src="{% static 'ActivityEvents/hub200logo.png' %}" />
-            <div class=" w-full h-[25rem] mt-[21.8rem]  xl:hidden lg:hidden md:flex flex-col items-end  mr-[2rem] ">
-                <button onclick="changeicon()" id="burgericon" class="w-[2rem] h-[2rem] mr-[3.9rem] ">
-                    <box-icon size="3rem" name='menu'></box-icon>
+            <img class="xl:w-[8rem] xl:h-[2rem] lg:w-[8rem] lg:h-[2rem] md:w-[7rem] md:h-[1.8rem] min-[320px]:w-[6rem] min-[320px]:h-[1.5rem]" src="{% static 'ActivityEvents/hub200logo.png' %}" />
+            <div class=" w-full h-[3rem]  xl:hidden lg:hidden md:flex min-[320px]:flex  flex-col items-end ">
+                <button onclick="changeicon()" id="burgericon" class="w-[2rem] h-[2rem] md:mr-[3.9rem] min-[320px]:mr-[2.5rem] ">
+                    <box-icon :size="iconSize" name='menu'></box-icon>
                 </button>
-                <div id="menubar" class="w-[9rem] bg-white drop-shadow-lg rounded-[1rem] h-[18rem] mt-[1.5rem] hidden	  ">
-                    <ul class="w-full h-full flex flex-col items-center mt-[0.4rem]">
+                <div id="menubar" class="md:w-[9rem] md:h-[16rem]  min-[320px]:w-[6.5rem]  min-[320px]:h-[16rem] bg-white drop-shadow-lg rounded-[1rem] mt-[1.5rem] hidden	  ">
+                    <ul class="w-full h-full flex flex-col items-center mt-[0.1rem]">
                         {% for link in navigationlinks %}
-                        <li class="mt-[1rem]"><a class='h-full text-[1rem] leading-loose  font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
+                        <li class="md:mt-[0.5rem]  min-[320px]:mt-[0.15rem]"><a class='h-full md:text-[0.7rem]  min-[320px]:text-[0.6rem] leading-loose  font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
                         {% endfor %}
                     <ul>
                         {% if user.is_authenticated %}
-                <div class="flex flex-col justify-center items-center mt-[0.6rem]">
+                <div class="flex flex-col justify-center items-center md:mt-[0.6rem]  min-[320px]:mt-[0.4rem]">
                     {% if user.photo %}
-                    <img class="w-[3rem] h-[3rem] rounded-full" src="{{user.photo.url}}" alt="">
+                    <img class="md:w-[2rem] md:h-[2rem]  min-[320px]:w-[1.5rem]  min-[320px]:h-[1.5rem] rounded-full" src="{{user.photo.url}}" alt="">
                     {% endif %}
-                    <h1 class="text-[1rem]  text-[#464747] font-medium">{{ user.username }}</h1>
+                    <h1 class="text-[0.8rem]  text-[#464747] font-medium">{{ user.username }}</h1>
                 
-                    <button class="w-[4.7rem] mt-[0.3rem] h-[1.7rem] text-[0.7rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white"><a href="{% url 'logoutuser' %}">Logout</a></button>
+                    <button class="md:w-[5.5rem] md:mt-[0.5rem]  min-[320px]:mt-[0.2rem] md:h-[1.6rem]  min-[320px]:w-[4.5rem]  min-[320px]:h-[1.1rem] md:text-[0.7rem]  min-[320px]:text-[0.5rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white"><a href="{% url 'logoutuser' %}">Logout</a></button>
                 </div>
                 {% else %}
                 <div>                
-                    <button class="w-[7rem] h-[2.6rem] xl:text-[0.8rem] lg:text-[0.7rem] md:text-[0.65rem] mt-[2rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white"><a href="{% url 'signin' %}">GetStarted Now</a></button>
+                    <button class="md:w-[6rem] md:h-[2.6rem]  min-[320px]:w-[5rem]  min-[320px]:h-[1.7rem] xl:text-[0.8rem] lg:text-[0.7rem] md:text-[0.65rem]  min-[320px]:text-[0.5rem] mt-[2rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white px-[0.3rem]"><a href="{% url 'signin' %}">GetStarted Now</a></button>
                 </div>
                 {% endif %}
                 </div>
             </div>
-            <nav class="xl:flex lg:flex md:hidden flex-row justify-center items-center  ml-[3.5rem] ">
+            <nav class="xl:flex lg:flex md:hidden min-[320px]:hidden  flex-row justify-center items-center  ml-[3.5rem] ">
                 <ul class="flex flex-row justify-center items-center">
                     {% for link in navigationlinks %}
                     <li><a class='text-[0.8rem] mr-[1.5rem] font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
@@ -73,7 +77,7 @@
                     <ul>
             </nav>
 
-            <div class="xl:flex lg:flex md:hidden">
+            <div class="xl:flex lg:flex md:hidden min-[320px]:hidden">
                 {% if user.is_authenticated %}
                 <div class="flex flex-row justify-center items-center">
                     {% if user.photo %}
@@ -93,7 +97,7 @@
 
 
         </header>
-        <main class="min-h-screen pt-[5rem] box-border scroll-smooth overflow-x-hidden flex flex-col items-center">
+        <main class="min-h-screen pt-[5rem]  box-border scroll-smooth overflow-x-hidden flex flex-col items-center">
             <div id="toastbox" class="z-50"></div>
 
             {% block body %}
@@ -101,18 +105,18 @@
             {% endblock %}
         </main>
         <footer class="bg-[#E8F5FF] h-[17rem] flex flex-col  items-center ">
-            <img class="w-[8rem] h-[2rem] mt-[1rem]" src="{% static 'ActivityEvents/hub200logo.png' %}" />
+            <img class="xl:w-[8rem] xl:h-[2rem] lg:w-[8rem] lg:h-[2rem] md:w-[7rem] md:h-[1.8rem] min-[320px]:w-[6rem] min-[320px]:h-[1.5rem] mt-[1rem]" src="{% static 'ActivityEvents/hub200logo.png' %}" />
             <div class="flex flex-row justify-center items-center mt-[1rem] ml-[3rem]">
                 <ul class="flex flex-row justify-center items-center ">
                     {% for link in navigationlinks %}
-                    <li><a class='text-[1rem] mr-[1.5rem] font-semibold no-underline 'href="{% url link.href %}">{{link.text}}</a></li>
+                    <li><a class='xl:text-[1rem] xl:mr-[1.5rem] lg:text-[1rem] lg:mr-[1.5rem] md:text-[0.9rem] md:mr-[1.4rem] min-[320px]:text-[0.8rem] min-[320px]:mr-[0.5rem] font-semibold no-underline 'href="{% url link.href %}">{{link.text}}</a></li>
                     {% endfor %}
                 <ul>
-                    <button onclick="scrollfunction('curved')" class="flex justify-center items-center :w-[3rem] xl:h-[3rem] lg:w-[3rem] lg:h-[3rem] md:w-[2rem] md:h-[2rem] ml-[2rem] rounded-full bg-white rounded-[1.2rem]   text-[#464747] hover:text-white  font-medium "><box-icon type='solid' color="#464747" size="1.4rem" name='chevrons-up'></box-icon></button>
+                    <button onclick="scrollfunction('curved')" class="flex justify-center items-center xl:w-[3rem] xl:h-[3rem] lg:w-[3rem] lg:h-[3rem] md:w-[2rem] min-[320px]:h-[2rem] min-[320px]:w-[2rem] md:h-[2rem] xl:ml-[2rem] lg:ml-[2rem] md:ml-[2rem] min-[320px]:ml-[0.1rem] rounded-full bg-white rounded-[1.2rem]   text-[#464747] hover:text-white  font-medium "><box-icon type='solid' color="#464747" size="1.4rem" name='chevrons-up'></box-icon></button>
             </div>
-            <div class='w-[10%] flex flex-row h-[4rem] mt-[1rem]'>
-                <div class="bg-white w-[3rem] h-[2.9rem] rounded-full flex justify-center items-center"><a href="https://m.facebook.com/hub200.tiq/"><box-icon class="mt-[0.3rem]" size="2rem" color="#464747" type='logo' name='facebook'></box-icon></a></div>
-                <div class="bg-white w-[3rem] h-[2.9rem] rounded-full ml-[1rem] flex justify-center items-center"><a href="https://www.instagram.com/hub200.tiq/"><box-icon class="mt-[0.3rem]" size="2rem" color="#464747" type='logo' name='instagram'></box-icon></a></div>
+            <div class='w-[30%] flex flex-row h-[4rem] mt-[1rem] justify-center  items-center'>
+                <div class="bg-white xl:w-[3rem] xl:h-[2.9rem] lg:w-[3rem] lg:h-[2.9rem] md:w-[3rem] md:h-[2.9rem]  min-[320px]:w-[3.2rem] min-[320px]:h-[2.5rem] rounded-full flex justify-center items-center"><a href="https://m.facebook.com/hub200.tiq/"><box-icon class="mt-[0.3rem]" size="2rem" color="#464747" type='logo' name='facebook'></box-icon></a></div>
+                <div class="bg-white xl:w-[3rem] xl:h-[2.9rem] lg:w-[3rem] lg:h-[2.9rem] md:w-[3rem] md:h-[2.9rem]  min-[320px]:w-[3.2rem] min-[320px]:h-[2.5rem] rounded-full ml-[1rem] flex justify-center items-center"><a href="https://www.instagram.com/hub200.tiq/"><box-icon class="mt-[0.3rem]" size="2rem" color="#464747" type='logo' name='instagram'></box-icon></a></div>
             </div>
             <div class="h-[1px] w-[15rem] bg-black"></div>
             <p class='text-[0.7rem] mt-[0.4rem] text-[#5F5F5F] font-medium'>Contact email: +9647809563573</p>
@@ -121,18 +125,34 @@
         </footer>
     </body>
     <script>
-        function changeicon(){
-            const burgericon = document.getElementById('burgericon');
-        const menubar = document.getElementById('menubar');
-        const boxIcon = burgericon.querySelector('box-icon');
         
-        if (boxIcon.getAttribute('name') === 'menu') {
-            boxIcon.setAttribute('name', 'x-circle');
-            menubar.style.display = 'flex'; // Show the div
-        } else {
-            boxIcon.setAttribute('name', 'menu');
-            menubar.style.display = 'none'; // Hide the div
-        }
-    }
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const screenwidth=window.innerWidth
+        var iconsize = '2.5rem';
+
+if (screenwidth > 450) {
+    iconsize = '3rem';
+}
+    document.querySelector('box-icon[name="menu"]').setAttribute('size', iconsize);
+        
+})
+function changeicon(){
+
+const burgericon = document.getElementById('burgericon');
+const menubar = document.getElementById('menubar');
+const boxIcon = burgericon.querySelector('box-icon');
+
+if (boxIcon.getAttribute('name') === 'menu') {
+    boxIcon.setAttribute('name', 'x-circle');
+    menubar.style.display = 'flex'; // Show the div
+} else {
+    boxIcon.setAttribute('name', 'menu');
+    menubar.style.display = 'none'; // Hide the div
+}
+
+}
+
     </script>
 </html>

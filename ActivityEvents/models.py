@@ -43,7 +43,7 @@ class Event_registration(models.Model):
     date_of_birth = models.DateField(null=True)
     gender=models.CharField(max_length=50,null=True)
     guests = models.CharField(max_length=50,null=True)
-    comment = models.CharField(max_length=50)
+    comment = models.CharField(max_length=50,null=True)
     status = models.CharField(max_length=50,default="pending")
     def __str__(self):
         return f"{self.event} - {self.Username}"
