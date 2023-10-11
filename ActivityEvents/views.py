@@ -61,26 +61,35 @@ def registrations(request):
         Username = request.POST.get('UsernameRegistration')
         Phonenumber = request.POST.get('PhonenumberRegistration')
         Email = request.POST.get('EmailRegistration')
-        Dateofbirth = request.POST.get('DateofbirthRegistration')
-        location = request.POST.get('LocationRegistration')
-        event_id = request.POST.get('EventsRegistration')
-        Guests = request.POST.get('GuestsRegistration')
-        Comment = request.POST.get('CommentRegistration')
+        date_of_birth = request.POST.get('DateofbirthRegistration')
+        Location = request.POST.get('LocationRegistration')
+        EventsRegistration = request.POST.get('EventsRegistration')
+        guests = request.POST.get('GuestsRegistration')
+        comment = request.POST.get('CommentRegistration')
         gender=request.POST.get('gender')
-        event_id = request.POST.get('EventsRegistration')
-        event = Events.objects.get(pk=event_id)
+        print(Username)
+        print(Phonenumber)
+        print(Email)
+        print(date_of_birth)
+        print(Location)
+        print(guests)
+        print(comment)
+        print(gender)
+        print(EventsRegistration)
+
+        event = Events.objects.get(pk=EventsRegistration)
         registration = Event_registration(
                 Username=Username,
                 Phonenumber=Phonenumber,
                 Email=Email,
-                date_of_birth=Dateofbirth,
-                Location=location,
-                guests=Guests,
-                comment=Comment,
+                date_of_birth=date_of_birth,
+                Location=Location,
+                guests=guests,
+                comment=comment,
                 gender=gender,
                 event=event 
-
             )
+        print(registration)
         registration.save()
         return HttpResponseRedirect(reverse('home'))
     else:

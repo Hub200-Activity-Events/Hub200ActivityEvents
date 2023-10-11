@@ -321,6 +321,10 @@
     color: #ffffff;
   }
   
+
+
+
+  
   
   @media screen and (max-width: 1000px) {
     body {
@@ -359,26 +363,173 @@
       padding-bottom: 340px;
     }
   }
-  @media screen and (max-width: 500px) {
+  @media (max-width: 790px) {
+    .container{
+    position: relative;
+    width: 740px;
+    height: 2300px;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    padding: 5px;
+    color: #fff;
+    display: flex;
+  flex-direction: column;
+    border-radius: 10px;
+    background-color: #ABC5E4;
+  }
+
+  .calendar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: #878895;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 4px 4px #ffffff96;
+
+    
+  }
+  .date-input{
+    margin-top: 1rem;
+    border: 2px solid gray;
+    width: 8rem;
+    height: 2rem;
+    outline: none;
+    border-radius: 6px;
+
+}
+.left .today-date .event-day {
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  .left .today-date .event-date {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+
+
+.placeholderlabel{
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    color: gray;
+    left: 1rem;
+    padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+    margin-top: 0.2rem;
+    transition: all 0.2s ease-in;
+}
+
+
     .calendar .month {
-      height: 75px;
+      height: 105px;
     }
     .calendar .weekdays {
-      height: 50px;
+      height: 80px;
     }
     .calendar .days .day {
-      height: 40px;
-      font-size: 0.8rem;
+      height: 80px;
+      font-size: 1rem;
     }
     .calendar .days .day.active,
     .calendar .days .day.today {
       font-size: 1rem;
     }
     .right .today-date {
-      padding: 20px;
+      padding: 15px;
     }
   }
+
+
+    @media (max-width: 450px) {
+      .container{
+    position: relative;
+    width: 315px;
+    height: 2500px;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+    padding: 5px;
+    color: #fff;
+    display: flex;
+    flex-direction: col;
   
+    border-radius: 10px;
+    background-color: #ABC5E4;
+  }
+
+  .calendar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: #878895;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 4px 4px #ffffff96;
+
+    
+  }
+  .date-input{
+    margin-top: 1rem;
+    border: 2px solid gray;
+    width: 8rem;
+    height: 2rem;
+    outline: none;
+    border-radius: 6px;
+
+}
+.left .today-date .event-day {
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  .left .today-date .event-date {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+
+
+.placeholderlabel{
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    color: gray;
+    left: 1rem;
+    padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+    margin-top: 0.2rem;
+    transition: all 0.2s ease-in;
+}
+
+
+    .calendar .month {
+      height: 80px;
+    }
+    .calendar .weekdays {
+      height: 65px;
+    }
+    .calendar .days .day {
+      height: 65px;
+      font-size: 0.8rem;
+    }
+    .calendar .days .day.active,
+    .calendar .days .day.today {
+      font-size: 0.8rem;
+    }
+    .right .today-date {
+      padding: 10px;
+    }
+  }
+
+
     </style>
     <div class="container">
         <div class="left">
@@ -408,9 +559,9 @@
               <div class="goto">
                 <input type="text" class="date-input" />
                 <label class="placeholderlabel" for="date-input">mm/yyyy</label>
-                <button class="goto-btn">Go</button>
+                <button class="goto-btn xl:w-[3rem] xl:h-[2.6rem] lg:w-[3rem] lg:h-[2.6rem] md:w-[3rem] md:h-[2.6rem] min-[320px]:w-[2rem] min-[320px]:h-[2rem] flex justify-center items-center">Go</button>
               </div>
-              <button class="today-btn">Today</button>
+              <button class="today-btn xl:w-[3rem] xl:h-[2.6rem] lg:w-[3rem] lg:h-[2.6rem] md:w-[3rem] md:h-[2.6rem] min-[320px]:w-[2rem] min-[320px]:h-[2rem] flex justify-center items-center">Today</button>
             </div>
           </div>
         </div>
@@ -478,7 +629,7 @@ document.addEventListener('DOMContentLoaded', function() {
           {
             title: event.fields.title,
             time: event.fields.event_date,
-            image:'media/' +event.fields.image
+            image:'https://hub200activityeventsbucket.s3.amazonaws.com/' +event.fields.image
           },
           // Add other event properties as needed
         ],

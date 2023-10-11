@@ -14,7 +14,7 @@
   letter-spacing:6px;
   color:white;
   overflow: visible;
-  margin-top: 7rem;
+  margin-top: 5rem;
 }
 
 .submit, .loader, .loader-wrapper{
@@ -26,8 +26,7 @@
 
 .submit {
   z-index:2;
-  width:12rem;
-  height:3.5rem;
+
   background: #66b5ff; 
   display:block;
   border-radius: 15rem;
@@ -277,52 +276,54 @@ input[type=date]:focus::-webkit-datetime-edit {
 <section class="h-full w-full flex flex-col items-center justify-center  mb-[1rem] mt-[1rem]">
   {% if user.is_authenticated %}
 
-    <div class="h-[57rem] xl:w-[80rem] lg:w-[62rem] md:w-[59rem] flex flex-col items-center justify-center  mb-[4rem] mt-[3rem] border-[0.2rem] border-[#E8F5FF]">
+    <div class="xl:h-[62rem] lg:h-[62rem] md:h-[62rem] min-[320px]:h-[62rem] xl:w-[80rem] lg:w-[62rem] md:w-[45rem] flex flex-col items-center justify-center  mb-[4rem] mt-[3rem] xl:border-[0.2rem] lg:border-[0.2rem] md:border-[0.0rem] min-[320px]:border-[0.0rem] border-[#E8F5FF]">
 
-      <div  class="w-full  flex flex-row h-full justify-center items-center bg-[#E8F5FF]">
-            <div class="w-4/12 h-full  flex flex-col items-center justify-center  ">
+      <div  class="w-full  flex flex-row h-full justify-center items-center xl:bg-[#E8F5FF] lg:bg-[#E8F5FF] md:bg-white min-[320px]:bg-white ">
+            <div class="w-4/12 h-full  xl:flex lg:flex md:hidden min-[320px]:hidden flex-col items-center justify-center  ">
                <div class="w-full h-full flex flex-col justify-center items-center ">
                 <h1 class="xl:text-[2.5rem] lg:text-[2.1rem] md:text-[2rem] mb-[1rem] font-medium text-[#5F5F5F]">Registration Form</h1>
-                <p class="xl:text-[1rem] lg:text-[0.8rem] md:text-[0.7rem] ml-[1rem] font-normal text-center text-[#5F5F5F]">After completing the registration process, we will be sending a message to your email and we will inform you with date of the event, location and more details!</p>
+                <p class="xl:text-[1rem] lg:text-[0.8rem] md:text-[1.7rem] min-[320px]:text-[0.7rem]  ml-[1rem] font-normal text-center text-[#5F5F5F] ">After completing the registration process, we will be sending a message to your email and we will inform you with date of the event, location and more details!</p>
                    <img class="xl:w-[28rem] xl:h-[26rem] lg:w-[26rem] lg:h-[24rem] md:w-[25rem] md:h-[23rem]" src="{% static 'ActivityEvents/Goodteampana.png' %}" alt="">
                </div>
             </div>
-            <form id="registerform" action="{% url 'registrations'  %}" method="POST"   enctype="multipart/form-data" class="w-8/12 h-full flex flex-col items-center justify-center relative mb-[2rem]">
+            <form id="registerform" action="{% url 'registrations'  %}" method="POST"   enctype="multipart/form-data" class="xl:w-8/12 lg:w-8/12 md:w-full min-[320px]:w-full h-full flex flex-col items-center justify-center relative mb-[2rem]">
                 {% csrf_token %}
-                <div class="xl:w-[45rem] lg:w-[40rem] md:w-[37rem] flex flex-col bg-white drop-shadow-lg rounded-xl  mt-[2rem] items-center h-full">
-                  <div class='xl:w-[40rem] lg:w-[37rem] md:w-[33rem] md:w-[33rem] h-[7rem] mt-[2rem] flex flex-row justify-between '>
+                <h1 class="md:text-[2rem] min-[320px]:text-[1.2rem] mb-[1rem] font-medium text-[#5F5F5F] xl:hidden lg:hidden md:block min-[320px]:block">Registration Form</h1>
+                <p class="md:text-[1rem] min-[320px]:text-[0.65rem] ml-[1rem] font-normal text-center text-[#5F5F5F] xl:hidden lg:hidden md:block min-[320px]:block">After completing the registration process, we will be sending a message to your email and we will inform you with date of the event, location and more details!</p>
+                  <div class="xl:w-[45rem] lg:w-[40rem] md:w-[40rem] min-[320px]:w-[19rem] h-full flex flex-col bg-white drop-shadow-lg rounded-xl  mt-[2rem] items-center h-full border-[0.01rem]  border-[#50A8F5]">
+                  <div class='xl:w-[40rem] lg:w-[37rem] md:w-[33rem] min-[320px]:w-[18rem]  h-[7rem] mt-[2rem] flex flex-row xl:justify-between lg:justify-between md:justify-between min-[320px]:justify-center '>
                     <div class="inputdivparent required" >
-                        <input value="{{user.username}}" name="UsernameRegistration" id="UsernameRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" type="text" required>
+                        <input value="{{user.username}}" name="UsernameRegistration" id="UsernameRegistration" class="inputsclass xl:w-[16rem] xl:h-[4rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[4rem] min-[320px]:w-[8.8rem] min-[320px]:h-[3.1rem]" type="text" required>
                         <label class="placeholderlabel"   for="UsernameRegistration">Username</label>
                         <div class="error"></div>
 
                     </div>
-                    <div class="inputdivparent required ml-[4rem]" >
-                      <input value="{{user.phone_number}}" name="PhonenumberRegistration" id="PhonenumberRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" type="tel" required>
+                    <div class="inputdivparent required xl:ml-[4rem] lg:ml-[4rem] md:ml-[4rem] min-[320px]:ml-[0.5rem]" >
+                      <input value="{{user.phone_number}}" name="PhonenumberRegistration" id="PhonenumberRegistration" class="inputsclass xl:w-[16rem] xl:h-[4rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[4rem] min-[320px]:w-[8.8rem] min-[320px]:h-[3.1rem]" type="tel" required>
                       <label class="placeholderlabel"   for="PhonenumberRegistration">Phone Number</label>
                       <div class="error"></div>
 
                   </div>
                </div>
   
-               <div class='xl:w-[40rem] lg:w-[37rem] md:w-[33rem] h-[7rem] flex flex-row justify-between '>
-                  <div class="inputdivparent required" >
-                      <input value="{{user.email}}" name="EmailRegistration" id="EmailRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" type="email" required>
+               <div class='xl:w-[40rem] lg:w-[37rem] md:w-[33rem] min-[320px]:w-[18rem]  h-[7rem] mt-[2rem] flex flex-row xl:justify-between lg:justify-between md:justify-between min-[320px]:justify-center '>
+                  <div class="inputdivparent required " >
+                      <input value="{{user.email}}" name="EmailRegistration" id="EmailRegistration" class="inputsclass xl:w-[16rem] xl:h-[4rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[4rem] min-[320px]:w-[8.8rem] min-[320px]:h-[3.1rem]" type="email" required>
                       <label class="placeholderlabel"   for="EmailRegistration">Email</label>
                       <div class="error"></div>
 
                   </div>
-                  <div class="inputdivparent required  ml-[4rem] " >
-                      <input name="DateofbirthRegistration" id="DateofbirthRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem] " type="date" required>
+                  <div class="inputdivparent required  xl:ml-[4rem] lg:ml-[4rem] md:ml-[4rem] min-[320px]:ml-[0.5rem] " >
+                      <input name="DateofbirthRegistration" id="DateofbirthRegistration" class="inputsclass xl:w-[16rem] xl:h-[4rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[4rem] min-[320px]:w-[8.8rem] min-[320px]:h-[3.1rem] " type="date" required>
                       <label class="placeholderlabel"   for="DateofbirthRegistration">Date of birth</label>
                       <div class="error"></div>
 
                 </div>
              </div>
   
-             <div class='xl:w-[40rem] lg:w-[37rem] md:w-[33rem] h-[7rem] flex flex-row justify-between '>
+             <div class='xl:w-[40rem] lg:w-[37rem] md:w-[33rem] min-[320px]:w-[18rem]  h-[7rem] mt-[2rem] flex flex-row xl:justify-between lg:justify-between md:justify-between min-[320px]:justify-center '>
               <div class="inputdivparent" >
-                <select id="LocationRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem] " name="LocationRegistration"  >
+                <select id="LocationRegistration" class="inputsclass xl:w-[16rem] xl:h-[4rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[4rem] min-[320px]:w-[8.8rem] min-[320px]:h-[3.1rem] " name="LocationRegistration"  >
                   <option value="baghdad">baghdad</option>
                   <option value="baghdad">Basra</option>
                   <option value="baghdad">Mosul</option>
@@ -332,8 +333,8 @@ input[type=date]:focus::-webkit-datetime-edit {
                   <div class="error"></div>
 
               </div>
-              <div class="inputdivparent" >
-                  <select name="EventsRegistration" id="EventsRegistration" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[3rem]" >
+              <div class="inputdivparent xl:ml-[4rem] lg:ml-[4rem] md:ml-[4rem] min-[320px]:ml-[0.5rem]" >
+                  <select name="EventsRegistration" id="EventsRegistration" class="inputsclass xl:w-[16rem] xl:h-[4rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[4rem] min-[320px]:w-[8.8rem] min-[320px]:h-[3.1rem]" >
                     {% for event in all_events %}
                     <option value="{{event.id}}">{{event.title}}</option>
                     {% endfor %}
@@ -350,40 +351,40 @@ input[type=date]:focus::-webkit-datetime-edit {
           <legend>Choose your gender:</legend>
           <div class="mr-[1rem]">
               <input id="male" type="radio" name="gender"  checked>
-              <label class="male-label h-[3.8rem] w-[3.8rem]  rounded-full flex flex-col justify-center items-center relative bg-[#E3F3FF] transition duration-150" for="male">
+              <label class="male-label xl:h-[3.8rem] xl:w-[3.8rem] lg:h-[3.1rem] lg:w-[3.5rem] md:h-[3.0rem] md:w-[3.0rem] min-[320px]:h-[3.3rem] min-[320px]:w-[3.3rem]  rounded-full flex flex-col justify-center items-center relative bg-[#E3F3FF] transition duration-150" for="male">
                 <box-icon name='male-sign'></box-icon>
-                  <span class="text-[0.8rem] font-medium">Male</span>
+                  <span class="xl:text-[0.8rem] lg:text-[0.8rem] md:text-[0.7rem] min-[320px]:text-[0.6rem] font-medium">Male</span>
               </label>
           </div>
           
           <div class="ml-[1rem]">
               <input type="radio" name="gender" id="female">
-              <label class="female-label h-[3.8rem] w-[3.8rem]  rounded-full flex flex-col justify-center items-center relative bg-[#E3F3FF] transition duration-150" for="female">
+              <label class="female-label xl:h-[3.8rem] xl:w-[3.8rem] lg:h-[3.1rem] lg:w-[3.5rem] md:h-[3.0rem] md:w-[3.0rem] min-[320px]:h-[3.3rem] min-[320px]:w-[3.3rem]  rounded-full flex flex-col justify-center items-center relative bg-[#E3F3FF] transition duration-150" for="female">
                 <box-icon name='female-sign'></box-icon>
-                <span class="text-[0.8rem] font-medium">Female</span>
+                <span class="xl:text-[0.8rem] lg:text-[0.8rem] md:text-[0.7rem] min-[320px]:text-[0.6rem] font-medium">Female</span>
               </label>
           </div>    
       </fieldset>
   
-      <div class='xl:w-[40rem] lg:w-[36.5rem] md:w-[32.5rem] h-[8rem] flex flex-row justify-between mt-[1rem] '>
+      <div class='xl:w-[40rem] lg:w-[36.5rem] md:w-[32.5rem] h-[3rem]  flex flex-row justify-between xl:mb-[5rem] lg:mb-[4rem] md:mb-[3rem] min-[320px]:mb-[3rem] '>
           <div class="inputdivparent" >
-              <textarea id="GuestsRegistration"  class="inputsclass xl:w-[40rem] lg:w-[36.5rem] md:w-[32.5rem] h-[10rem] " name="GuestsRegistration" cols="62" rows="18"></textarea>
+              <textarea id="GuestsRegistration"  class="inputsclass xl:w-[40rem] xl:h-[5rem] lg:w-[36rem] lg:h-[4rem] md:w-[32.5rem] md:h-[4rem] min-[320px]:w-[18rem] min-[320px]:h-[4rem] " name="GuestsRegistration" cols="80" rows="15"></textarea>
               <label class="placeholderlabel"   for="GuestsRegistration">Guests</label>
-              <p class="text-[#5F5F5F]">If you are willing to bring Family or Friends with you, write their names.</p>
+              <p class="text-[#5F5F5F] xl:text-[1rem] lg:text-[0.9rem] md:text-[0.6rem] min-[320px]:text-[0.5rem]">If you are willing to bring Family or Friends with you, write their names.</p>
           </div>
      </div>
   
   
-     <div class='xl:w-[40rem] lg:w-[36.5rem] md:w-[32.5rem] h-[3rem] flex flex-row justify-between mt-[1rem] '>
+     <div class='xl:w-[40rem] lg:w-[36.5rem] md:w-[32.5rem] h-[2.5rem]   flex flex-row justify-between mt-[0.2rem] '>
       <div class="inputdivparent" >
-          <textarea id="CommentRegistration"  class="inputsclass xl:w-[40rem] lg:w-[36.5rem] md:w-[32.5rem] h-[10rem] " name="CommentRegistration" id="" cols="62" rows="18"></textarea>
+          <textarea id="CommentRegistration"  class="inputsclass xl:w-[40rem] xl:h-[5rem] lg:w-[36rem] lg:h-[4rem] md:w-[32.5rem] md:h-[4rem] min-[320px]:w-[18rem] min-[320px]:h-[4rem] " name="CommentRegistration" id="" cols="62" rows="18"></textarea>
           <label class="placeholderlabel"   for="CommentRegistration">Comment</label>
-          <p class="text-[#5F5F5F]" >if you have any comments share it to us!</p>
+          <p class="text-[#5F5F5F] xl:text-[1rem] lg:text-[0.9rem] md:text-[0.6rem] min-[320px]:text-[0.5rem]" >if you have any comments share it to us!</p>
       </div>
   </div>
   
   <div id="buttonwrapper">
-      <button  type="submit" class="submit w-[2rem] h-[3rem]" >Register</button>
+      <button  type="submit" class="submit xl:w-[10rem] xl:h-[2.7rem] lg:w-[10rem] lg:h-[3rem] md:w-[9rem] md:h-[2.7rem] min-[320px]:w-[9rem] min-[320px]:h-[2.8rem]" >Register</button>
          <div class="loader-wrapper">
          <span class="loader white"></span>
          <span class="loader blue"></span>
@@ -404,10 +405,10 @@ input[type=date]:focus::-webkit-datetime-edit {
     
         </div>
         {% else %}
-        <div class="xl:h-[33rem] lg:h-[30rem] md:h-[29rem] xl:w-[65rem] lg:w-[58rem] md:w-[40rem] flex flex-col items-center   mb-[4rem] mt-[1rem] border-[0.1rem] border-[#E8F5FF]">
-          <img class="xl:w-[21rem] xl:h-[20rem]  lg:w-[20rem] lg:h-[18rem] md:w-[18rem] md:h-[17rem] mt-[1rem]" src="{% static 'ActivityEvents/Logincuate.png' %}" alt="">
-          <h1 class="mt-[0.6rem] xl:text-[1.4rem] lg:text-[1.2rem] md:text-[1rem] text-center" >To gain the ability to register for our <span class="text-[#50A8F5] xl:text-[1.5rem] lg:text-[1.4rem] md:text-[1.1rem]">Events</span> <br> you must be logged into the website.</h1>
-          <button class="xl:w-[11rem] xl:h-[3rem] lg:w-[9rem] lg:h-[2.6rem] md:w-[8rem] md:h-[2.6rem] xl:text-[1rem]  lg:text-[0.9rem] md:text-[0.8rem] mt-[1.5rem] text-white bg-[#71B3F1] rounded-[4rem] font-medium"><a href="{% url 'signin' %}">GetStarted Now</a></button>
+        <div class="xl:h-[33rem] lg:h-[30rem] md:h-[29rem] xl:w-[65rem] lg:w-[58rem] md:w-[40rem] min-[320px]:w-[18.5rem] flex flex-col items-center   mb-[4rem] mt-[1rem] border-[0.1rem] border-[#E8F5FF] p-[1rem]">
+          <img class="xl:w-[21rem] xl:h-[20rem]  lg:w-[20rem] lg:h-[18rem] md:w-[18rem] md:h-[17rem] min-[320px]:w-[12rem] min-[320px]:h-[11rem] mt-[1rem]" src="{% static 'ActivityEvents/Logincuate.png' %}" alt="">
+          <h1 class="mt-[0.6rem] xl:text-[1.4rem] lg:text-[1.2rem] md:text-[1rem] min-[320px]:text-[0.8rem] text-center" >To gain the ability to register for our <span class="text-[#50A8F5] xl:text-[1.5rem] lg:text-[1.4rem] md:text-[1.1rem]">Events</span> <br> you must be logged into the website.</h1>
+          <button class="xl:w-[11rem] xl:h-[3rem] lg:w-[9rem] lg:h-[2.6rem] md:w-[8rem] md:h-[2.6rem] min-[320px]:w-[8rem] min-[320px]:h-[2.6rem] xl:text-[1rem]  lg:text-[0.9rem] md:text-[0.8rem] mt-[1.5rem] text-white bg-[#71B3F1] rounded-[4rem] font-medium"><a href="{% url 'signin' %}">GetStarted Now</a></button>
           </h1>
         </div>
 
