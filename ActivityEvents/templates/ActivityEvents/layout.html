@@ -62,16 +62,16 @@
         </style>
     </head>
     <body>
-        <header id="HeaderID" class="headerheightlarge  fixed top-0 left-0 right-0 mx-auto p-2 px-5 w-full  bg-[#E8F5FF] flex justify-between items-center z-50 drop-shadow-md	">
-            <img class="logo-width-large " src="{% static 'ActivityEvents/hub200logo.png' %}"  id="hub200logo" />
+        <header id="HeaderID" class="headerheightlarge   fixed top-0 left-0 right-0 mx-auto p-2 px-5 w-full  bg-[#E8F5FF] flex justify-between items-center z-50 drop-shadow-md	">
+            <img class="logowidthlarge " src="{% static 'ActivityEvents/hub200logo.png' %}"  id="hub200logo" />
             <div class=" w-full h-[3rem]  xl:hidden lg:hidden md:flex min-[320px]:flex  flex-col items-end ">
                 <button onclick="changeicon()" id="burgericon" class="w-[2rem] h-[2rem] md:mr-[3.9rem] min-[320px]:mr-[2.5rem] ">
                     <box-icon :size="iconSize" name='menu'></box-icon>
                 </button>
-                <div id="menubar" class="md:w-[9rem] md:h-[16rem]  min-[320px]:w-[6.5rem]  min-[320px]:h-[16rem] bg-white drop-shadow-lg rounded-[1rem] mt-[1.5rem] hidden	  ">
+                <div id="menubar" class="md:w-[9rem] md:h-[16rem]  min-[320px]:w-[7.5rem]  min-[320px]:h-[15rem] bg-white drop-shadow-lg rounded-[1rem] mt-[1.5rem] hidden p-[0.5rem]	  ">
                     <ul class="w-full h-full flex flex-col items-center mt-[0.1rem]">
                         {% for link in navigationlinks %}
-                        <li class="md:mt-[0.5rem]  min-[320px]:mt-[0.15rem]"><a class='h-full md:text-[0.7rem]  min-[320px]:text-[0.6rem] leading-loose  font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
+                        <li class="md:mt-[0.5rem]  min-[320px]:mt-[0.15rem]"><a class='h-full md:text-[0.7rem]  min-[320px]:text-[0.7rem] leading-loose  font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
                         {% endfor %}
                     <ul>
                         {% if user.is_authenticated %}
@@ -79,7 +79,7 @@
                     {% if user.photo %}
                     <img class="md:w-[2rem] md:h-[2rem]  min-[320px]:w-[1.5rem]  min-[320px]:h-[1.5rem] rounded-full" src="{{user.photo.url}}" alt="">
                     {% endif %}
-                    <h1 class="text-[0.8rem]  text-[#464747] font-medium">{{ user.username }}</h1>
+                    <h1 class="text-[0.7rem]  text-[#464747] font-medium">{{ user.username }}</h1>
                 
                     <button class="md:w-[5.5rem] md:mt-[0.5rem]  min-[320px]:mt-[0.2rem] md:h-[1.6rem]  min-[320px]:w-[4.5rem]  min-[320px]:h-[1.1rem] md:text-[0.7rem]  min-[320px]:text-[0.5rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white"><a href="{% url 'logoutuser' %}">Logout</a></button>
                 </div>
