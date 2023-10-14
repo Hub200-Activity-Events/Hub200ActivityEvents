@@ -41,10 +41,25 @@ The web platform is structured as follows
 ### HTML files:
 
 The HTML files are the files that are rendered to the client. These files are the ones that are responsible for the front end of the web application. These files are present in the templates folder of the Django web application.
++ ./templates/ActivityEvents:
+    * calendar.html - This file has been created to display the available events in the calendar.
+    * display_event.html - This file has been created to display the event details, including the name, description, date, and other relevant information.
+    * errorpage.html - This file has been created to display an error page in case the user enters an incorrect login username or password.
+    * events.html - This file has been created to display all the Events in the database.
+    * home.html - This file has been created to display the Home Page of Hub200, which showcases the events it offers, provides information about ThursdayHub, and includes PeopleReviews.
+    * layout.html - This file has been created to display the Header,Body and Footer of the page and contains all the links and cdn.
+    * registrations.html - This file has been created to facilitate the registration of people into Hub200's events by guiding them through the process of filling out all the required fields, including their name, phone number, location, and more.
+    * signin.html - This file has been created to enable people to log in to the website and also includes the signup form. It has been developed as a single-page application using JavaScript.
+    * signingupdone.html - This file has been created to display a thank you note after succussful signing up.
+
 
 ### CSS files:
 
 The CSS files are the files that are responsible for the styling of the web application. These files are present in the static folder of the Django web application.
+
+### JavaScript files:
+
+The JavaScript files are the files that are responsible for creating dynamic webpage and it contains the validation of all the forms in the website and many other features . These files are present in the static folder of the Django web application.
 
 
 ## Back End:
