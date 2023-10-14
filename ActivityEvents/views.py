@@ -180,11 +180,6 @@ def logoutuser(request):
     return HttpResponseRedirect(reverse('home'))
 
 
-def forgotpassword(request):
-    return render(request,'ActivityEvents/forgotpassword.html')
-
-def resetpassword(request):
-    return render(request,'ActivityEvents/resetpassword.html')
 
 def signingupdone(request):
     return render(request,'ActivityEvents/signingupdone.html') #Maybe you will need to render the signingupdone.html in the signup function(after he comepletes the sign up)
