@@ -29,12 +29,19 @@ def home(request):
     AllPeopleReview = PeopleReviews.objects.all()
     return render(request,'ActivityEvents/home.html', {"all_events":all_events,"AllPeopleReview":AllPeopleReview})
 
+
 def events(request):
     all_events = Events.objects.all()
     next_month = datetime.date.today() + datetime.timedelta(days=30)
     next_week = datetime.date.today() + datetime.timedelta(days=7)
     next_month_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_month])
     next_week_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_week])
+
+    AllEventsCount=Events.objects.all().count()
+    RegisteredPeopleCount = Event_registration.objects.count()
+    AvailableEventsCount=Events.objects.filter(status=True).count()
+    NotAvailableEventsCount=Events.objects.filter(status=False).count()
+
     filter = request.POST.get('filter')
     if request.method == 'POST':
         if filter == 'allevents':
@@ -44,7 +51,11 @@ def events(request):
         elif filter == 'next_month':
             return render(request, 'ActivityEvents/events.html', {'all_events': next_month_events})
     else:
-        return render(request, 'ActivityEvents/events.html', {'all_events': all_events})
+        return render(request, 'ActivityEvents/events.html', {'all_events': all_events,"AllEventsCount":AllEventsCount,
+                                                              "RegisteredPeopleCount":RegisteredPeopleCount,"AvailableEventsCount":AvailableEventsCount,
+                                                              "NotAvailableEventsCount":NotAvailableEventsCount})
+
+
 
 
 
