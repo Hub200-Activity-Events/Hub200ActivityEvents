@@ -121,8 +121,17 @@ Run the application in the default port (Django: 8000).
 ## Backend
 
 ```json
-python -m venv venv
-.\venv\Scripts\activate
+# Create a virtual environment
+python -m venv myenv
+
+# Activate the virtual environment (Windows)
+myenv\Scripts\activate
+
+# Activate the virtual environment (macOS/Linux)
+source myenv/bin/activate
+
+pip install -r requirements.txt
+python manage.py runserver
 pip install -r requirements.txt
 python manage.py runserver
 ```
