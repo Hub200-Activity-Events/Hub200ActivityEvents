@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .models import Events, CustomUser, PeopleReviews, Contact_us
+from .models import Events, CustomUser, PeopleReviews, Contact_us,AskaQuestion
 import datetime
 from django.core import serializers
 from django.http import JsonResponse
@@ -339,6 +339,28 @@ def contactus(request):
         contactusform.save()
         return HttpResponseRedirect(reverse('home'))
     
+
+
+
+
+
+def ASKAQUESTION(request):
+    if request.method == "POST":
+        usernameinputQA = request.POST.get('usernameinputQA')
+        emailinputQA = request.POST.get('emailinputQA')
+        messageinputQA = request.POST.get('messageinputQA')
+        QAform = AskaQuestion(name=usernameinputQA, email=emailinputQA,message=messageinputQA)
+        QAform.save()
+        return HttpResponseRedirect(reverse('home'))
+    
+
+
+
+
+
+
+
+
 
 
 

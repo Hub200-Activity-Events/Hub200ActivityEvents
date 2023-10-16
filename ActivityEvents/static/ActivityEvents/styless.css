@@ -2,6 +2,17 @@
 body{
     font-family: 'Roboto';
 }
+.hoverzoom {
+    transition: transform 0.5s ease-in-out;
+}
+
+.hoverzoom:hover {
+    transform: scale(1.05);
+    background-color: #fafdff;
+    box-shadow: 5px 07px 09px 5px rgba(0, 0, 0, 0.1);
+    color: black;
+}
+
 /* input autofill color sets to white */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -107,7 +118,11 @@ input:-webkit-autofill:focus {
     }
     
     .inputsclass:is(:focus, :valid){
-        border: 2px solid #D2ECFF;
+        border: 2px solid #63a9ea;
+        transition: 0.2s;
+        box-shadow: 1.5px 1.5px 0.9px 0.9px rgba(180, 223, 255, 0.783);
+        padding: 1rem;
+
     }
     .placeholderlabel{
         position: absolute;
@@ -118,6 +133,7 @@ input:-webkit-autofill:focus {
         margin-top: 0.2rem;
         transition: all 0.2s ease-in;
         font-size: 0.9rem;
+        
 
     }
     .inputsclass:is(:focus, :valid) + .placeholderlabel {
@@ -143,7 +159,9 @@ input:-webkit-autofill:focus {
         }
         
         .inputsclass:is(:focus, :valid){
-            border: 2px solid #D2ECFF;
+            box-shadow: 1.1px 1.1px 0.8px 0.8px rgba(180, 223, 255, 0.783);
+            padding: 1rem;
+
         }
         .placeholderlabel{
             position: absolute;
@@ -170,8 +188,8 @@ input:-webkit-autofill:focus {
  
 
         .inputsclass{
-            width: 8.5rem;
-            height: 2.5rem;
+            width: 14.5rem;
+            height: 3rem;
             border: 2px solid gray;
             outline: none;
             border-radius: 6px;
@@ -180,7 +198,9 @@ input:-webkit-autofill:focus {
         }
         
         .inputsclass:is(:focus, :valid){
-            border: 2px solid #D2ECFF;
+            box-shadow: 0.8px 0.8px 0.8px 0.8px rgba(180, 223, 255, 0.783);
+            padding: 1rem;
+
         }
         .placeholderlabel{
             position: absolute;
@@ -206,16 +226,18 @@ input:-webkit-autofill:focus {
     @media (max-width: 450px) {
         .inputsclass{
             width: 8.5rem;
-            height: 2.5rem;
+            height: 3rem;
             border: 2px solid gray;
             outline: none;
-            border-radius: 6px;
+            border-radius: 2px;
             font-size: 0.7rem;
 
         }
         
         .inputsclass:is(:focus, :valid){
-            border: 2px solid #D2ECFF;
+            box-shadow: 1.2px 1.2px 0.7px 0.7px rgba(180, 223, 255, 0.783);
+            padding: 1rem;
+
         }
         .placeholderlabel{
             position: absolute;
