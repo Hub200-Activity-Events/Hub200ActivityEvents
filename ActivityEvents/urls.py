@@ -18,5 +18,7 @@ urlpatterns = [
     path("attendess/<int:attendess_id>", views.attendessDetails, name="attendessDetails"),
     path("contactus", views.contactus, name="contactus"),
     path("eventsRange", views.eventsRange, name="eventsRange"),
+    path("ASKAQUESTION", views.ASKAQUESTION, name="ASKAQUESTION"),
+
 
 ]

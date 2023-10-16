@@ -305,50 +305,32 @@ messageinputQA = document.getElementById('messageinputQA')
 if(formQAs){
   formQAs.addEventListener('submit',(e)=>{
     e.preventDefault()
-    fetch("https://api.apispreadsheets.com/data/HMDr50QOHFeQ1kKI/", {
-      method: "POST",
-      mode: "no-cors",
-      body: JSON.stringify({"data": {"UserName":usernameinputQA.value ,"Email":emailinputQA.value,"Message":messageinputQA.value,}}),
-    }).then(res =>{
-      if (res.status === 201){
-        showToast(successmsgQAform)
-        console.log(emailinputQA.value)
+    const formData3 = new FormData()
+    formData3.append('usernameinputQA', usernameinputQA.value)
+    formData3.append('emailinputQA', emailinputQA.value)
+    formData3.append('messageinputQA', messageinputQA.value)
   
-      }
-      else{
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    fetch('/ASKAQUESTION', {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': csrftoken,
+      },
+        body: formData3,    
+    }).then((response) => {
+      if (response.ok) {
+        showToast(successmsgQAform);
+      } else {
         showToast(errormsgQAform)
-  
       }
     })
   })
+  
+  
 }
 
 
-//QAform
-formQAs = document.getElementById('formQAs')
-usernameinputQA = document.getElementById('usernameinputQA')
-emailinputQA = document.getElementById('emailinputQA')
-messageinputQA = document.getElementById('messageinputQA')
-if(formQAs){
-  formQAs.addEventListener('submit',(e)=>{
-    e.preventDefault()
-    fetch("https://api.apispreadsheets.com/data/HMDr50QOHFeQ1kKI/", {
-      method: "POST",
-      mode: "no-cors",
-      body: JSON.stringify({"data": {"UserName":usernameinputQA.value ,"Email":emailinputQA.value,"Message":messageinputQA.value,}}),
-    }).then(res =>{
-      if (res.status === 201){
-        showToast(successmsgQAform)
-        console.log(emailinputQA.value)
-  
-      }
-      else{
-        showToast(errormsgQAform)
-  
-      }
-    })
-  })
-}
+
 
 formContactUs = document.getElementById('contactusform')
     usernameinputcontactusform = document.getElementById('usernameinputcontactusform')

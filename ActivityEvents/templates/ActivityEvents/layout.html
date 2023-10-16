@@ -81,11 +81,11 @@
                     {% endif %}
                     <h1 class="text-[0.7rem]  text-[#464747] font-medium">{{ user.username }}</h1>
                 
-                    <button class="md:w-[5.5rem] md:mt-[0.5rem]  min-[320px]:mt-[0.2rem] md:h-[1.6rem]  min-[320px]:w-[4.5rem]  min-[320px]:h-[1.1rem] md:text-[0.7rem]  min-[320px]:text-[0.5rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white"><a href="{% url 'logoutuser' %}">Logout</a></button>
+                    <button class="md:w-[5.5rem] md:mt-[0.5rem]  min-[320px]:mt-[0.2rem] md:h-[1.6rem]  min-[320px]:w-[4.5rem]  min-[320px]:h-[1.1rem] md:text-[0.7rem]  min-[320px]:text-[0.5rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold  hoverzoom"><a href="{% url 'logoutuser' %}">Logout</a></button>
                 </div>
                 {% else %}
                 <div>                
-                    <button class="md:w-[6rem] md:h-[2.6rem]  min-[320px]:w-[5rem]  min-[320px]:h-[1.7rem] xl:text-[0.8rem] lg:text-[0.7rem] md:text-[0.65rem]  min-[320px]:text-[0.5rem] mt-[2rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white px-[0.3rem]"><a href="{% url 'signin' %}">GetStarted Now</a></button>
+                    <button class="md:w-[6rem] md:h-[2.6rem]  min-[320px]:w-[5rem]  min-[320px]:h-[1.7rem] xl:text-[0.8rem] lg:text-[0.7rem] md:text-[0.65rem]  min-[320px]:text-[0.5rem] mt-[2rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold px-[0.3rem] hoverzoom"><a href="{% url 'signin' %}">GetStarted Now</a></button>
                 </div>
                 {% endif %}
                 </div>
@@ -106,11 +106,11 @@
                     {% endif %}
                     <h1 class="text-[0.9rem]  ml-[1rem] text-[#464747] font-medium">{{ user.username }}</h1>
                 
-                    <button class="w-[7rem] h-[2.2rem] ml-[1rem] text-[0.7rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white"><a href="{% url 'logoutuser' %}">Logout</a></button>
+                    <button class="w-[7rem] h-[2.2rem] ml-[1rem] text-[0.7rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hoverzoom"><a href="{% url 'logoutuser' %}">Logout</a></button>
                 </div>
                 {% else %}
                 <div>                
-                    <button class="w-[7rem] h-[2.2rem] text-[0.65rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hover:text-[#50A8F5] hover:bg-white"><a href="{% url 'signin' %}">GetStarted Now</a></button>
+                    <button class="w-[7rem] h-[2.2rem] text-[0.65rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hoverzoom"><a href="{% url 'signin' %}">GetStarted Now</a></button>
                 </div>
                 {% endif %}
             </div>
