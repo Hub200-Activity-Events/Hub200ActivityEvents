@@ -294,13 +294,19 @@ input[type=date]:focus::-webkit-datetime-edit {
                   <div class='xl:w-[40rem] lg:w-[37rem] md:w-[33rem] min-[320px]:w-[18rem]  h-[7rem] mt-[2rem] flex flex-row xl:justify-between lg:justify-between md:justify-between min-[320px]:justify-center '>
                     <div class="inputdivparent required" >
                         <input value="{{user.username}}" name="UsernameRegistration" id="UsernameRegistration" class="inputsclass xl:w-[16rem] xl:h-[4rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[4rem] min-[320px]:w-[8.8rem] min-[320px]:h-[2.8rem] xl:rounded-[0.6rem] lg:rounded-[0.6rem] md:rounded-[5rem] min-[320px]:rounded-[5rem]" type="text" required>
+
                         <label class="placeholderlabel"   for="UsernameRegistration">Username</label>
+                        <box-icon class="absolute top-[1rem] right-[1rem] xl:block lg:block md:block min-[320px]:hidden " name='user'></box-icon>
+
                         <div class="error"></div>
 
                     </div>
                     <div class="inputdivparent required xl:ml-[4rem] lg:ml-[4rem] md:ml-[4rem] min-[320px]:ml-[0.5rem]" >
                       <input value="{{user.phone_number}}" name="PhonenumberRegistration" id="PhonenumberRegistration" class="inputsclass xl:w-[16rem] xl:h-[4rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[4rem] min-[320px]:w-[8.8rem]min-[320px]:h-[2.8rem] xl:rounded-[0.6rem] lg:rounded-[0.6rem] md:rounded-[5rem] min-[320px]:rounded-[5rem]" type="tel" required>
+
                       <label class="placeholderlabel"   for="PhonenumberRegistration">Phone Number</label>
+                      <box-icon class="absolute top-[1rem] right-[1rem] xl:block lg:block md:block min-[320px]:hidden " name='phone'></box-icon>
+
                       <div class="error"></div>
 
                   </div>
@@ -309,7 +315,10 @@ input[type=date]:focus::-webkit-datetime-edit {
                <div class='xl:w-[40rem] lg:w-[37rem] md:w-[33rem] min-[320px]:w-[18rem]  h-[7rem] mt-[2rem] flex flex-row xl:justify-between lg:justify-between md:justify-between min-[320px]:justify-center '>
                   <div class="inputdivparent required " >
                       <input value="{{user.email}}" name="EmailRegistration" id="EmailRegistration" class="inputsclass xl:w-[16rem] xl:h-[4rem] lg:w-[16rem] lg:h-[3.2rem] md:w-[14rem] md:h-[4rem] min-[320px]:w-[8.8rem]min-[320px]:h-[2.8rem] xl:rounded-[0.6rem] lg:rounded-[0.6rem] md:rounded-[5rem] min-[320px]:rounded-[5rem]" type="email" required>
+
                       <label class="placeholderlabel"   for="EmailRegistration">Email</label>
+                      <box-icon class="absolute top-[1rem] right-[1rem] xl:block lg:block md:block min-[320px]:hidden " name='envelope'></box-icon>
+
                       <div class="error"></div>
 
                   </div>
@@ -330,6 +339,7 @@ input[type=date]:focus::-webkit-datetime-edit {
                   <option value="baghdad">Najaf</option>
                 </select>
                   <label class="placeholderlabel"   for="EmailRegistration">Location</label>
+
                   <div class="error"></div>
 
               </div>

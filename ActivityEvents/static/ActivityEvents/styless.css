@@ -48,16 +48,24 @@ input:-webkit-autofill:focus {
 
 .inputdivparent.success input {
     border-color: #09c372;
+    box-shadow: 0.5px 0.5px 0.3px 0.3px #09c372;
+
 }
 .inputdivparent.success select {
     border-color: #09c372;
+    box-shadow: 0.5px 0.5px 0.3px 0.3px #09c372;
+
 }
 
 .inputdivparent.error input {
     border-color: #ff3860;
+    box-shadow: 0.5px 0.5px 0.3px 0.3px #ff3860;
+
 }
 .inputdivparent.error select {
     border-color: #ff3860;
+    box-shadow: 0.5px 0.5px 0.3px 0.3px #ff3860;
+
 }
 
 .inputdivparent .error {
