@@ -62,16 +62,16 @@
         </style>
     </head>
     <body>
-        <header id="HeaderID" class="headerheightlarge   fixed top-0 left-0 right-0 mx-auto p-2 px-5 w-full  bg-[#E8F5FF] flex justify-between items-center z-50 drop-shadow-md	">
+        <header id="HeaderID" class="headerheightlarge   fixed top-0 left-0 right-0 mx-auto p-2 xl:px-[6rem] lg:px-[6rem] md:px-5  min-[320px]:px-5 w-full  bg-[#E8F5FF] flex justify-between items-center z-50 drop-shadow-md	">
             <img class="logowidthlarge " src="{% static 'ActivityEvents/hub200logo.png' %}"  id="hub200logo" />
             <div class=" w-full h-[3rem]  xl:hidden lg:hidden md:flex min-[320px]:flex  flex-col items-end ">
                 <button onclick="changeicon()" id="burgericon" class="w-[2rem] h-[2rem] md:mr-[3.9rem] min-[320px]:mr-[2.5rem] ">
                     <box-icon :size="iconSize" name='menu'></box-icon>
                 </button>
-                <div id="menubar" class="md:w-[9rem] md:h-[16rem]  min-[320px]:w-[7.5rem]  min-[320px]:h-[15rem] bg-white drop-shadow-lg rounded-[1rem] mt-[1.5rem] hidden p-[0.5rem]	  ">
+                <div id="menubar" class="md:w-[9rem] md:h-[16rem]  min-[320px]:w-[7.5rem]  min-[320px]:h-[15rem] bg-white drop-shadow-lg rounded-[1rem] mt-[1.5rem] hidden p-[1rem] 	  ">
                     <ul class="w-full h-full flex flex-col items-center mt-[0.1rem]">
                         {% for link in navigationlinks %}
-                        <li class="md:mt-[0.5rem]  min-[320px]:mt-[0.15rem]"><a class='h-full md:text-[0.7rem]  min-[320px]:text-[0.7rem] leading-loose  font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
+                        <li class="md:mt-[0.5rem]  min-[320px]:mt-[0.15rem]"><a class='h-full md:text-[0.8rem]  min-[320px]:text-[0.74rem] leading-loose  font-semibold' href="{% url link.href %}" >{{link.text}}</a></li>
                         {% endfor %}
                     <ul>
                         {% if user.is_authenticated %}
@@ -85,7 +85,7 @@
                 </div>
                 {% else %}
                 <div>                
-                    <button class="md:w-[6rem] md:h-[2.6rem]  min-[320px]:w-[5rem]  min-[320px]:h-[1.7rem] xl:text-[0.8rem] lg:text-[0.7rem] md:text-[0.65rem]  min-[320px]:text-[0.5rem] mt-[2rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold px-[0.3rem] hoverzoom"><a href="{% url 'signin' %}">GetStarted Now</a></button>
+                    <button class="md:w-[6rem] md:h-[2.6rem]  min-[320px]:w-[5rem]  min-[320px]:h-[1.7rem] md:text-[0.7rem]  min-[320px]:text-[0.6rem] mt-[2rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold px-[0.3rem] hoverzoom"><a href="{% url 'signin' %}">Get Started</a></button>
                 </div>
                 {% endif %}
                 </div>
@@ -110,7 +110,7 @@
                 </div>
                 {% else %}
                 <div>                
-                    <button class="w-[7rem] h-[2.2rem] text-[0.65rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hoverzoom"><a href="{% url 'signin' %}">GetStarted Now</a></button>
+                    <button class="w-[7rem] h-[2.2rem] text-[0.9rem] text-white bg-[#71B3F1] rounded-[4rem] font-semibold hoverzoom"><a href="{% url 'signin' %}">Get Started</a></button>
                 </div>
                 {% endif %}
             </div>

@@ -36,24 +36,29 @@ def events(request):
     next_week = datetime.date.today() + datetime.timedelta(days=7)
     next_month_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_month])
     next_week_events = Events.objects.filter(event_date__range=[datetime.date.today(), next_week])
+    NoEventsNextWeek = len(next_week_events) == 0
+    NoEventsNextMonth = len(next_month_events) == 0
 
     AllEventsCount=Events.objects.all().count()
     RegisteredPeopleCount = Event_registration.objects.count()
     AvailableEventsCount=Events.objects.filter(status=True).count()
     NotAvailableEventsCount=Events.objects.filter(status=False).count()
-
+    data = {
+        'AllEventsCount': AllEventsCount,
+        'RegisteredPeopleCount': RegisteredPeopleCount,
+        'AvailableEventsCount': AvailableEventsCount,
+        'NotAvailableEventsCount': NotAvailableEventsCount,
+    }
     filter = request.POST.get('filter')
     if request.method == 'POST':
         if filter == 'allevents':
-            return render(request, 'ActivityEvents/events.html', {'all_events': all_events})
+            return render(request, 'ActivityEvents/events.html', {'all_events': all_events,'data':data})
         elif filter == 'next_week':
-            return render(request, 'ActivityEvents/events.html', {'all_events': next_week_events})
+            return render(request, 'ActivityEvents/events.html', {'all_events': next_week_events,"NoEventsNextWeek":NoEventsNextWeek,'data':data})
         elif filter == 'next_month':
-            return render(request, 'ActivityEvents/events.html', {'all_events': next_month_events})
+            return render(request, 'ActivityEvents/events.html', {'all_events': next_month_events,"NoEventsNextMonth":NoEventsNextMonth,'data':data})
     else:
-        return render(request, 'ActivityEvents/events.html', {'all_events': all_events,"AllEventsCount":AllEventsCount,
-                                                              "RegisteredPeopleCount":RegisteredPeopleCount,"AvailableEventsCount":AvailableEventsCount,
-                                                              "NotAvailableEventsCount":NotAvailableEventsCount})
+        return render(request, 'ActivityEvents/events.html', {'all_events': all_events,'data':data})
 
 
 
@@ -78,15 +83,7 @@ def registrations(request):
         guests = request.POST.get('GuestsRegistration')
         comment = request.POST.get('CommentRegistration')
         gender=request.POST.get('gender')
-        print(Username)
-        print(Phonenumber)
-        print(Email)
-        print(date_of_birth)
-        print(Location)
-        print(guests)
-        print(comment)
-        print(gender)
-        print(EventsRegistration)
+
 
         event = Events.objects.get(pk=EventsRegistration)
         registration = Event_registration(
@@ -303,13 +300,27 @@ def apply_filter(request):
 
 def eventsRange(request):
     all_events = Events.objects.all()
-    startdate = request.POST.get('startdate')
-    enddate = request.POST.get('enddate')
+    InputStartRange = request.POST.get('InputStartRange')
+    InputEndRange = request.POST.get('InputEndRange')
+    AllEventsCount = Events.objects.all().count()
+    RegisteredPeopleCount = Event_registration.objects.count()
+    AvailableEventsCount = Events.objects.filter(status=True).count()
+    NotAvailableEventsCount = Events.objects.filter(status=False).count()
+    
+    data = {
+        'AllEventsCount': AllEventsCount,
+        'RegisteredPeopleCount': RegisteredPeopleCount,
+        'AvailableEventsCount': AvailableEventsCount,
+        'NotAvailableEventsCount': NotAvailableEventsCount,
+    }
+
     if request.method == 'POST':
-        eventrange = Events.objects.filter(event_date__range=[startdate, enddate])
-        return render(request, 'ActivityEvents/events.html', {'all_events': eventrange})
+        eventrange = Events.objects.filter(event_date__range=[InputStartRange, InputEndRange])
+        NoEventsInRange = len(eventrange) == 0
+
+        return render(request, 'ActivityEvents/events.html', {'all_events': eventrange, "NoEventsInRange": NoEventsInRange, "data": data})
     else:
-        return render(request, 'ActivityEvents/events.html', {'all_events': all_events})
+        return render(request, 'ActivityEvents/events.html', {'all_events': all_events, "data": data})
     
 
 
