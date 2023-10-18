@@ -66,11 +66,9 @@ The HTML files are the files that are rendered to the client. These files are th
     * keyracing.png 
     * Knowledgecuate.png 
     * movienight.png 
-    * signupanimate2.svg 
     * signupdone.png 
     * songhub.png
     * styless.css
-    * tabletloginanimate2.svg
     * Teleworkbro.png
     * thursdayhub.png
     * Unknownperson.jpg
