@@ -19,6 +19,7 @@ urlpatterns = [
     path("contactus", views.contactus, name="contactus"),
     path("eventsRange", views.eventsRange, name="eventsRange"),
     path("ASKAQUESTION", views.ASKAQUESTION, name="ASKAQUESTION"),
+    path("email", views.email, name="email"),
 
 
 ]
