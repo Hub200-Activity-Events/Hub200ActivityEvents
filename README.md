@@ -72,6 +72,8 @@ The HTML files are the files that are rendered to the client. These files are th
     * Teleworkbro.png
     * thursdayhub.png
     * Unknownperson.jpg
+    * tabletloginanimate2.svg
+    * signupanimate2.svg
 
 ### CSS files:
 
