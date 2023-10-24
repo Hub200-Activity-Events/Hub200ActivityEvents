@@ -126,8 +126,8 @@ def signin(request):
             login(request, user)
             return HttpResponseRedirect(reverse('home'))
         else:
-            return render(request, 'ActivityEvents/errorpage.html', {
-                'error': 'invalid email or password'})
+            return render(request, 'ActivityEvents/signin.html', {
+                'errormsg': 'invalid email or password'})
     else:
         return render(request, 'ActivityEvents/signin.html')
 

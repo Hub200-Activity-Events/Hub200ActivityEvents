@@ -326,7 +326,6 @@ input[type=date]:focus::-webkit-datetime-edit {
 
   <div class="flex xl:flex-row lg:flex-row md:flex-col-reverse	 min-[320px]:flex-col-reverse	 xl:h-[37rem] xl:w-[75rem] lg:h-[31rem] lg:w-[62rem] md:h-[30.5rem] md:w-[59.2rem] min-[320px]:h-[38rem] px-[0.5rem] min-[320px]:w-[19rem]  justify-center items-center xl:border-[0.2rem] lg:border-[0.2rem] md:border-[0.0rem] min-[320px]:border-[0.0rem]  border-[#E8F5FF] xl:rounded-[1rem] lg:rounded-[1rem] md:rounded-[2rem] min-[320px]:rounded-[3rem]    ">
            <!--signin page Form -->
-
     <div id="signinpage" class="flex xl:flex-row lg:flex-row md:flex-col min-[320px]:flex-col xl:h-[37rem] xl:w-[75rem] lg:h-[31rem] lg:w-[62rem] md:h-[30.5rem] md:w-[59.2rem] min-[320px]:h-[38rem] px-[0.5rem] min-[320px]:w-[19rem]  justify-center items-center xl:border-[0.0rem] lg:border-[0.0rem] md:border-[0.0rem] min-[320px]:border-[0.0rem]  border-[#E8F5FF] xl:rounded-[1rem] lg:rounded-[1rem] md:rounded-[2rem] min-[320px]:rounded-[3rem]  ">
         <form id="signinform"  action="{% url 'signin'  %}" method="POST" class="xl:w-1/2 lg:w-1/2 md:w-full min-[320px]:w-full	xl:bg-[#F8FCFF] lg:bg-[#F8FCFF] md:bg-white  min-[320px]:bg-white	 h-full flex items-center justify-center relative overflow-hidden">
             {% csrf_token %}
@@ -342,11 +341,15 @@ input[type=date]:focus::-webkit-datetime-edit {
               <div class="inputdivparent h-[3.2rem] mt-[2rem]">
                   <input  id="inputsigninpassword" name="inputsigninpassword" class="inputsclass xl:w-[16rem] xl:h-[3.5rem] lg:w-[15rem] lg:h-[3.1rem] md:w-[14rem] md:h-[3rem] min-[320px]:w-[14rem] min-[320px]:h-[3rem] md:h-[3rem] min-[320px]:w-[14rem] min-[320px]:h-[3rem] xl:rounded-[0.6rem] lg:rounded-[0.6rem] md:rounded-[5rem] min-[320px]:rounded-[5rem] " type="password" name="password" required>
                   <label class="placeholderlabel"  for="password">Password</label>
+
   
               </div>
+                <h5 class="text-sm text-red">
+                        {{ errormsg }}
+                </h5>
 
               <div id="buttonwrapper2">
-                <button  type="submit" class="submit xl:w-[13rem] xl:h-[3.5rem] lg:w-[10rem] lg:h-[3rem] md:w-[12rem] md:h-[3.4rem] min-[320px]:w-[14rem] min-[320px]:h-[2.7rem]" >Sign In</button>
+                  <button  type="submit" class="submit xl:w-[13rem] xl:h-[3.5rem] lg:w-[10rem] lg:h-[3rem] md:w-[12rem] md:h-[3.4rem] min-[320px]:w-[14rem] min-[320px]:h-[2.7rem]" >Sign In</button>
                    <div class="loader-wrapper">
                    <span class="loader white"></span>
                    <span class="loader blue"></span>
