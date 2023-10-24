@@ -158,10 +158,11 @@ def signup(request):
             # user.image = photo
             if user:
                 user = authenticate(email=email, password=password)
+                #send_welcome_email(email, username)
+
                 if user:
                     user.save()
                     login(request, user)
-                    send_welcome_email(email, username)
                     return HttpResponseRedirect(reverse('signingupdone'))
                 else:
                     return render(request, 'ActivityEvents/errorpage.html', {'error': 'Authentication failed'})
@@ -169,7 +170,7 @@ def signup(request):
                 return render(request, 'ActivityEvents/errorpage.html', {'error': 'User creation failed'})
 
 
-    return render(request, 'ActivityEvents/signup.html')
+    return render(request, 'ActivityEvents/signin.html')
     
 
 def logoutuser(request):
@@ -238,17 +239,19 @@ def events_details(request, event_id):
 
 def send_welcome_email(email, username):
     subject = 'Welcome to Hub200 Activity Events'
-    from_email = 'ahmedmahdii2003@gmail.com'
-    to = email
+    from_email = '' #Your Email here
+    to = [email]
     html_template = get_template('ActivityEvents/email.html')
     context = {'username': username}
-    html_content = html_template.render(Context(context))
-
+    html_content = html_template.render(context)
     email_message = EmailMultiAlternatives(subject, 'this is the plain text version of the email', from_email, to)
     email_message.attach_alternative(html_content, 'text/html')
-
+    print(email_message)
     email_message.send()
 
+
+def email(request):
+    return render(request, 'ActivityEvents/email.html')
 def apply_filter(request):
     events = Events.objects.all()
 
