@@ -318,6 +318,12 @@ if(formQAs){
     formData3.append('messageinputQA', messageinputQA.value)
   
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    if(wrapper.not( ".checked" )) {
+      wrapper.addClass( "checked" );
+      setTimeout(function(){
+        wrapper.removeClass( "checked" );
+      }, 6000);
+    }
     fetch('/ASKAQUESTION', {
         method: 'POST',
         headers: {
@@ -385,12 +391,19 @@ messageinputcontactusform = document.getElementById('messageinputcontactusform')
     
       formContactUs.addEventListener('submit',(e)=>{
         e.preventDefault()
+
         const formData2 = new FormData()
         formData2.append('usernameinputcontactusform', usernameinputcontactusform.value)
         formData2.append('emailinputcontactusform', emailinputcontactusform.value)
         formData2.append('messageinputcontactusform', messageinputcontactusform.value)
     
         const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+        if(wrapper.not( ".checked" )) {
+          wrapper.addClass( "checked" );
+          setTimeout(function(){
+            wrapper.removeClass( "checked" );
+          }, 6000);
+        }
         fetch('/contactus', {
             method: 'POST',
             headers: {

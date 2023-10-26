@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .models import Events, CustomUser, PeopleReviews, Contact_us,AskaQuestion
+from .models import Events, CustomUser, PeopleReviews, Contact_us,AskaQuestion,EventImage,EventOrganizer
 import datetime
 from django.core import serializers
 from django.http import JsonResponse
@@ -66,7 +66,11 @@ def events(request):
 
 def display_event(request,event_id):
     event = Events.objects.get(id=event_id)
-    return render(request,'ActivityEvents/display_event.html',{'event':event})
+    eventimage = EventImage.objects.get(event=event)
+    print(event)
+    print(eventimage)
+
+    return render(request,'ActivityEvents/display_event.html',{'event':event,"eventimage":eventimage})
     #you can use the events details in the html with event.title event.blah blah
 
 def calendar(request):
@@ -126,8 +130,8 @@ def signin(request):
             login(request, user)
             return HttpResponseRedirect(reverse('home'))
         else:
-            return render(request, 'ActivityEvents/signin.html', {
-                'errormsg': 'invalid email or password'})
+            return render(request, 'ActivityEvents/errorpage.html', {
+                'error': 'invalid email or password'})
     else:
         return render(request, 'ActivityEvents/signin.html')
 
@@ -212,7 +216,12 @@ def all_events(request):
 
 def display_event(request,event_id):
     event = Events.objects.get(id=event_id)
-    return render(request,'ActivityEvents/display_event.html',{'event':event})
+    eventimage = EventImage.objects.filter(event=event)
+    eventorganizer = EventOrganizer.objects.filter(event=event)
+
+    print(event)
+    print(eventimage)
+    return render(request,'ActivityEvents/display_event.html',{'event':event,"eventimage":eventimage,"eventorganizer":eventorganizer})
     #you can use the events details in the html with event.title event.blah blah
 
 
