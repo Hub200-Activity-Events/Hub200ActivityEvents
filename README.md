@@ -66,8 +66,14 @@ The HTML files are the files that are rendered to the client. These files are th
       ![image](https://github.com/me50/AzizAhsaan/assets/109335694/afc3f8c7-920c-4474-939b-6af2e691e032)
 
     * home.html - This file has been created to display the Home Page of Hub200, which showcases the events it offers, provides information about ThursdayHub, and includes PeopleReviews.
-      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/49aee7f9-eede-4884-91de-d24cf981f47c)
-      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/8d065eb4-ee8f-47b4-839e-b7f25cabf380)
+    * ![image](https://github.com/Hub200-Activity-Events/Hub200ActivityEvents/assets/109335694/fe72d9b6-1bda-407b-a1d7-dd85f66e759c)
+    * ![image](https://github.com/Hub200-Activity-Events/Hub200ActivityEvents/assets/109335694/48a5ff21-c3f7-4e42-968f-2066c536ab5b)
+    * ![image](https://github.com/Hub200-Activity-Events/Hub200ActivityEvents/assets/109335694/b40d16bd-f5e9-473b-ae73-385aa0568ad0)
+    * ![image](https://github.com/Hub200-Activity-Events/Hub200ActivityEvents/assets/109335694/12473480-1aa0-4e6d-94cf-4099177c36bb)
+
+
+
+
 
     * layout.html - This file has been created to display the Header,Body and Footer of the page and contains all the links and cdn.
     * registrations.html - This file has been created to facilitate the registration of people into Hub200's events by guiding them through the process of filling out all the required fields, including their name, phone number, location, and more.
