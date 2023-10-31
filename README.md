@@ -1,4 +1,4 @@
-# Event registration App | Capstone CS50W
+![image](https://github.com/Hub200-Activity-Events/Hub200ActivityEvents/assets/109335694/f7224680-d2ff-47a3-be43-850c8fb546ce)# Event registration App | Capstone CS50W
 
 </br>
 
@@ -50,6 +50,14 @@ The HTML files are the files that are rendered to the client. These files are th
       ![image](https://github.com/me50/AzizAhsaan/assets/109335694/92e626b3-148a-490e-a8dd-0f5c90acd285)
 
     * display_event.html - This file has been created to display the event details, including the name, description, date, and other relevant information.
+    * ![image](https://github.com/Hub200-Activity-Events/Hub200ActivityEvents/assets/109335694/49cfc94f-a5c7-4a19-b091-09e333a0d08b)
+    * ![image](https://github.com/Hub200-Activity-Events/Hub200ActivityEvents/assets/109335694/2e1dd7a8-50e1-4edc-94d7-f6a9e6d9d1ec)
+    * ![image](https://github.com/Hub200-Activity-Events/Hub200ActivityEvents/assets/109335694/f5ec2e50-d02c-48c8-a436-76adb1d27ff4)
+    * ![image](https://github.com/Hub200-Activity-Events/Hub200ActivityEvents/assets/109335694/ccffde1b-0e9e-4925-bed8-d1f9f8abf483)
+
+
+
+
     * errorpage.html - This file has been created to display an error page in case the user enters an incorrect login username or password.
       ![image](https://github.com/me50/AzizAhsaan/assets/109335694/2f277df4-c2dc-4490-a27a-3751ba96bff2)
 
@@ -116,8 +124,10 @@ There are 6 models for the web application's database.
 3. `Events` - Holds the information of the events.
 4. `Event_registration` - Holds the information of the registration process.
 5. `Contact_us` - Holds the information of the contact us form and all of the messages will be stored here for the admin to see.
-6. `PeopleReviews` - This model holds fields related to people's reviews, including name, photo, and description.
-
+6. `AskaQuestion` - This model holds fields related to Ask A question form, including name, email, and message.
+7. `PeopleReviews` - This model holds fields related to people's reviews, including name, photo, and description.
+8. `EventImage` - This model stores Event's images that are displayed in each event.
+9. `EventOrganizer` - This model stores Event Organizer's images that are displayed in each event.
 ### Views and serializers py files:
 
 'views.py' contains the functions for the web application. These view functions sends and receives http request and response. They also combine with serializers to deal with model instances and querysets.
