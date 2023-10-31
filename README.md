@@ -1,4 +1,4 @@
-![image](https://github.com/Hub200-Activity-Events/Hub200ActivityEvents/assets/109335694/f7224680-d2ff-47a3-be43-850c8fb546ce)# Event registration App | Capstone CS50W
+# Event registration App | Capstone CS50W
 
 </br>
 
