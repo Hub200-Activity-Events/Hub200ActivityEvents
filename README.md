@@ -14,9 +14,12 @@ I consider that this project meets all the expectations raised in the assignment
 
 The whole application is based on the Django framework, which allowed managing user authentication, database models, http requests, static files and the page rendering.
 
-The frontend part was made with django templates and javascript, which allowed to render the pages dynamically, and with the help of tailwind and css, the application was made responsive.
+The Frontend part was made with django templates and javascript, which allowed to render the pages dynamically, and with the help of tailwind and css, the application was made responsive.
 
-The difference between this web application and previous projects is that this application makes use and manages the data to check the events and the people who have registered for the event. This application allows future development and adding new futures such as online events.
+In the project, I added several libraries to enhance the user experience. I utilized Leaflet which is a library for displaying maps, to pinpoint Hub200's geographic coordinates. I used video.js to provide a more stylish and user-friendly video player. and also to  create amazing text animations, I implemented Typed.js, which adds an appealing typing effect. Additionally, I integrated Boxicons for high-quality icons and ScrollReveal for smooth and attractive animations throughout the application.
+
+
+The difference between this web application and previous projects is that this application features a homepage highlighting the importance of events in Hub200 to attract people to join and register for these events. The homepage includes various sections, showcasing what attendees can expect from the events and displaying reviews from previous participants. Additionally, there is a calendar section that makes it easier for users to find upcoming events. The application includes a registration form for individuals interested in participating, which also enables organizers to track event attendance. Furthermore, it includes sign-up and sign-in forms on the same page, using JavaScript to toggle between them for user convenience. This application also allows for future development, with the potential to add new features like online events, event filtering options (weekly, monthly, date range), and a search bar. It aims to validate all forms to prevent users from entering mismatched passwords, invalid email addresses, or incorrect phone numbers, among other features.
 
 - [x] Your web application must be sufficiently distinct from the other projects in this course (and, in addition, may not be based on the old CS50W Pizza project), and more complex than those.
 - [x] Your web application must utilize Django (including at least one model) on the back-end and JavaScript on the front-end.
@@ -31,10 +34,11 @@ The web platform is structured as follows
 
 - **Hub200ActivityEvents:** The home folder is the main Django app
 - **ActivityEvents:** This folder contains the models and funtions relating to the events. making, deleting, filtering and registering for events.
+- **media:** all Images on image fields in the database saved in this folder
 
 </br>
 
-# File Contents
+# Project Structure
 
 ## Front End:
 
@@ -43,14 +47,30 @@ The web platform is structured as follows
 The HTML files are the files that are rendered to the client. These files are the ones that are responsible for the front end of the web application. These files are present in the templates folder of the Django web application.
 + ./templates/ActivityEvents:
     * calendar.html - This file has been created to display the available events in the calendar.
+      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/92e626b3-148a-490e-a8dd-0f5c90acd285)
+
     * display_event.html - This file has been created to display the event details, including the name, description, date, and other relevant information.
     * errorpage.html - This file has been created to display an error page in case the user enters an incorrect login username or password.
-    * events.html - This file has been created to display all the Events in the database.
+      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/2f277df4-c2dc-4490-a27a-3751ba96bff2)
+
+    * events.html - This file has been created to display all the Events in the database and also including filters such weekly,month and range date filter and a searchbar and displaying the number of all events, avaliable events, not avaliable events and also the registered people.
+      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/d90b3593-3b3c-4586-a9d1-c07bd06f4868)
+      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/afc3f8c7-920c-4474-939b-6af2e691e032)
+
     * home.html - This file has been created to display the Home Page of Hub200, which showcases the events it offers, provides information about ThursdayHub, and includes PeopleReviews.
+      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/49aee7f9-eede-4884-91de-d24cf981f47c)
+      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/8d065eb4-ee8f-47b4-839e-b7f25cabf380)
+
     * layout.html - This file has been created to display the Header,Body and Footer of the page and contains all the links and cdn.
     * registrations.html - This file has been created to facilitate the registration of people into Hub200's events by guiding them through the process of filling out all the required fields, including their name, phone number, location, and more.
+      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/0d5fa7b9-45a4-4d03-8e1c-448646e6600d)
+
     * signin.html - This file has been created to enable people to log in to the website and also includes the signup form. It has been developed as a single-page application using JavaScript.
+      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/de100816-492c-421d-aeb5-82ad68db5f6d)
+      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/59fe2a6c-d5b8-4bd7-810e-57e55eec821e)
+
     * signingupdone.html - This file has been created to display a thank you note after succussful signing up.
+      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/a315360c-ba93-4d4a-8a02-591e1cc063e9)
 
 
 + ./static/ActivityEvents:
@@ -84,6 +104,7 @@ The CSS files are the files that are responsible for the styling of the web appl
 The JavaScript files are the files that are responsible for creating dynamic webpage and it contains the validation of all the forms in the website and many other features . These files are present in the static folder of the Django web application.
 
 
+
 ## Back End:
 
 ### Models in the app
@@ -91,9 +112,11 @@ The JavaScript files are the files that are responsible for creating dynamic web
 There are 6 models for the web application's database.
 
 1. `User` - The built in Django User model.
-2. `Events` - Holds the information of the events.
-3. `Event_registration` - Holds the information of the registration process.
-4. `Contact_us` - Holds the information of the contact us form and all of the messages will be stored here for the admin to see.
+2. `CustomUser` - An abstract user model that extends the base Django User model and includes additional fields such as photo and phone number.
+3. `Events` - Holds the information of the events.
+4. `Event_registration` - Holds the information of the registration process.
+5. `Contact_us` - Holds the information of the contact us form and all of the messages will be stored here for the admin to see.
+6. `PeopleReviews` - This model holds fields related to people's reviews, including name, photo, and description.
 
 ### Views and serializers py files:
 
@@ -143,27 +166,22 @@ Run the application in the default port (Django: 8000).
 ## Backend
 
 ```json
-# Create a virtual environment
+# Create a virtual environment:
 python -m venv myenv
 
-# Activate the virtual environment (Windows)
+# Activate the virtual environment (Windows):
 myenv\Scripts\activate
 
-# Activate the virtual environment (macOS/Linux)
+# Activate the virtual environment (macOS/Linux):
 source myenv/bin/activate
 
+#For installing the requrirements:
 pip install -r requirements.txt
-python manage.py runserver
-pip install -r requirements.txt
+
+# To run the project:
 python manage.py runserver
 ```
 
 
-## For deploying
-
-```json
-npm run build
-```
-
-</br>
-
+## The project is deployed on pythonanywhere
+https://azizahsaan.pythonanywhere.com/
