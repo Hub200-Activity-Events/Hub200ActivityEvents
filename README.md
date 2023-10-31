@@ -110,6 +110,15 @@ The HTML files are the files that are rendered to the client. These files are th
     * Unknownperson.jpg
     * tabletloginanimate2.svg
     * signupanimate2.svg
+    * Formsbro.png
+    * thinkingfaceanimate.svg
+    * learninganimate.svg
+    * collabanimate.svg
+    * Smarthomecuate.png
+    * Selectingteambro.png
+    * calendar2.png
+    * communityicon.png
+    * securitypin.png
 
 ### CSS files:
 
@@ -125,7 +134,7 @@ The JavaScript files are the files that are responsible for creating dynamic web
 
 ### Models in the app
 
-There are 6 models for the web application's database.
+There are 9 models for the web application's database.
 
 1. `User` - The built in Django User model.
 2. `CustomUser` - An abstract user model that extends the base Django User model and includes additional fields such as photo and phone number.
