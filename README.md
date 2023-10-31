@@ -74,8 +74,10 @@ The HTML files are the files that are rendered to the client. These files are th
       ![image](https://github.com/me50/AzizAhsaan/assets/109335694/0d5fa7b9-45a4-4d03-8e1c-448646e6600d)
 
     * signin.html - This file has been created to enable people to log in to the website and also includes the signup form. It has been developed as a single-page application using JavaScript.
-      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/de100816-492c-421d-aeb5-82ad68db5f6d)
-      ![image](https://github.com/me50/AzizAhsaan/assets/109335694/59fe2a6c-d5b8-4bd7-810e-57e55eec821e)
+    * ![image](https://github.com/Hub200-Activity-Events/Hub200ActivityEvents/assets/109335694/c678d130-3374-446f-86ac-ec3e9cda96a6)
+    * ![image](https://github.com/Hub200-Activity-Events/Hub200ActivityEvents/assets/109335694/ce3952ec-6c6b-4cd9-bdf5-84ca33d5ab71)
+    * ![image](https://github.com/Hub200-Activity-Events/Hub200ActivityEvents/assets/109335694/866a67c8-3c83-4140-b31a-56d3e56415b5)
+
 
     * signingupdone.html - This file has been created to display a thank you note after succussful signing up.
       ![image](https://github.com/me50/AzizAhsaan/assets/109335694/a315360c-ba93-4d4a-8a02-591e1cc063e9)
